@@ -33,7 +33,34 @@ class OrderAction {
 
 enum StatusHistoryOrder { done, fail }
 
-var alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var alphabet = [
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F",
+  "G",
+  "H",
+  "I",
+  "J",
+  "K",
+  "L",
+  "M",
+  "N",
+  "O",
+  "P",
+  "Q",
+  "R",
+  "S",
+  "T",
+  "U",
+  "V",
+  "W",
+  "X",
+  "Y",
+  "Z"
+];
 
 StatusAccordionOrder getAccordionOrder(status) {
   switch (status) {
@@ -69,7 +96,11 @@ List itemsTab = [
   {"icon": Icons.home, "size": 30.0, "label": "Trang chủ"},
   {"icon": Icons.notes_rounded, "size": 22.0, "label": "Đơn hàng"},
   {"icon": Icons.history, "size": 21.0, "label": "Lịch sử"},
-  {"icon": Icons.account_balance_wallet_outlined, "size": 24.0, "label": "Giao dịch"},
+  {
+    "icon": Icons.account_balance_wallet_outlined,
+    "size": 24.0,
+    "label": "Giao dịch"
+  },
   {"icon": Icons.account_circle_outlined, "size": 30.0, "label": "Tài khoản"},
 ];
 
@@ -80,8 +111,8 @@ final kDarkTheme = ThemeData(
   fontFamily: 'SFProText',
   primaryColor: kDarkPrimaryColor,
   canvasColor: kDarkPrimaryColor,
-  backgroundColor: kDarkSecondaryColor,
-  accentColor: kAccentColor,
+  // backgroundColor: kDarkSecondaryColor,
+  hintColor: kAccentColor,
   iconTheme: ThemeData.dark().iconTheme.copyWith(
         color: kLightSecondaryColor,
       ),
@@ -177,15 +208,17 @@ final kLightTheme = ThemeData(
     fontFamily: 'SF Regular',
     primaryColor: kLightPrimaryColor,
     canvasColor: kLightPrimaryColor,
-    backgroundColor: kLightSecondaryColor,
-    accentColor: kAccentColor,
     scaffoldBackgroundColor: MaterialColors.grey,
     iconTheme: ThemeData.light().iconTheme.copyWith(
           color: kDarkSecondaryColor,
         ),
     inputDecorationTheme: InputDecorationTheme(
-      focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: MaterialColors.primary)),
-    )
+      focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: MaterialColors.primary)),
+    ),
+    colorScheme: ColorScheme.fromSwatch()
+        .copyWith(secondary: kAccentColor)
+        .copyWith(background: kLightSecondaryColor)
     // textTheme: ThemeData.light().textTheme.apply(
     //       fontFamily: 'SFProText',
     //       bodyColor: kDarkSecondaryColor,

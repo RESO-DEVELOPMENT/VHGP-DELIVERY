@@ -13,10 +13,13 @@ import 'package:vh_shipper_app/provider/appProvider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+import 'firebase_options.dart';
+
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // you need to initialize firebase first
-  await Firebase.initializeApp();
-
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   print("Handling a background message: ${message.messageId}");
 }
 
@@ -65,13 +68,15 @@ class LandingScreen extends StatelessWidget {
                   context.read<AppProvider>().setDriverModel(driverModel),
                   context.read<AppProvider>().setStatus(driverModel.status!),
 
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => RootApp()))
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => RootApp()))
                   // context.read<AppProvider>().setName(store.name)
                 })
             .catchError((onError) => {print(onError)});
       } else {
         print("login");
-        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => LoginScreen()));
         // Navigator.push(
         //     context, MaterialPageRoute(builder: (context) => LoginScreen()));
       }
