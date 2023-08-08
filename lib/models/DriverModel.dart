@@ -13,7 +13,7 @@ class DriverModel {
   String? colour;
   String? createAt;
   String? updateAt;
-  bool? status;
+  String? status;
 
   DriverModel(
       {this.id,

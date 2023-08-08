@@ -9,8 +9,8 @@ class AppProvider with ChangeNotifier {
   late DriverModel driverModel = DriverModel();
   bool status = false;
 
-  void setStatus(bool bool) {
-    status = true;
+  void setStatus(String status) {
+    status = status;
     notifyListeners();
   }
 

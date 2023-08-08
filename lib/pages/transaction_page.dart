@@ -47,17 +47,27 @@ class _TransactionPageState extends State<TransactionPage> {
               children: [
                 Text(
                   "Lọc theo",
-                  style: TextStyle(color: Color.fromRGBO(100, 100, 100, 1), fontSize: 14, fontFamily: "SF Regular"),
+                  style: TextStyle(
+                      color: Color.fromRGBO(100, 100, 100, 1),
+                      fontSize: 14,
+                      fontFamily: "SF Regular"),
                 ),
                 SizedBox(
                   width: 15,
                 ),
                 Container(
-                  padding: EdgeInsets.only(left: 15, right: 15, top: 7, bottom: 7),
-                  decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(kSpacingUnit * 2), border: Border.all(color: MaterialColors.primary)),
+                  padding:
+                      EdgeInsets.only(left: 15, right: 15, top: 7, bottom: 7),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(kSpacingUnit * 2),
+                      border: Border.all(color: MaterialColors.primary)),
                   child: Text(
                     "1 Tháng gần nhất",
-                    style: TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 14, fontFamily: "SF Regular"),
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        fontSize: 14,
+                        fontFamily: "SF Regular"),
                   ),
                 )
               ],
@@ -141,7 +151,8 @@ class _TransactionPageState extends State<TransactionPage> {
                           children: [
                             Text(
                               "- 111.111 vnd",
-                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),
@@ -167,10 +178,14 @@ class _TransactionPageState extends State<TransactionPage> {
               child: Row(
                 children: [
                   Container(
-                    padding: EdgeInsets.only(right: 15, left: 15, top: 8, bottom: 8),
+                    padding:
+                        EdgeInsets.only(right: 15, left: 15, top: 8, bottom: 8),
                     child: Text(
                       getTimeTransaction(list.date),
-                      style: TextStyle(fontSize: 13.5, color: MaterialColors.primary, fontFamily: "SF Medium"),
+                      style: TextStyle(
+                          fontSize: 13.5,
+                          color: MaterialColors.primary,
+                          fontFamily: "SF Medium"),
                     ),
                   )
                 ],
@@ -186,7 +201,13 @@ class _TransactionPageState extends State<TransactionPage> {
                   onTap: () {
                     var shipperId = context.read<AppProvider>().getUserId;
                     var name = context.read<AppProvider>().getName;
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => DetailRemittanceHistory(transaction: item, shipperId: shipperId, name: name)));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DetailRemittanceHistory(
+                                transaction: item,
+                                shipperId: shipperId,
+                                name: name)));
                   },
                   child: Container(
                     padding: EdgeInsets.only(
@@ -194,7 +215,10 @@ class _TransactionPageState extends State<TransactionPage> {
                       bottom: 8,
                     ),
                     margin: EdgeInsets.only(right: 15, left: 15),
-                    decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Color.fromRGBO(245, 245, 245, 1)))),
+                    decoration: BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(
+                                color: Color.fromRGBO(245, 245, 245, 1)))),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -212,8 +236,12 @@ class _TransactionPageState extends State<TransactionPage> {
                                     child: Row(
                                       children: [
                                         Text(
-                                          getTransactionType(item.transactionType).toUpperCase(),
-                                          style: TextStyle(fontFamily: "SF Regular", fontSize: 15),
+                                          getTransactionType(
+                                                  item.transactionType)
+                                              .toUpperCase(),
+                                          style: TextStyle(
+                                              fontFamily: "SF Regular",
+                                              fontSize: 15),
                                         ),
                                       ],
                                     ),
@@ -227,15 +255,28 @@ class _TransactionPageState extends State<TransactionPage> {
                                         Container(
                                           height: 15,
                                           width: 15,
-                                          child: Image.asset(item.transactionAction == 1 ? 'assets/images/green-tag.png' : 'assets/images/red-tag.png',
-                                              fit: BoxFit.cover, color: Color.fromRGBO(255, 255, 255, 0.5), colorBlendMode: BlendMode.modulate),
+                                          child: Image.asset(
+                                              item.transactionAction == 1
+                                                  ? 'assets/images/green-tag.png'
+                                                  : 'assets/images/red-tag.png',
+                                              fit: BoxFit.cover,
+                                              color: Color.fromRGBO(
+                                                  255, 255, 255, 0.5),
+                                              colorBlendMode:
+                                                  BlendMode.modulate),
                                         ),
                                         SizedBox(
                                           width: kSpacingUnit * 0.5,
                                         ),
                                         Text(
-                                          item.transactionAction == 1 ? "Nhận tiền vào" : "Chuyển tiền đi",
-                                          style: TextStyle(fontFamily: "SF Regular", fontSize: 14, color: Color.fromRGBO(120, 120, 120, 1)),
+                                          item.transactionAction == 1
+                                              ? "Nhận tiền vào"
+                                              : "Chuyển tiền đi",
+                                          style: TextStyle(
+                                              fontFamily: "SF Regular",
+                                              fontSize: 14,
+                                              color: Color.fromRGBO(
+                                                  120, 120, 120, 1)),
                                         ),
                                       ],
                                     ),
@@ -250,7 +291,12 @@ class _TransactionPageState extends State<TransactionPage> {
                         ),
                         Text(
                           "${item.transactionAction == 1 ? "+" : "-"}${currencyFormatter.format((item.amount!).toInt()).toString()} VND",
-                          style: TextStyle(fontFamily: "SF SemiBold", fontSize: 16, color: item.transactionAction == 1 ? MaterialColors.success : MaterialColors.black),
+                          style: TextStyle(
+                              fontFamily: "SF SemiBold",
+                              fontSize: 16,
+                              color: item.transactionAction == 1
+                                  ? MaterialColors.success
+                                  : MaterialColors.black),
                         ),
                       ],
                     ),
@@ -275,14 +321,16 @@ class _TransactionPageState extends State<TransactionPage> {
         children: [
           Text(
             "Tài khoản thu hộ",
-            style: TextStyle(color: Colors.black54, fontSize: 16, fontFamily: "SF Regular"),
+            style: TextStyle(
+                color: Colors.black54, fontSize: 16, fontFamily: "SF Regular"),
           ),
           SizedBox(
             height: 10,
           ),
           Text(
             "${currencyFormatter.format((wallet).toInt()).toString()} ",
-            style: TextStyle(color: Colors.black, fontSize: 24, fontFamily: "SF Bold"),
+            style: TextStyle(
+                color: Colors.black, fontSize: 24, fontFamily: "SF Bold"),
           ),
           SizedBox(height: 10),
           Row(
@@ -303,11 +351,13 @@ class _TransactionPageState extends State<TransactionPage> {
                     children: [
                       Text(
                         "0",
-                        style: TextStyle(color: Color.fromRGBO(80, 80, 80, 1), fontSize: 14),
+                        style: TextStyle(
+                            color: Color.fromRGBO(80, 80, 80, 1), fontSize: 14),
                       ),
                       Text(
                         " đơn hàng hoàn tất",
-                        style: TextStyle(color: Color.fromRGBO(80, 80, 80, 1), fontSize: 14),
+                        style: TextStyle(
+                            color: Color.fromRGBO(80, 80, 80, 1), fontSize: 14),
                       ),
                     ],
                   ),
@@ -319,16 +369,22 @@ class _TransactionPageState extends State<TransactionPage> {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(8)),
-                      gradient: const LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [
-                        MaterialColors.primary,
-                        Color(0xfff7892b),
-                      ]),
+                      gradient: const LinearGradient(
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                          colors: [
+                            MaterialColors.primary,
+                            Color(0xfff7892b),
+                          ]),
                     ),
                     height: 38,
                     child: ElevatedButton(
                       child: Text(
                         "Xem chi tiết",
-                        style: TextStyle(color: Colors.white, fontFamily: "SF SemiBold", fontSize: 15),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: "SF SemiBold",
+                            fontSize: 15),
                       ),
                       style: ElevatedButton.styleFrom(
                         primary: Colors.transparent,
@@ -338,7 +394,12 @@ class _TransactionPageState extends State<TransactionPage> {
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
-                      onPressed: () => {Navigator.push(context, MaterialPageRoute(builder: (context) => ColectionDetail()))},
+                      onPressed: () => {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ColectionDetail()))
+                      },
                     ),
                   )),
               // Column(
@@ -376,7 +437,7 @@ class _TransactionPageState extends State<TransactionPage> {
   var outputDate;
   var nowDate;
   MessageEdgeModelHistory messageEdgeModelHistory = MessageEdgeModelHistory();
-  double wallet = 0;
+  num wallet = 0;
   var outputFormat = DateFormat('dd/MM/yyyy');
   hanldeGetTransaction(String shipperId) {
     var newList = [];
@@ -398,7 +459,8 @@ class _TransactionPageState extends State<TransactionPage> {
                       outputDate = outputFormat.format(inputDate);
                       item["date"] = outputDate;
                       newList.add(outputDate);
-                      TransactionModel transactionModel = TransactionModel.fromJson(item);
+                      TransactionModel transactionModel =
+                          TransactionModel.fromJson(item);
                       transactionModel.fullDate = tmpDate;
                       return transactionModel;
                     }).toList();
@@ -406,7 +468,9 @@ class _TransactionPageState extends State<TransactionPage> {
                     // tmpList.add(TransactionModel(amount: 100000, date: "27/11/2022", status: 1, transactionAction: 2, transactionType: 2));
                     newList = newList.toSet().toList();
                     for (var element in newList) {
-                      TransactionListModel tracnsactionDate = TransactionListModel(date: "", fullDate: "", transactions: []);
+                      TransactionListModel tracnsactionDate =
+                          TransactionListModel(
+                              date: "", fullDate: "", transactions: []);
                       for (var tran in tmpList) {
                         if (element == tran.date) {
                           tracnsactionDate.date = element;
@@ -434,7 +498,7 @@ class _TransactionPageState extends State<TransactionPage> {
                       {
                         setState(() {
                           isLoading = false;
-                          wallet = messageEdgeModelHistory.data.toDouble();
+                          wallet = messageEdgeModelHistory.data["debitBalance"];
                         })
                       }
                     else
@@ -479,17 +543,21 @@ class _TransactionPageState extends State<TransactionPage> {
           appBar: AppBar(
             flexibleSpace: Container(
               decoration: BoxDecoration(
-                gradient: const LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [
-                  MaterialColors.primary,
-                  MaterialColors.primary2,
-                ]),
+                gradient: const LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [
+                      MaterialColors.primary,
+                      MaterialColors.primary2,
+                    ]),
               ),
             ),
             automaticallyImplyLeading: false,
             centerTitle: true,
             title: Text(
               "Giao dịch",
-              style: TextStyle(color: MaterialColors.white, fontFamily: "SF Bold"),
+              style:
+                  TextStyle(color: MaterialColors.white, fontFamily: "SF Bold"),
             ),
           ),
           body: Stack(
@@ -513,7 +581,10 @@ class _TransactionPageState extends State<TransactionPage> {
                               // SizedBox(
                               //   height: kSpacingUnit * 0.7,
                               // ),
-                              if (_list.isNotEmpty) ...[..._list].map((item) => transactionItem(item)).toList(),
+                              if (_list.isNotEmpty)
+                                ...[..._list]
+                                    .map((item) => transactionItem(item))
+                                    .toList(),
                               SizedBox(
                                 height: kSpacingUnit * 0.5,
                               ),
@@ -543,14 +614,18 @@ class _TransactionPageState extends State<TransactionPage> {
                           height: 50,
                           width: 50,
                           fit: BoxFit.cover,
-                          image: NetworkImage("https://cdn-icons-png.flaticon.com/512/5157/5157579.png")),
+                          image: NetworkImage(
+                              "https://cdn-icons-png.flaticon.com/512/5157/5157579.png")),
                       SizedBox(
                         height: 15,
                       ),
 
                       Text(
                         "Bạn không có giao dịch nào",
-                        style: TextStyle(fontFamily: "SF Regular", fontSize: 16, color: Colors.black45),
+                        style: TextStyle(
+                            fontFamily: "SF Regular",
+                            fontSize: 16,
+                            color: Colors.black45),
                       ),
                     ],
                   )),
