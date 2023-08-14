@@ -16,7 +16,12 @@ class OrderDetailPage extends StatefulWidget {
   String edgeId;
   String building;
   int statusEdge;
-  OrderDetailPage({super.key, required this.statusEdge, required this.building, required this.edgeId, required this.alphabet});
+  OrderDetailPage(
+      {super.key,
+      required this.statusEdge,
+      required this.building,
+      required this.edgeId,
+      required this.alphabet});
 
   @override
   State<OrderDetailPage> createState() => _OrderDetailPageState();
@@ -79,7 +84,13 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
           // backgroundColor: Color.fromARGB(255, 255, 255, 255),
           flexibleSpace: Container(
             decoration: BoxDecoration(
-              gradient: LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [getColorAppBar(widget.statusEdge), getColorAppBar(widget.statusEdge)]),
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    getColorAppBar(widget.statusEdge),
+                    getColorAppBar(widget.statusEdge)
+                  ]),
             ),
           ),
           titleSpacing: 0,
@@ -105,7 +116,9 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                 height: 5,
               ),
               Text(
-                widget.statusEdge == StatusEdge.done ? "Đã hoàn thành" : "Di chuyển đến nơi giao nhận hàng",
+                widget.statusEdge == StatusEdge.done
+                    ? "Đã hoàn thành"
+                    : "Di chuyển đến nơi giao nhận hàng",
                 style: TextStyle(
                   fontSize: 17,
                   fontFamily: "SF Bold",
@@ -119,7 +132,9 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
           Container(
               height: MediaQuery.of(context).size.height * 1,
               width: MediaQuery.of(context).size.width,
-              decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(15))),
+              decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(15))),
               child: Stack(
                 children: [
                   if (!isLoading)
@@ -155,14 +170,18 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                         bottom: 0,
                         child: Container(
                             decoration: BoxDecoration(color: Colors.white),
-                            padding: EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
+                            padding: EdgeInsets.only(
+                                left: 15, right: 15, top: 10, bottom: 10),
                             width: MediaQuery.of(context).size.width,
                             child: Container(
                               height: 45,
                               child: ElevatedButton(
                                 child: Text(
                                   "Địa điểm tiếp theo",
-                                  style: TextStyle(color: Colors.white, fontFamily: "SF Bold", fontSize: 16),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: "SF Bold",
+                                      fontSize: 16),
                                 ),
                                 style: ElevatedButton.styleFrom(
                                   primary: MaterialColors.primary,

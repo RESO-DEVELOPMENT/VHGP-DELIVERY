@@ -21,6 +21,8 @@ import 'package:vh_shipper_app/widgets/transaction_record.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
+import 'order_detail_page.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -41,7 +43,8 @@ class _HomePageState extends State<HomePage> {
     showModalBottomSheet(
         isScrollControlled: true,
         context: context,
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(15.0))),
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(15.0))),
         builder: (BuildContext bc) {
           return OrderAcceptModal(function: (func) {});
         });
@@ -51,9 +54,11 @@ class _HomePageState extends State<HomePage> {
     showModalBottomSheet(
         isScrollControlled: true,
         context: context,
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(15.0))),
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(15.0))),
         builder: (BuildContext bc) {
-          return OrderShippingModal(storeId: "", menuId: '', function: (func) {});
+          return OrderShippingModal(
+              storeId: "", menuId: '', function: (func) {});
         });
   }
 
@@ -61,7 +66,8 @@ class _HomePageState extends State<HomePage> {
     showModalBottomSheet(
         isScrollControlled: true,
         context: context,
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(15.0))),
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(15.0))),
         builder: (BuildContext bc) {
           return OrderDoneModal(storeId: "", menuId: '', function: (func) {});
         });
@@ -113,7 +119,10 @@ class _HomePageState extends State<HomePage> {
             TextButton(
               child: Text(
                 getTimeNow(dayActive, subtractFilter),
-                style: TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontFamily: "SF Bold", fontSize: 15),
+                style: TextStyle(
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    fontFamily: "SF Bold",
+                    fontSize: 15),
               ),
               onPressed: () {
                 _modalBottomSheetMenu();
@@ -137,7 +146,8 @@ class _HomePageState extends State<HomePage> {
                     dayActive = 2;
                     DateTime now = DateTime.now();
                     print(now);
-                    now = DateTime.now().subtract(Duration(days: subtractFilter + 1));
+                    now = DateTime.now()
+                        .subtract(Duration(days: subtractFilter + 1));
                     subtractFilter = subtractFilter + 1;
                     print(now);
                     var formatterDate = DateFormat('dd');
@@ -146,7 +156,8 @@ class _HomePageState extends State<HomePage> {
                     String actualDate = formatterDate.format(now);
                     String actualMonth = formatterMonth.format(now);
                     String actualYear = formatterYear.format(now);
-                    String dayFilter = "${actualMonth}/${actualDate}/${actualYear}";
+                    String dayFilter =
+                        "${actualMonth}/${actualDate}/${actualYear}";
 
                     print(dayFilter);
                     hanldeFilter(shipperId, dayFilter, "", "");
@@ -167,7 +178,8 @@ class _HomePageState extends State<HomePage> {
 
                     dayActive = 2;
                     DateTime now = DateTime.now();
-                    now = DateTime.now().subtract(Duration(days: subtractFilter - 1));
+                    now = DateTime.now()
+                        .subtract(Duration(days: subtractFilter - 1));
                     subtractFilter = subtractFilter - 1;
                     var formatterDate = DateFormat('dd');
                     var formatterMonth = DateFormat("MM");
@@ -175,7 +187,8 @@ class _HomePageState extends State<HomePage> {
                     String actualDate = formatterDate.format(now);
                     String actualMonth = formatterMonth.format(now);
                     String actualYear = formatterYear.format(now);
-                    String dayFilter = "${actualMonth}/${actualDate}/${actualYear}";
+                    String dayFilter =
+                        "${actualMonth}/${actualDate}/${actualYear}";
                     print(dayFilter);
                     hanldeFilter(shipperId, dayFilter, "", "");
                   });
@@ -192,29 +205,42 @@ class _HomePageState extends State<HomePage> {
   void _modalBottomSheetMenu() {
     showModalBottomSheet(
         context: context,
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(10.0))),
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(10.0))),
         builder: (builder) {
-          return StatefulBuilder(builder: (BuildContext context, StateSetter mystate) {
+          return StatefulBuilder(
+              builder: (BuildContext context, StateSetter mystate) {
             return Container(
               height: 220.0,
               child: Column(
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(10.0)),
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(10.0)),
                       color: Colors.white,
                     ),
                     padding: EdgeInsets.only(top: 15, bottom: 15),
-                    child: Row(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.center, children: [
-                      Text(
-                        "Chọn Khoảng Thời Gian",
-                        style: TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontFamily: "SF Bold", fontSize: 15),
-                      ),
-                    ]),
+                    child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Chọn Khoảng Thời Gian",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 0, 0, 0),
+                                fontFamily: "SF Bold",
+                                fontSize: 15),
+                          ),
+                        ]),
                   ),
                   Container(
                       padding: EdgeInsets.only(left: 15, right: 15),
-                      decoration: BoxDecoration(color: Colors.white, border: Border(top: BorderSide(color: Color.fromRGBO(240, 240, 240, 1)))),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border(
+                              top: BorderSide(
+                                  color: Color.fromRGBO(240, 240, 240, 1)))),
                       child: Column(
                         children: [
                           SizedBox(
@@ -227,7 +253,8 @@ class _HomePageState extends State<HomePage> {
                                 filterActive = 1;
                                 dayActive = 1;
                                 Navigator.pop(context);
-                                var shipperId = context.read<AppProvider>().getUserId;
+                                var shipperId =
+                                    context.read<AppProvider>().getUserId;
                                 DateTime now = DateTime.now();
                                 var formatterDate = DateFormat('dd');
                                 var formatterMonth = DateFormat("MM");
@@ -235,7 +262,8 @@ class _HomePageState extends State<HomePage> {
                                 String actualDate = formatterDate.format(now);
                                 String actualMonth = formatterMonth.format(now);
                                 String actualYear = formatterYear.format(now);
-                                String dayFilter = "${actualMonth}/${actualDate}/${actualYear}";
+                                String dayFilter =
+                                    "${actualMonth}/${actualDate}/${actualYear}";
                                 hanldeFilter(shipperId, dayFilter, "", "");
                               });
                             },
@@ -247,15 +275,25 @@ class _HomePageState extends State<HomePage> {
                                   child: Row(children: [
                                     Text(
                                       "Hôm nay",
-                                      style: TextStyle(color: Color.fromRGBO(120, 120, 120, 1), fontFamily: "SF Medium", fontSize: 16),
+                                      style: TextStyle(
+                                          color:
+                                              Color.fromRGBO(120, 120, 120, 1),
+                                          fontFamily: "SF Medium",
+                                          fontSize: 16),
                                     ),
                                   ]),
                                 ),
                                 Container(
                                   child: Row(children: [
                                     filterActive == 1
-                                        ? Icon(Icons.radio_button_checked, size: 20, color: Color.fromRGBO(120, 120, 120, 1))
-                                        : Icon(Icons.radio_button_unchecked, size: 20, color: Color.fromRGBO(120, 120, 120, 1)),
+                                        ? Icon(Icons.radio_button_checked,
+                                            size: 20,
+                                            color: Color.fromRGBO(
+                                                120, 120, 120, 1))
+                                        : Icon(Icons.radio_button_unchecked,
+                                            size: 20,
+                                            color: Color.fromRGBO(
+                                                120, 120, 120, 1)),
                                   ]),
                                 )
                               ],
@@ -271,15 +309,18 @@ class _HomePageState extends State<HomePage> {
                                 filterActive = 2;
                                 dayActive = 2;
                                 Navigator.pop(context);
-                                var shipperId = context.read<AppProvider>().getUserId;
-                                DateTime now = DateTime.now().subtract(Duration(days: 1));
+                                var shipperId =
+                                    context.read<AppProvider>().getUserId;
+                                DateTime now =
+                                    DateTime.now().subtract(Duration(days: 1));
                                 var formatterDate = DateFormat('dd');
                                 var formatterMonth = DateFormat("MMM");
                                 var formatterYear = DateFormat("yyyy");
                                 String actualDate = formatterDate.format(now);
                                 String actualMonth = formatterMonth.format(now);
                                 String actualYear = formatterYear.format(now);
-                                String dayFilter = "${actualMonth} ${actualDate} ${actualYear}";
+                                String dayFilter =
+                                    "${actualMonth} ${actualDate} ${actualYear}";
                                 subtractFilter = subtractFilter + 1;
                                 hanldeFilter(shipperId, dayFilter, "", "");
                               });
@@ -292,15 +333,25 @@ class _HomePageState extends State<HomePage> {
                                   child: Row(children: [
                                     Text(
                                       "Hôm qua",
-                                      style: TextStyle(color: Color.fromRGBO(120, 120, 120, 1), fontFamily: "SF Medium", fontSize: 16),
+                                      style: TextStyle(
+                                          color:
+                                              Color.fromRGBO(120, 120, 120, 1),
+                                          fontFamily: "SF Medium",
+                                          fontSize: 16),
                                     ),
                                   ]),
                                 ),
                                 Container(
                                   child: Row(children: [
                                     filterActive == 2
-                                        ? Icon(Icons.radio_button_checked, size: 20, color: Color.fromRGBO(120, 120, 120, 1))
-                                        : Icon(Icons.radio_button_unchecked, size: 20, color: Color.fromRGBO(120, 120, 120, 1)),
+                                        ? Icon(Icons.radio_button_checked,
+                                            size: 20,
+                                            color: Color.fromRGBO(
+                                                120, 120, 120, 1))
+                                        : Icon(Icons.radio_button_unchecked,
+                                            size: 20,
+                                            color: Color.fromRGBO(
+                                                120, 120, 120, 1)),
                                   ]),
                                 )
                               ],
@@ -316,14 +367,16 @@ class _HomePageState extends State<HomePage> {
                                 filterActive = 3;
                                 dayActive = 3;
                                 Navigator.pop(context);
-                                var shipperId = context.read<AppProvider>().getUserId;
+                                var shipperId =
+                                    context.read<AppProvider>().getUserId;
                                 DateTime now = DateTime.now();
                                 var formatterMonth = DateFormat("MM");
                                 var formatterYear = DateFormat("yyyy");
                                 String actualMonth = formatterMonth.format(now);
                                 String actualYear = formatterYear.format(now);
                                 subtractFilter = subtractFilter + 1;
-                                hanldeFilter(shipperId, "", actualMonth, actualYear);
+                                hanldeFilter(
+                                    shipperId, "", actualMonth, actualYear);
                               });
                             },
                             child: Row(
@@ -334,15 +387,25 @@ class _HomePageState extends State<HomePage> {
                                   child: Row(children: [
                                     Text(
                                       "Tháng này",
-                                      style: TextStyle(color: Color.fromRGBO(120, 120, 120, 1), fontFamily: "SF Medium", fontSize: 16),
+                                      style: TextStyle(
+                                          color:
+                                              Color.fromRGBO(120, 120, 120, 1),
+                                          fontFamily: "SF Medium",
+                                          fontSize: 16),
                                     ),
                                   ]),
                                 ),
                                 Container(
                                   child: Row(children: [
                                     filterActive == 3
-                                        ? Icon(Icons.radio_button_checked, size: 20, color: Color.fromRGBO(120, 120, 120, 1))
-                                        : Icon(Icons.radio_button_unchecked, size: 20, color: Color.fromRGBO(120, 120, 120, 1)),
+                                        ? Icon(Icons.radio_button_checked,
+                                            size: 20,
+                                            color: Color.fromRGBO(
+                                                120, 120, 120, 1))
+                                        : Icon(Icons.radio_button_unchecked,
+                                            size: 20,
+                                            color: Color.fromRGBO(
+                                                120, 120, 120, 1)),
                                   ]),
                                 )
                               ],
@@ -412,172 +475,204 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Text(
                         "Tổng quan đơn hàng  ",
-                        style: TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontFamily: "SF Bold", fontSize: 18),
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 0, 0, 0),
+                            fontFamily: "SF Bold",
+                            fontSize: 18),
                       ),
-                      Icon(Icons.info, size: 15, color: Color.fromARGB(255, 170, 165, 165)),
+                      Icon(Icons.info,
+                          size: 15, color: Color.fromARGB(255, 170, 165, 165)),
                     ],
                   ),
                 ),
                 Container(
                   child: Column(children: [
                     Container(
-                      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            height: 80.0,
-                            padding: EdgeInsets.only(left: 15, right: 15),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0),
-                              color: Color.fromRGBO(240, 240, 240, 1),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                height: 80.0,
+                                padding: EdgeInsets.only(left: 15, right: 15),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color: Color.fromRGBO(240, 240, 240, 1),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      child: Text(
+                                        '$totalOrder',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontFamily: "SF Bold",
+                                            color: MaterialColors.primary),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.only(
+                                        bottom: 10,
+                                      ),
+                                      child: Text(
+                                        'Tổng Đơn',
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontFamily: "SF SemiBold",
+                                            color: Colors.black),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  child: Text(
-                                    '$totalOrder',
-                                    style: TextStyle(fontSize: 18, fontFamily: "SF Bold", color: MaterialColors.primary),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 8,
-                                ),
-                                Container(
-                                  padding: EdgeInsets.only(
-                                    bottom: 10,
-                                  ),
-                                  child: Text(
-                                    'Tổng Đơn',
-                                    style: TextStyle(fontSize: 14, fontFamily: "SF SemiBold", color: Colors.black),
-                                  ),
-                                ),
-                              ],
+                            SizedBox(
+                              // height: 8,
+                              width: 15,
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          // height: 8,
-                          width: 15,
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            height: 80.0,
-                            padding: EdgeInsets.only(left: 15, right: 15),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0),
-                              color: Color.fromRGBO(240, 240, 240, 1),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                height: 80.0,
+                                padding: EdgeInsets.only(left: 15, right: 15),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color: Color.fromRGBO(240, 240, 240, 1),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      child: Text(
+                                        '$totalSuccess',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontFamily: "SF Bold",
+                                            color: MaterialColors.primary),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.only(
+                                        bottom: 8,
+                                      ),
+                                      child: Text(
+                                        'Thành Công',
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontFamily: "SF SemiBold",
+                                            color: Colors.black),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  child: Text(
-                                    '$totalSuccess',
-                                    style: TextStyle(fontSize: 18, fontFamily: "SF Bold", color: MaterialColors.primary),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Container(
-                                  padding: EdgeInsets.only(
-                                    bottom: 8,
-                                  ),
-                                  child: Text(
-                                    'Thành Công',
-                                    style: TextStyle(fontSize: 14, fontFamily: "SF SemiBold", color: Colors.black),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ]),
+                          ]),
                     ),
                     SizedBox(
                       height: 15,
                     ),
                     Container(
-                      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            height: 80.0,
-                            padding: EdgeInsets.only(left: 15, right: 15),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0),
-                              color: Color.fromRGBO(240, 240, 240, 1),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                height: 80.0,
+                                padding: EdgeInsets.only(left: 15, right: 15),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color: Color.fromRGBO(240, 240, 240, 1),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      child: Text(
+                                        '$totalFail',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontFamily: "SF Bold",
+                                            color: MaterialColors.primary),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.only(
+                                        bottom: 10,
+                                      ),
+                                      child: Text(
+                                        'Đơn hủy',
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontFamily: "SF SemiBold",
+                                            color: Colors.black),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  child: Text(
-                                    '$totalFail',
-                                    style: TextStyle(fontSize: 18, fontFamily: "SF Bold", color: MaterialColors.primary),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 8,
-                                ),
-                                Container(
-                                  padding: EdgeInsets.only(
-                                    bottom: 10,
-                                  ),
-                                  child: Text(
-                                    'Đơn hủy',
-                                    style: TextStyle(fontSize: 14, fontFamily: "SF SemiBold", color: Colors.black),
-                                  ),
-                                ),
-                              ],
+                            SizedBox(
+                              // height: 8,
+                              width: 15,
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          // height: 8,
-                          width: 15,
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            height: 80.0,
-                            padding: EdgeInsets.only(left: 15, right: 15),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0),
-                              color: Color.fromRGBO(240, 240, 240, 1),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                height: 80.0,
+                                padding: EdgeInsets.only(left: 15, right: 15),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color: Color.fromRGBO(240, 240, 240, 1),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      child: Text(
+                                        '$totalCusFail',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontFamily: "SF Bold",
+                                            color: MaterialColors.primary),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.only(
+                                        bottom: 8,
+                                      ),
+                                      child: Text(
+                                        'Khách hủy',
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontFamily: "SF SemiBold",
+                                            color: Colors.black),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  child: Text(
-                                    '$totalCusFail',
-                                    style: TextStyle(fontSize: 18, fontFamily: "SF Bold", color: MaterialColors.primary),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Container(
-                                  padding: EdgeInsets.only(
-                                    bottom: 8,
-                                  ),
-                                  child: Text(
-                                    'Khách hủy',
-                                    style: TextStyle(fontSize: 14, fontFamily: "SF SemiBold", color: Colors.black),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ]),
+                          ]),
                     ),
                   ]),
                 ),
@@ -587,172 +682,198 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Text(
                         "Tổng quan thu tiền  ",
-                        style: TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontFamily: "SF Bold", fontSize: 18),
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 0, 0, 0),
+                            fontFamily: "SF Bold",
+                            fontSize: 18),
                       ),
-                      Icon(Icons.info, size: 15, color: Color.fromARGB(255, 170, 165, 165)),
+                      Icon(Icons.info,
+                          size: 15, color: Color.fromARGB(255, 170, 165, 165)),
                     ],
                   ),
                 ),
                 Container(
                   child: Column(children: [
                     Container(
-                      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            height: 80.0,
-                            padding: EdgeInsets.only(left: 15, right: 15),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0),
-                              color: Color.fromRGBO(240, 240, 240, 1),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                height: 80.0,
+                                padding: EdgeInsets.only(left: 15, right: 15),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color: Color.fromRGBO(240, 240, 240, 1),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      child: Text(
+                                        '400.000 đ',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontFamily: "SF Bold",
+                                            color: MaterialColors.primary),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.only(
+                                        bottom: 10,
+                                      ),
+                                      child: Text(
+                                        'Tổng phí đơn',
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontFamily: "SF SemiBold",
+                                            color: Colors.black),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  child: Text(
-                                    '400.000 đ',
-                                    style: TextStyle(fontSize: 18, fontFamily: "SF Bold", color: MaterialColors.primary),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 8,
-                                ),
-                                Container(
-                                  padding: EdgeInsets.only(
-                                    bottom: 10,
-                                  ),
-                                  child: Text(
-                                    'Tổng phí đơn',
-                                    style: TextStyle(fontSize: 14, fontFamily: "SF SemiBold", color: Colors.black),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        // SizedBox(
-                        //   // height: 8,
-                        //   width: 15,
-                        // ),
-                        // Expanded(
-                        //   flex: 1,
-                        //   child: Container(
-                        //     height: 80.0,
-                        //     padding: EdgeInsets.only(left: 15, right: 15),
-                        //     decoration: BoxDecoration(
-                        //       borderRadius: BorderRadius.circular(10.0),
-                        //       color: Color.fromRGBO(240, 240, 240, 1),
-                        //     ),
-                        //     child: Column(
-                        //       crossAxisAlignment: CrossAxisAlignment.start,
-                        //       mainAxisAlignment: MainAxisAlignment.center,
-                        //       children: [
-                        //         Container(
-                        //           child: Text(
-                        //             '8',
-                        //             style: TextStyle(fontSize: 18, fontFamily: "SF Bold", color: MaterialColors.primary),
-                        //           ),
-                        //         ),
-                        //         SizedBox(
-                        //           height: 10,
-                        //         ),
-                        //         Container(
-                        //           padding: EdgeInsets.only(
-                        //             bottom: 8,
-                        //           ),
-                        //           child: Text(
-                        //             'Khách hủy',
-                        //             style: TextStyle(fontSize: 14, fontFamily: "SF SemiBold", color: Colors.black),
-                        //           ),
-                        //         ),
-                        //       ],
-                        //     ),
-                        //   ),
-                        // ),
-                      ]),
+                            // SizedBox(
+                            //   // height: 8,
+                            //   width: 15,
+                            // ),
+                            // Expanded(
+                            //   flex: 1,
+                            //   child: Container(
+                            //     height: 80.0,
+                            //     padding: EdgeInsets.only(left: 15, right: 15),
+                            //     decoration: BoxDecoration(
+                            //       borderRadius: BorderRadius.circular(10.0),
+                            //       color: Color.fromRGBO(240, 240, 240, 1),
+                            //     ),
+                            //     child: Column(
+                            //       crossAxisAlignment: CrossAxisAlignment.start,
+                            //       mainAxisAlignment: MainAxisAlignment.center,
+                            //       children: [
+                            //         Container(
+                            //           child: Text(
+                            //             '8',
+                            //             style: TextStyle(fontSize: 18, fontFamily: "SF Bold", color: MaterialColors.primary),
+                            //           ),
+                            //         ),
+                            //         SizedBox(
+                            //           height: 10,
+                            //         ),
+                            //         Container(
+                            //           padding: EdgeInsets.only(
+                            //             bottom: 8,
+                            //           ),
+                            //           child: Text(
+                            //             'Khách hủy',
+                            //             style: TextStyle(fontSize: 14, fontFamily: "SF SemiBold", color: Colors.black),
+                            //           ),
+                            //         ),
+                            //       ],
+                            //     ),
+                            //   ),
+                            // ),
+                          ]),
                     ),
                     SizedBox(
                       height: 15,
                     ),
                     Container(
-                      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            height: 80.0,
-                            padding: EdgeInsets.only(left: 15, right: 15),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0),
-                              color: Color.fromRGBO(240, 240, 240, 1),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                height: 80.0,
+                                padding: EdgeInsets.only(left: 15, right: 15),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color: Color.fromRGBO(240, 240, 240, 1),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      child: Text(
+                                        '2000m',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontFamily: "SF Bold",
+                                            color: MaterialColors.primary),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.only(
+                                        bottom: 10,
+                                      ),
+                                      child: Text(
+                                        'Quảng đường',
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontFamily: "SF SemiBold",
+                                            color: Colors.black),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  child: Text(
-                                    '2000m',
-                                    style: TextStyle(fontSize: 18, fontFamily: "SF Bold", color: MaterialColors.primary),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 8,
-                                ),
-                                Container(
-                                  padding: EdgeInsets.only(
-                                    bottom: 10,
-                                  ),
-                                  child: Text(
-                                    'Quảng đường',
-                                    style: TextStyle(fontSize: 14, fontFamily: "SF SemiBold", color: Colors.black),
-                                  ),
-                                ),
-                              ],
+                            SizedBox(
+                              // height: 8,
+                              width: 15,
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          // height: 8,
-                          width: 15,
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            height: 80.0,
-                            padding: EdgeInsets.only(left: 15, right: 15),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0),
-                              color: Color.fromRGBO(240, 240, 240, 1),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                height: 80.0,
+                                padding: EdgeInsets.only(left: 15, right: 15),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color: Color.fromRGBO(240, 240, 240, 1),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      child: Text(
+                                        '200.000 VND',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontFamily: "SF Bold",
+                                            color: MaterialColors.primary),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.only(
+                                        bottom: 8,
+                                      ),
+                                      child: Text(
+                                        'Tổng phí ship',
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontFamily: "SF SemiBold",
+                                            color: Colors.black),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  child: Text(
-                                    '200.000 VND',
-                                    style: TextStyle(fontSize: 18, fontFamily: "SF Bold", color: MaterialColors.primary),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Container(
-                                  padding: EdgeInsets.only(
-                                    bottom: 8,
-                                  ),
-                                  child: Text(
-                                    'Tổng phí ship',
-                                    style: TextStyle(fontSize: 14, fontFamily: "SF SemiBold", color: Colors.black),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ]),
+                          ]),
                     ),
                   ]),
                 ),
@@ -797,7 +918,9 @@ class _HomePageState extends State<HomePage> {
                           height: 20,
                           width: 20,
                           fit: BoxFit.cover,
-                          image: NetworkImage(segment == 0 ? "https://cdn-icons-png.flaticon.com/512/4521/4521931.png" : "https://cdn-icons-png.flaticon.com/512/7541/7541900.png")),
+                          image: NetworkImage(segment == 0
+                              ? "https://cdn-icons-png.flaticon.com/512/4521/4521931.png"
+                              : "https://cdn-icons-png.flaticon.com/512/7541/7541900.png")),
                       SizedBox(
                         width: 5,
                       ),
@@ -912,11 +1035,13 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Text(
                         "Tiền mặt: ",
-                        style: TextStyle(color: Color.fromRGBO(80, 80, 80, 1), fontSize: 16),
+                        style: TextStyle(
+                            color: Color.fromRGBO(80, 80, 80, 1), fontSize: 16),
                       ),
                       Text(
                         "50.000 VND",
-                        style: TextStyle(color: Color.fromRGBO(80, 80, 80, 1), fontSize: 16),
+                        style: TextStyle(
+                            color: Color.fromRGBO(80, 80, 80, 1), fontSize: 16),
                       ),
                     ],
                   ),
@@ -927,7 +1052,8 @@ class _HomePageState extends State<HomePage> {
                   Container(
                     child: OutlinedButton(
                       style: ButtonStyle(
-                        backgroundColor: MaterialStatePropertyAll<Color>(MaterialColors.primary),
+                        backgroundColor: MaterialStatePropertyAll<Color>(
+                            MaterialColors.primary),
                         shape: MaterialStateProperty.all(
                           RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30.0),
@@ -937,7 +1063,11 @@ class _HomePageState extends State<HomePage> {
                       onPressed: () {
                         _ModalShipping(context);
                       },
-                      child: Text('Chi tiết', style: TextStyle(color: Color.fromARGB(255, 255, 255, 255), fontSize: 16, fontFamily: "SF SemiBold")),
+                      child: Text('Chi tiết',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 255, 255, 255),
+                              fontSize: 16,
+                              fontFamily: "SF SemiBold")),
                     ),
                   ),
                 ],
@@ -972,7 +1102,8 @@ class _HomePageState extends State<HomePage> {
                     height: 16,
                     width: 16,
                     fit: BoxFit.cover,
-                    image: NetworkImage("https://cdn-icons-png.flaticon.com/512/1946/1946770.png")),
+                    image: NetworkImage(
+                        "https://cdn-icons-png.flaticon.com/512/1946/1946770.png")),
                 SizedBox(
                   width: kSpacingUnit * 1,
                 ),
@@ -983,7 +1114,8 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Text(
                       "Tòa ${_edgeModel.buildingName}",
-                      style: TextStyle(fontSize: 15, fontFamily: "SF Bold", height: 1.3),
+                      style: TextStyle(
+                          fontSize: 15, fontFamily: "SF Bold", height: 1.3),
                     ),
                     SizedBox(
                       height: 5,
@@ -1016,11 +1148,15 @@ class _HomePageState extends State<HomePage> {
                       Text(
                         // "Tiền mặt",
                         "Tổng đơn hàng: ",
-                        style: TextStyle(color: Color.fromRGBO(80, 80, 80, 1), fontSize: 15),
+                        style: TextStyle(
+                            color: Color.fromRGBO(80, 80, 80, 1), fontSize: 15),
                       ),
                       Text(
                         "${_edgeModel.orderNum}",
-                        style: TextStyle(color: Color.fromRGBO(0, 0, 0, 1), fontSize: 16, fontFamily: "SF Bold"),
+                        style: TextStyle(
+                            color: Color.fromRGBO(0, 0, 0, 1),
+                            fontSize: 16,
+                            fontFamily: "SF Bold"),
                       ),
                     ],
                   ),
@@ -1064,20 +1200,48 @@ class _HomePageState extends State<HomePage> {
                   child: SizedBox(
                     height: 36,
                     child: InkWell(
-                      onTap: () {
-                        _ModalShipping(context);
+                      onTap: () => {
+                        if (_edgeModel.id != null)
+                          {
+                            Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => OrderDetailPage(
+                                            edgeId: _edgeModel.id!,
+                                            building: _edgeModel.buildingName!,
+                                            alphabet: alphabet[
+                                                (_edgeModel.priority ?? 1) - 1],
+                                            statusEdge: _edgeModel.status!)))
+                                .then((value) => {
+                                      Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (BuildContext context) =>
+                                                  super.widget))
+                                    })
+                          }
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         // padding: const EdgeInsets.symmetric(vertical: 15),
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.all(Radius.circular(8)),
-                            boxShadow: <BoxShadow>[BoxShadow(color: Colors.grey.shade200, offset: const Offset(2, 4), blurRadius: 5, spreadRadius: 2)],
-                            gradient: const LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [
-                              MaterialColors.primary,
-                              MaterialColors.primary2,
-                            ])),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(8)),
+                            boxShadow: <BoxShadow>[
+                              BoxShadow(
+                                  color: Colors.grey.shade200,
+                                  offset: const Offset(2, 4),
+                                  blurRadius: 5,
+                                  spreadRadius: 2)
+                            ],
+                            gradient: const LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [
+                                  MaterialColors.primary,
+                                  MaterialColors.primary2,
+                                ])),
                         child: const Text(
                           'Xem chi tiết',
                           style: TextStyle(
@@ -1173,27 +1337,90 @@ class _HomePageState extends State<HomePage> {
                 }
             })
         .then((value) => {
-              ApiServices.getReportOrder(shipperId, dayFilter, "", "").then((value2) => {
-                    if (value2 != null)
-                      {
-                        messageEdgeModel = value2,
-                        print(messageEdgeModel.data),
-                        setState(() => {
-                              totalOrder = messageEdgeModel.data["total"],
-                              totalSuccess = messageEdgeModel.data["success"],
-                              totalFail = messageEdgeModel.data["canceled"],
-                              totalCusFail = messageEdgeModel.data["customerFail"],
-                              isLoading = false,
-                              isLoadingFilter = false,
-                            })
-                      }
-                    else
-                      {
-                        {
-                          setState(() => {isLoading = false})
-                        }
-                      }
-                  })
+              ApiServices.getReportOrder(shipperId, dayFilter, "", "")
+                  .then((value2) => {
+                        if (value2 != null)
+                          {
+                            messageEdgeModel = value2,
+                            print(messageEdgeModel.data),
+                            setState(() => {
+                                  totalOrder = messageEdgeModel.data["total"],
+                                  totalSuccess =
+                                      messageEdgeModel.data["success"],
+                                  totalFail = messageEdgeModel.data["canceled"],
+                                  totalCusFail =
+                                      messageEdgeModel.data["customerFail"],
+                                  isLoading = false,
+                                  isLoadingFilter = false,
+                                })
+                          }
+                        else
+                          {
+                            {
+                              setState(() => {isLoading = false})
+                            }
+                          }
+                      })
+            })
+        .catchError((onError) => {
+              print("onError: " + onError.toString()),
+              setState(() {
+                isLoading = false;
+              })
+            });
+  }
+
+  void onReload() {
+    String shipperId = context.read<AppProvider>().getUserId;
+    DateTime now = DateTime.now();
+    var formatterDate = DateFormat('dd');
+    var formatterMonth = DateFormat("MM");
+    var formatterYear = DateFormat("yyyy");
+    String actualDate = formatterDate.format(now);
+    String actualMonth = formatterMonth.format(now);
+    String actualYear = formatterYear.format(now);
+    String dayFilter = "${actualMonth}/${actualDate}/${actualYear}";
+    ApiServices.getCurrentJob(shipperId)
+        .then((value) => {
+              if (value != null)
+                {
+                  setState(() => {
+                        // isLoading = false,
+                        _edgeModel = value,
+                      })
+                }
+              else
+                {
+                  {
+                    setState(() => {isLoading = false})
+                  }
+                }
+            })
+        .then((value) => {
+              ApiServices.getReportOrder(shipperId, dayFilter, "", "")
+                  .then((value2) => {
+                        if (value2 != null)
+                          {
+                            messageEdgeModel = value2,
+                            print(messageEdgeModel.data),
+                            setState(() => {
+                                  totalOrder = messageEdgeModel.data["total"],
+                                  totalSuccess =
+                                      messageEdgeModel.data["success"],
+                                  totalFail = messageEdgeModel.data["canceled"],
+                                  totalCusFail =
+                                      messageEdgeModel.data["customerFail"],
+                                  isLoading = false,
+                                  isLoadingFilter = false,
+                                })
+                          }
+                        else
+                          {
+                            {
+                              setState(() => {isLoading = false})
+                            }
+                          }
+                      })
             })
         .catchError((onError) => {
               print("onError: " + onError.toString()),
@@ -1251,12 +1478,16 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          gradient: const LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [
-                            Color(0xfff7892b),
-                            MaterialColors.primary,
-                          ]),
+                          gradient: const LinearGradient(
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                              colors: [
+                                Color(0xfff7892b),
+                                MaterialColors.primary,
+                              ]),
                         ),
-                        padding: EdgeInsets.only(left: 15, right: 15, top: 50, bottom: 20),
+                        padding: EdgeInsets.only(
+                            left: 15, right: 15, top: 50, bottom: 20),
                         child: Row(
                           children: [
                             Expanded(
@@ -1266,12 +1497,18 @@ class _HomePageState extends State<HomePage> {
                                 children: [
                                   Text(
                                     context.read<AppProvider>().getName,
-                                    style: TextStyle(color: MaterialColors.white, fontFamily: "SF Bold", fontSize: 18),
+                                    style: TextStyle(
+                                        color: MaterialColors.white,
+                                        fontFamily: "SF Bold",
+                                        fontSize: 18),
                                   ),
                                   Padding(padding: EdgeInsets.all(3)),
                                   Text(
                                     context.read<AppProvider>().getUserId,
-                                    style: TextStyle(color: Colors.white, fontFamily: "SF Regular", fontSize: 15),
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontFamily: "SF Regular",
+                                        fontSize: 15),
                                   )
                                 ],
                               ),
@@ -1281,8 +1518,15 @@ class _HomePageState extends State<HomePage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  context.read<AppProvider>().getStatus ? "Sẵn sàng" : "Đang bận",
-                                  style: TextStyle(color: status ? Colors.green : Colors.grey[700], fontFamily: "SF Bold", fontSize: 18),
+                                  context.read<AppProvider>().getStatus
+                                      ? "Sẵn sàng"
+                                      : "Đang bận",
+                                  style: TextStyle(
+                                      color: status
+                                          ? Colors.green
+                                          : Colors.grey[700],
+                                      fontFamily: "SF Bold",
+                                      fontSize: 18),
                                 ),
                                 Padding(padding: EdgeInsets.all(4)),
                                 FlutterSwitch(
@@ -1311,13 +1555,17 @@ class _HomePageState extends State<HomePage> {
                       // order_doing(0),
                       if (_edgeModel.id != null) ...[
                         Container(
-                            padding: EdgeInsets.only(left: 15, right: 15, top: 15),
+                            padding:
+                                EdgeInsets.only(left: 15, right: 15, top: 15),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
                                   "Đang thực hiện",
-                                  style: TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontFamily: "SF Bold", fontSize: 18),
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 0, 0, 0),
+                                      fontFamily: "SF Bold",
+                                      fontSize: 18),
                                 ),
                               ],
                             )),
@@ -1335,7 +1583,10 @@ class _HomePageState extends State<HomePage> {
                             padding: EdgeInsets.only(left: 15, right: 15),
                             child: Text(
                               "Thống kê",
-                              style: TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontFamily: "SF Bold", fontSize: 18),
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 0, 0, 0),
+                                  fontFamily: "SF Bold",
+                                  fontSize: 18),
                             ),
                           )
                         ],
