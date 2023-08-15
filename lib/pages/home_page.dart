@@ -1212,13 +1212,7 @@ class _HomePageState extends State<HomePage> {
                                             alphabet: alphabet[
                                                 (_edgeModel.priority ?? 1) - 1],
                                             statusEdge: _edgeModel.status!)))
-                                .then((value) => {
-                                      Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (BuildContext context) =>
-                                                  super.widget))
-                                    })
+                                .then((value) => {onReload()})
                           }
                       },
                       child: Container(

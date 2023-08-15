@@ -91,7 +91,8 @@ class _OrderItemState extends State<OrderItem> {
     }
   }
 
-  hanldeComplte(int index, String orderActionId, String shipperId, int actionType) {
+  hanldeComplte(
+      int index, String orderActionId, String shipperId, int actionType) {
     MessageEdgeModel messageEdgeModel;
     setState(() {
       isLoadingButton = true;
@@ -106,7 +107,8 @@ class _OrderItemState extends State<OrderItem> {
                   messageEdgeModel = value,
                   if (messageEdgeModel.statusCode == "Successful")
                     {
-                      setState(() => {widget.callback(index), isLoadingButton = false}),
+                      setState(() =>
+                          {widget.callback(index), isLoadingButton = false}),
                     }
                   else
                     {
@@ -124,7 +126,8 @@ class _OrderItemState extends State<OrderItem> {
             });
   }
 
-  hanldeCancel(int index, String orderActionId, String shipperId, int actionType, String message) {
+  hanldeCancel(int index, String orderActionId, String shipperId,
+      int actionType, String message) {
     // setState(() {
     //   isLoadingButtonCancelDialog = true;
     //   // widget.orderEdgeList[index].actionStatus = 3;
@@ -134,7 +137,8 @@ class _OrderItemState extends State<OrderItem> {
     widget.callbackCancel(index, orderActionId, shipperId, actionType, message);
   }
 
-  hanldeComplteDialog(int index, mystate, String orderActionId, String shipperId, int actionType) {
+  hanldeComplteDialog(int index, mystate, String orderActionId,
+      String shipperId, int actionType) {
     mystate(() {
       // widget.orderEdgeList[index].actionStatus = 2;
       isLoadingButtonDialog = true;
@@ -157,7 +161,8 @@ class _OrderItemState extends State<OrderItem> {
                   messageEdgeModel = value,
                   if (messageEdgeModel.statusCode == "Successful")
                     {
-                      setState(() => {widget.callback(index), isLoadingButton = false}),
+                      setState(() =>
+                          {widget.callback(index), isLoadingButton = false}),
                     }
                   else
                     {
@@ -208,22 +213,34 @@ class _OrderItemState extends State<OrderItem> {
         case OrderAction.pickupStore:
           return Text(
             "- ₫${currencyFormatter.format((total).toInt()).toString()}",
-            style: TextStyle(color: MaterialColors.orange, fontFamily: "SF Semibold", fontSize: 16),
+            style: TextStyle(
+                color: MaterialColors.orange,
+                fontFamily: "SF Semibold",
+                fontSize: 16),
           );
         case OrderAction.pickupHub | OrderAction.deliveryHub:
           return Text(
             "- ₫${currencyFormatter.format((total).toInt()).toString()}",
-            style: TextStyle(color: MaterialColors.orange, fontFamily: "SF Semibold", fontSize: 16),
+            style: TextStyle(
+                color: MaterialColors.orange,
+                fontFamily: "SF Semibold",
+                fontSize: 16),
           );
         case OrderAction.deliveryCus:
           return Text(
             "+ ₫${currencyFormatter.format((total + shipCost).toInt()).toString()}",
-            style: TextStyle(color: MaterialColors.success, fontFamily: "SF Semibold", fontSize: 16),
+            style: TextStyle(
+                color: MaterialColors.success,
+                fontFamily: "SF Semibold",
+                fontSize: 16),
           );
         default:
           return Text(
             "- ₫${currencyFormatter.format((total).toInt()).toString()}",
-            style: TextStyle(color: MaterialColors.orange, fontFamily: "SF Semibold", fontSize: 16),
+            style: TextStyle(
+                color: MaterialColors.orange,
+                fontFamily: "SF Semibold",
+                fontSize: 16),
           );
       }
     }
@@ -231,300 +248,390 @@ class _OrderItemState extends State<OrderItem> {
     return showModalBottomSheet(
         isScrollControlled: true,
         context: context,
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(8.0))),
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(8.0))),
         builder: (BuildContext context) {
-          return StatefulBuilder(builder: (BuildContext context, StateSetter mystate) {
+          return StatefulBuilder(
+              builder: (BuildContext context, StateSetter mystate) {
             return Container(
               height: MediaQuery.of(context).size.height * 0.9,
               width: MediaQuery.of(context).size.width,
               padding: EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 5),
-              child: Column(mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Container(
-                  padding: EdgeInsets.only(top: 5),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      InkWell(
-                        child: Icon(
-                          Icons.arrow_back_ios,
-                          size: 18,
-                          color: Colors.black87,
-                        ),
-                        onTap: () {
-                          Navigator.pop(context);
-                          mystate(() => {activeRadio = 0, activeRadioMessage = ""});
-                        },
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text("Chi tiết đơn hàng", style: const TextStyle(fontFamily: "SF Bold", fontSize: 18, color: Colors.black87)),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 20),
-                ),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        headerDialog(segment, phone, name),
-                        Container(
-                          margin: EdgeInsets.only(top: 15, bottom: 15),
-                          decoration: BoxDecoration(border: Border(top: BorderSide(color: Color.fromRGBO(230, 230, 230, 1)))),
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              "Ghi chú khách hàng",
-                              style: const TextStyle(color: Color.fromRGBO(150, 150, 150, 1), fontFamily: "SF Regular", fontSize: 16),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(top: 5),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          InkWell(
+                            child: Icon(
+                              Icons.arrow_back_ios,
+                              size: 18,
+                              color: Colors.black87,
                             ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                  padding: EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                    color: Color.fromRGBO(240, 240, 240, 1),
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                  ),
-                                  child: ConstrainedBox(
-                                    constraints: BoxConstraints(
-                                      minHeight: 32,
-                                    ),
-                                    child: Text(
-                                      note == "" ? "Không có" : note,
-                                      style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Medium", fontSize: 16),
-                                    ),
-                                  )),
-                            )
-                          ],
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(top: 15, bottom: 15),
-                          decoration: BoxDecoration(border: Border(top: BorderSide(color: Color.fromRGBO(230, 230, 230, 1)))),
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              "Danh sách món",
-                              style: const TextStyle(color: Color.fromRGBO(150, 150, 150, 1), fontFamily: "SF Regular", fontSize: 16),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        if (listProduct.isNotEmpty)
-                          ...[
-                            ...listProduct,
-                          ].map((item) {
-                            return Container(
-                              padding: EdgeInsets.only(bottom: 10, top: 8),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Expanded(
-                                    child: Row(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          "${item["quantity"]} x",
-                                          style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Expanded(
-                                          child: Text(
-                                            item["productName"],
-                                            style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(
-                                    "₫${currencyFormatter.format((item["price"]).toInt()).toString()}",
-                                    style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
-                                  )
-                                ],
-                              ),
-                            );
-                          }),
-                        Container(
-                          margin: EdgeInsets.only(top: 15, bottom: 15),
-                          decoration: BoxDecoration(border: Border(top: BorderSide(color: Color.fromRGBO(230, 230, 230, 1)))),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        if (segment == OrderAction.deliveryCus) ...[
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Phương thức thanh toán",
-                                style: TextStyle(color: Color.fromRGBO(50, 50, 50, 1), fontFamily: "SF Regular", fontSize: 16),
-                              ),
-                              Text(
-                                paymentType == 0 ? "Tiền mặt" : "Đã thanh toán",
-                                style: TextStyle(color: Colors.black, fontFamily: "SF Semibold", fontSize: 16),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                        ],
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Tổng cộng",
-                              style: TextStyle(color: Color.fromRGBO(50, 50, 50, 1), fontFamily: "SF Regular", fontSize: 16),
-                            ),
-                            Text(
-                              "đ${currencyFormatter.format((total).toInt()).toString()}",
-                              style: TextStyle(color: Colors.black, fontFamily: "SF Semibold", fontSize: 16),
-                            )
-                          ],
-                        ),
-                        if (segment == OrderAction.deliveryCus) ...[
-                          SizedBox(
-                            height: 15,
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Phí giao hàng",
-                                style: TextStyle(color: Color.fromRGBO(50, 50, 50, 1), fontFamily: "SF Regular", fontSize: 16),
-                              ),
-                              Text(
-                                "đ${currencyFormatter.format((shipCost).toInt()).toString()}",
-                                style: TextStyle(color: Colors.black, fontFamily: "SF Semibold", fontSize: 16),
-                              )
-                            ],
-                          ),
-                        ],
-                        SizedBox(
-                          height: 12,
-                        ),
-                        if (segment == OrderAction.deliveryCus || segment == OrderAction.pickupStore) ...[
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Image(
-                                      // color:70olors.red,
-                                      height: 25,
-                                      width: 25,
-                                      fit: BoxFit.cover,
-                                      image: NetworkImage("https://cdn-icons-png.flaticon.com/512/3297/3297987.png")),
-                                  SizedBox(width: 5),
-                                  Text(
-                                    getMessageAction(segment),
-                                    style: TextStyle(color: Color.fromRGBO(50, 50, 50, 1), fontFamily: "SF Regular", fontSize: 16),
-                                  ),
-                                ],
-                              ),
-                              geTotalAction(segment),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 15,
-                          )
-                        ],
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                if (orderStatus == StatusOrderAction.todo)
-                  Container(
-                    child: Row(crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                      Expanded(
-                        child: SizedBox(
-                          height: 45,
-                          child: ElevatedButton(
-                            child: Text(
-                              "Thất bại",
-                              style: TextStyle(color: Colors.black, fontFamily: "SF Medium", fontSize: 16),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              primary: Color.fromRGBO(230, 230, 230, 1),
-                              textStyle: TextStyle(color: Colors.black),
-                              shadowColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                            ),
-                            onPressed: () => isLoadingButtonDialog ? null : dialogOrder(index, orderActionId, shipperId, segment),
-                          ),
-                        ),
-                      ),
-                      Padding(padding: EdgeInsets.all(7)),
-                      Expanded(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.all(Radius.circular(8)),
-                            gradient: const LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [
-                              MaterialColors.primary,
-                              Color(0xfff7892b),
-                            ]),
-                          ),
-                          height: 45,
-                          child: ElevatedButton(
-                            child: isLoadingButtonDialog
-                                ? SpinKitDualRing(
-                                    color: Colors.white,
-                                    size: 25.0,
-                                    lineWidth: 3,
-                                  )
-                                : Text(
-                                    getCompleteText(segment),
-                                    style: TextStyle(color: Colors.white, fontFamily: "SF SemiBold", fontSize: 15),
-                                  ),
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.transparent,
-                              textStyle: TextStyle(color: Colors.white),
-                              shadowColor: Colors.transparent,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                            ),
-                            onPressed: () => {
-                              hanldeComplteDialog(index, mystate, orderActionId, shipperId, segment),
+                            onTap: () {
+                              Navigator.pop(context);
+                              mystate(() =>
+                                  {activeRadio = 0, activeRadioMessage = ""});
                             },
                           ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text("Chi tiết đơn hàng",
+                              style: const TextStyle(
+                                  fontFamily: "SF Bold",
+                                  fontSize: 18,
+                                  color: Colors.black87)),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(top: 20),
+                    ),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            headerDialog(segment, phone, name),
+                            Container(
+                              margin: EdgeInsets.only(top: 15, bottom: 15),
+                              decoration: BoxDecoration(
+                                  border: Border(
+                                      top: BorderSide(
+                                          color: Color.fromRGBO(
+                                              230, 230, 230, 1)))),
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "Ghi chú khách hàng",
+                                  style: const TextStyle(
+                                      color: Color.fromRGBO(150, 150, 150, 1),
+                                      fontFamily: "SF Regular",
+                                      fontSize: 16),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                      padding: EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
+                                        color: Color.fromRGBO(240, 240, 240, 1),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10)),
+                                      ),
+                                      child: ConstrainedBox(
+                                        constraints: BoxConstraints(
+                                          minHeight: 32,
+                                        ),
+                                        child: Text(
+                                          note == "" ? "Không có" : note,
+                                          style: const TextStyle(
+                                              color: MaterialColors.black,
+                                              fontFamily: "SF Medium",
+                                              fontSize: 16),
+                                        ),
+                                      )),
+                                )
+                              ],
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(top: 15, bottom: 15),
+                              decoration: BoxDecoration(
+                                  border: Border(
+                                      top: BorderSide(
+                                          color: Color.fromRGBO(
+                                              230, 230, 230, 1)))),
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "Danh sách món",
+                                  style: const TextStyle(
+                                      color: Color.fromRGBO(150, 150, 150, 1),
+                                      fontFamily: "SF Regular",
+                                      fontSize: 16),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            if (listProduct.isNotEmpty)
+                              ...[
+                                ...listProduct,
+                              ].map((item) {
+                                return Container(
+                                  padding: EdgeInsets.only(bottom: 10, top: 8),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Expanded(
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "${item["quantity"]} x",
+                                              style: const TextStyle(
+                                                  color: MaterialColors.black,
+                                                  fontFamily: "SF Regular",
+                                                  fontSize: 16),
+                                            ),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Expanded(
+                                              child: Text(
+                                                item["productName"],
+                                                style: const TextStyle(
+                                                    color: MaterialColors.black,
+                                                    fontFamily: "SF Regular",
+                                                    fontSize: 16),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      Text(
+                                        "₫${currencyFormatter.format((item["price"]).toInt()).toString()}",
+                                        style: const TextStyle(
+                                            color: MaterialColors.black,
+                                            fontFamily: "SF Regular",
+                                            fontSize: 16),
+                                      )
+                                    ],
+                                  ),
+                                );
+                              }),
+                            Container(
+                              margin: EdgeInsets.only(top: 15, bottom: 15),
+                              decoration: BoxDecoration(
+                                  border: Border(
+                                      top: BorderSide(
+                                          color: Color.fromRGBO(
+                                              230, 230, 230, 1)))),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            if (segment == OrderAction.deliveryCus) ...[
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Phương thức thanh toán",
+                                    style: TextStyle(
+                                        color: Color.fromRGBO(50, 50, 50, 1),
+                                        fontFamily: "SF Regular",
+                                        fontSize: 16),
+                                  ),
+                                  Text(
+                                    paymentType == 0
+                                        ? "Tiền mặt"
+                                        : "Đã thanh toán",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontFamily: "SF Semibold",
+                                        fontSize: 16),
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                height: 15,
+                              ),
+                            ],
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Tổng cộng",
+                                  style: TextStyle(
+                                      color: Color.fromRGBO(50, 50, 50, 1),
+                                      fontFamily: "SF Regular",
+                                      fontSize: 16),
+                                ),
+                                Text(
+                                  "đ${currencyFormatter.format((total).toInt()).toString()}",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontFamily: "SF Semibold",
+                                      fontSize: 16),
+                                )
+                              ],
+                            ),
+                            if (segment == OrderAction.deliveryCus) ...[
+                              SizedBox(
+                                height: 15,
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Phí giao hàng",
+                                    style: TextStyle(
+                                        color: Color.fromRGBO(50, 50, 50, 1),
+                                        fontFamily: "SF Regular",
+                                        fontSize: 16),
+                                  ),
+                                  Text(
+                                    "đ${currencyFormatter.format((shipCost).toInt()).toString()}",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontFamily: "SF Semibold",
+                                        fontSize: 16),
+                                  )
+                                ],
+                              ),
+                            ],
+                            SizedBox(
+                              height: 12,
+                            ),
+                            if (segment == OrderAction.deliveryCus ||
+                                segment == OrderAction.pickupStore) ...[
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Image(
+                                          // color:70olors.red,
+                                          height: 25,
+                                          width: 25,
+                                          fit: BoxFit.cover,
+                                          image: NetworkImage(
+                                              "https://cdn-icons-png.flaticon.com/512/3297/3297987.png")),
+                                      SizedBox(width: 5),
+                                      Text(
+                                        getMessageAction(segment),
+                                        style: TextStyle(
+                                            color:
+                                                Color.fromRGBO(50, 50, 50, 1),
+                                            fontFamily: "SF Regular",
+                                            fontSize: 16),
+                                      ),
+                                    ],
+                                  ),
+                                  geTotalAction(segment),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 15,
+                              )
+                            ],
+                          ],
                         ),
-                      )
-                    ]),
-                  ),
-                SizedBox(
-                  height: 10,
-                ),
-              ]),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    if (orderStatus == StatusOrderAction.todo)
+                      Container(
+                        child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: SizedBox(
+                                  height: 45,
+                                  child: ElevatedButton(
+                                    child: Text(
+                                      "Thất bại",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontFamily: "SF Medium",
+                                          fontSize: 16),
+                                    ),
+                                    style: ElevatedButton.styleFrom(
+                                      primary: Color.fromRGBO(230, 230, 230, 1),
+                                      textStyle: TextStyle(color: Colors.black),
+                                      shadowColor: Colors.white,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                    ),
+                                    onPressed: () => isLoadingButtonDialog
+                                        ? null
+                                        : dialogOrder(index, orderActionId,
+                                            shipperId, segment),
+                                  ),
+                                ),
+                              ),
+                              Padding(padding: EdgeInsets.all(7)),
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(8)),
+                                    gradient: const LinearGradient(
+                                        begin: Alignment.centerLeft,
+                                        end: Alignment.centerRight,
+                                        colors: [
+                                          MaterialColors.primary,
+                                          Color(0xfff7892b),
+                                        ]),
+                                  ),
+                                  height: 45,
+                                  child: ElevatedButton(
+                                    child: isLoadingButtonDialog
+                                        ? SpinKitDualRing(
+                                            color: Colors.white,
+                                            size: 25.0,
+                                            lineWidth: 3,
+                                          )
+                                        : Text(
+                                            getCompleteText(segment),
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontFamily: "SF SemiBold",
+                                                fontSize: 15),
+                                          ),
+                                    style: ElevatedButton.styleFrom(
+                                      primary: Colors.transparent,
+                                      textStyle: TextStyle(color: Colors.white),
+                                      shadowColor: Colors.transparent,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                    ),
+                                    onPressed: () => {
+                                      hanldeComplteDialog(index, mystate,
+                                          orderActionId, shipperId, segment),
+                                    },
+                                  ),
+                                ),
+                              )
+                            ]),
+                      ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                  ]),
             );
           });
         });
@@ -554,7 +661,8 @@ class _OrderItemState extends State<OrderItem> {
                     height: 25,
                     width: 25,
                     fit: BoxFit.cover,
-                    image: NetworkImage("https://cdn-icons-png.flaticon.com/512/1532/1532692.png"),
+                    image: NetworkImage(
+                        "https://cdn-icons-png.flaticon.com/512/1532/1532692.png"),
                   )),
             ),
             Expanded(
@@ -564,7 +672,10 @@ class _OrderItemState extends State<OrderItem> {
                 children: [
                   Text(
                     "Nhà Hàng",
-                    style: const TextStyle(color: Color.fromRGBO(100, 100, 100, 1), fontFamily: "SF Regular", fontSize: 16),
+                    style: const TextStyle(
+                        color: Color.fromRGBO(100, 100, 100, 1),
+                        fontFamily: "SF Regular",
+                        fontSize: 16),
                   ),
                   SizedBox(
                     height: 5,
@@ -572,7 +683,11 @@ class _OrderItemState extends State<OrderItem> {
                   Text(
                     name,
                     maxLines: 1,
-                    style: const TextStyle(overflow: TextOverflow.ellipsis, color: MaterialColors.black, fontFamily: "SF Bold", fontSize: 16),
+                    style: const TextStyle(
+                        overflow: TextOverflow.ellipsis,
+                        color: MaterialColors.black,
+                        fontFamily: "SF Bold",
+                        fontSize: 16),
                   ),
                 ],
               ),
@@ -601,7 +716,8 @@ class _OrderItemState extends State<OrderItem> {
                     height: 25,
                     width: 25,
                     fit: BoxFit.cover,
-                    image: NetworkImage("https://cdn-icons-png.flaticon.com/512/3788/3788029.png"),
+                    image: NetworkImage(
+                        "https://cdn-icons-png.flaticon.com/512/3788/3788029.png"),
                   )),
             ),
             Expanded(
@@ -615,14 +731,20 @@ class _OrderItemState extends State<OrderItem> {
                     children: [
                       Text(
                         "Hub",
-                        style: const TextStyle(color: Color.fromRGBO(100, 100, 100, 1), fontFamily: "SF Regular", fontSize: 16),
+                        style: const TextStyle(
+                            color: Color.fromRGBO(100, 100, 100, 1),
+                            fontFamily: "SF Regular",
+                            fontSize: 16),
                       ),
                       SizedBox(
                         height: 5,
                       ),
                       Text(
                         name,
-                        style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Bold", fontSize: 16),
+                        style: const TextStyle(
+                            color: MaterialColors.black,
+                            fontFamily: "SF Bold",
+                            fontSize: 16),
                       ),
                     ],
                   ),
@@ -653,7 +775,8 @@ class _OrderItemState extends State<OrderItem> {
                     height: 25,
                     width: 25,
                     fit: BoxFit.cover,
-                    image: NetworkImage("https://cdn-icons-png.flaticon.com/512/1144/1144709.png"),
+                    image: NetworkImage(
+                        "https://cdn-icons-png.flaticon.com/512/1144/1144709.png"),
                   )),
             ),
             Expanded(
@@ -667,14 +790,20 @@ class _OrderItemState extends State<OrderItem> {
                     children: [
                       Text(
                         "Đặt bởi",
-                        style: const TextStyle(color: Color.fromRGBO(100, 100, 100, 1), fontFamily: "SF Regular", fontSize: 16),
+                        style: const TextStyle(
+                            color: Color.fromRGBO(100, 100, 100, 1),
+                            fontFamily: "SF Regular",
+                            fontSize: 16),
                       ),
                       SizedBox(
                         height: 5,
                       ),
                       Text(
                         name,
-                        style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Bold", fontSize: 16),
+                        style: const TextStyle(
+                            color: MaterialColors.black,
+                            fontFamily: "SF Bold",
+                            fontSize: 16),
                       ),
                     ],
                   ),
@@ -703,25 +832,31 @@ class _OrderItemState extends State<OrderItem> {
       context: context,
       builder: (BuildContext context) => AlertDialog(
         insetPadding: EdgeInsets.all(15),
-        contentPadding: EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 15),
+        contentPadding:
+            EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 15),
         titlePadding: EdgeInsets.only(left: 10, right: 10, top: 15, bottom: 0),
-        title: Row(crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          const Text(
-            'Chọn lý do thất bại',
-            style: TextStyle(color: Colors.black, fontFamily: "SF Bold", fontSize: 18),
-          ),
-          InkWell(
-            child: Icon(
-              Icons.close,
-              size: 20,
-              color: Colors.black54,
-            ),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          )
-        ]),
-        content: StatefulBuilder(builder: (BuildContext context, StateSetter mystate) {
+        title: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Chọn lý do thất bại',
+                style: TextStyle(
+                    color: Colors.black, fontFamily: "SF Bold", fontSize: 18),
+              ),
+              InkWell(
+                child: Icon(
+                  Icons.close,
+                  size: 20,
+                  color: Colors.black54,
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              )
+            ]),
+        content: StatefulBuilder(
+            builder: (BuildContext context, StateSetter mystate) {
           return SizedBox(
             height: getSizeDialog(actionType),
             child: Column(
@@ -747,7 +882,14 @@ class _OrderItemState extends State<OrderItem> {
                                       children: [
                                         Container(
                                           child: Row(children: [
-                                            Icon(activeRadio == e["id"] ? Icons.radio_button_checked : Icons.radio_button_unchecked, size: 22, color: Color.fromRGBO(100, 100, 100, 1)),
+                                            Icon(
+                                                activeRadio == e["id"]
+                                                    ? Icons.radio_button_checked
+                                                    : Icons
+                                                        .radio_button_unchecked,
+                                                size: 22,
+                                                color: Color.fromRGBO(
+                                                    100, 100, 100, 1)),
                                           ]),
                                         ),
                                         SizedBox(
@@ -758,7 +900,13 @@ class _OrderItemState extends State<OrderItem> {
                                             Text(
                                               e["message"],
                                               maxLines: 1,
-                                              style: TextStyle(color: Color.fromRGBO(100, 100, 100, 1), fontFamily: "SF Medium", fontSize: 16, overflow: TextOverflow.ellipsis),
+                                              style: TextStyle(
+                                                  color: Color.fromRGBO(
+                                                      100, 100, 100, 1),
+                                                  fontFamily: "SF Medium",
+                                                  fontSize: 16,
+                                                  overflow:
+                                                      TextOverflow.ellipsis),
                                             ),
                                           ]),
                                         ),
@@ -775,7 +923,8 @@ class _OrderItemState extends State<OrderItem> {
                               mystate(() {
                                 activeRadio = e["id"];
                                 activeRadioMessage = e["message"];
-                                print("activeRadioMessage" + activeRadioMessage);
+                                print(
+                                    "activeRadioMessage" + activeRadioMessage);
                               });
                             },
                           );
@@ -792,7 +941,8 @@ class _OrderItemState extends State<OrderItem> {
                     if (activeRadio != 0) {
                       {
                         Navigator.pop(context);
-                        dialogConfirmOrder(index, orderActionId, shipperId, actionType, activeRadioMessage);
+                        dialogConfirmOrder(index, orderActionId, shipperId,
+                            actionType, activeRadioMessage);
                         // mystate(() => {
                         //       activeRadio = 0,
                         //       activeRadioMessage = "",
@@ -809,10 +959,17 @@ class _OrderItemState extends State<OrderItem> {
                           height: 45,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            gradient: LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [
-                              activeRadio == 0 ? MaterialColors.primary.withOpacity(0.2) : MaterialColors.primary,
-                              activeRadio == 0 ? MaterialColors.primary2.withOpacity(0.2) : MaterialColors.primary2,
-                            ]),
+                            gradient: LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [
+                                  activeRadio == 0
+                                      ? MaterialColors.primary.withOpacity(0.2)
+                                      : MaterialColors.primary,
+                                  activeRadio == 0
+                                      ? MaterialColors.primary2.withOpacity(0.2)
+                                      : MaterialColors.primary2,
+                                ]),
                             // border: Border.all(color: Color.fromRGBO(200, 200, 200, 1)),
                           ),
                           child: Row(
@@ -821,7 +978,12 @@ class _OrderItemState extends State<OrderItem> {
                             children: [
                               Text(
                                 "Xác nhận",
-                                style: TextStyle(color: activeRadio == 0 ? Color.fromRGBO(200, 200, 200, 1) : Color.fromARGB(255, 255, 255, 255), fontFamily: "SF Bold", fontSize: 16),
+                                style: TextStyle(
+                                    color: activeRadio == 0
+                                        ? Color.fromRGBO(200, 200, 200, 1)
+                                        : Color.fromARGB(255, 255, 255, 255),
+                                    fontFamily: "SF Bold",
+                                    fontSize: 16),
                               ),
                             ],
                           ),
@@ -930,9 +1092,11 @@ class _OrderItemState extends State<OrderItem> {
   //       });
   // }
 
-  dialogConfirmOrder(int index, String orderActionId, String shipperId, int actionType, String message) {
+  dialogConfirmOrder(int index, String orderActionId, String shipperId,
+      int actionType, String message) {
     return Dialogs.materialDialog(
-        dialogShape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
+        dialogShape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10.0))),
         // msg: 'Bạn sẽ không thể nhận được đơn hàng cho đến khi mở lại',
         msgAlign: TextAlign.center,
         // title: "Bạn có chắc muốn hủy đơn hàng?",
@@ -946,7 +1110,10 @@ class _OrderItemState extends State<OrderItem> {
               ),
               Text(
                 "Hủy đơn hàng",
-                style: TextStyle(color: Colors.black, fontFamily: "SF SemiBold", fontSize: 18),
+                style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: "SF SemiBold",
+                    fontSize: 18),
               ),
               SizedBox(
                 height: 15,
@@ -959,11 +1126,17 @@ class _OrderItemState extends State<OrderItem> {
                     children: [
                       TextSpan(
                         text: 'Bạn muốn hủy đơn với lý do: ',
-                        style: TextStyle(color: Colors.black, fontFamily: "SF Regular", fontSize: 15),
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: "SF Regular",
+                            fontSize: 15),
                       ),
                       TextSpan(
                         text: '$message',
-                        style: TextStyle(color: Colors.black, fontFamily: "SF SemiBold", fontSize: 15),
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: "SF SemiBold",
+                            fontSize: 15),
                       ),
                     ],
                   ),
@@ -988,9 +1161,22 @@ class _OrderItemState extends State<OrderItem> {
                       // padding: const EdgeInsets.symmetric(vertical: 5),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(Radius.circular(8)),
-                          boxShadow: <BoxShadow>[BoxShadow(color: Colors.grey.shade200, offset: const Offset(2, 4), blurRadius: 5, spreadRadius: 2)],
-                          gradient: const LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [Color.fromRGBO(220, 220, 220, 1), Color.fromRGBO(200, 200, 200, 1)])),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(8)),
+                          boxShadow: <BoxShadow>[
+                            BoxShadow(
+                                color: Colors.grey.shade200,
+                                offset: const Offset(2, 4),
+                                blurRadius: 5,
+                                spreadRadius: 2)
+                          ],
+                          gradient: const LinearGradient(
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                              colors: [
+                                Color.fromRGBO(220, 220, 220, 1),
+                                Color.fromRGBO(200, 200, 200, 1)
+                              ])),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -1021,16 +1207,27 @@ class _OrderItemState extends State<OrderItem> {
                 height: 38,
                 child: InkWell(
                   onTap: () {
-                    hanldeCancel(index, orderActionId, shipperId, actionType, message);
+                    hanldeCancel(
+                        index, orderActionId, shipperId, actionType, message);
                   },
                   child: Container(
                       // width: MediaQuery.of(context).size.width,
                       // padding: const EdgeInsets.symmetric(vertical: 5),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(Radius.circular(8)),
-                          boxShadow: <BoxShadow>[BoxShadow(color: Colors.grey.shade200, offset: const Offset(2, 4), blurRadius: 5, spreadRadius: 2)],
-                          gradient: const LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [Colors.redAccent, Colors.red])),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(8)),
+                          boxShadow: <BoxShadow>[
+                            BoxShadow(
+                                color: Colors.grey.shade200,
+                                offset: const Offset(2, 4),
+                                blurRadius: 5,
+                                spreadRadius: 2)
+                          ],
+                          gradient: const LinearGradient(
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                              colors: [Colors.redAccent, Colors.red])),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -1157,7 +1354,10 @@ class _OrderItemState extends State<OrderItem> {
             children: [
               Container(
                 padding: EdgeInsets.only(bottom: 10),
-                decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Color.fromRGBO(220, 220, 220, 1)))),
+                decoration: BoxDecoration(
+                    border: Border(
+                        bottom: BorderSide(
+                            color: Color.fromRGBO(220, 220, 220, 1)))),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -1179,14 +1379,19 @@ class _OrderItemState extends State<OrderItem> {
                             height: 20,
                             width: 20,
                             fit: BoxFit.cover,
-                            image: NetworkImage((widget.segment == OrderAction.pickupStore || widget.segment == OrderAction.pickupHub)
+                            image: NetworkImage((widget.segment ==
+                                        OrderAction.pickupStore ||
+                                    widget.segment == OrderAction.pickupHub)
                                 ? "https://cdn-icons-png.flaticon.com/512/4521/4521931.png"
                                 : "https://cdn-icons-png.flaticon.com/512/7541/7541900.png")),
                         SizedBox(width: 5),
                         Container(
                           padding: EdgeInsets.only(top: 5),
                           child: Text(
-                            ((widget.segment == OrderAction.pickupStore || widget.segment == OrderAction.pickupHub) ? "Lấy Hàng" : "Giao hàng"),
+                            ((widget.segment == OrderAction.pickupStore ||
+                                    widget.segment == OrderAction.pickupHub)
+                                ? "Lấy Hàng"
+                                : "Giao hàng"),
                             style: TextStyle(
                               fontFamily: "SF Medium",
                               color: MaterialColors.primary,
@@ -1223,7 +1428,10 @@ class _OrderItemState extends State<OrderItem> {
                             children: [
                               Text(
                                 "${item["quantity"]} x",
-                                style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 14),
+                                style: const TextStyle(
+                                    color: MaterialColors.black,
+                                    fontFamily: "SF Regular",
+                                    fontSize: 14),
                               ),
                               SizedBox(
                                 width: 10,
@@ -1231,7 +1439,10 @@ class _OrderItemState extends State<OrderItem> {
                               Expanded(
                                 child: Text(
                                   item["productName"],
-                                  style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 14),
+                                  style: const TextStyle(
+                                      color: MaterialColors.black,
+                                      fontFamily: "SF Regular",
+                                      fontSize: 14),
                                 ),
                               )
                             ],
@@ -1242,7 +1453,10 @@ class _OrderItemState extends State<OrderItem> {
                         ),
                         Text(
                           "₫${currencyFormatter.format((item["price"]).toInt()).toString()}",
-                          style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 14),
+                          style: const TextStyle(
+                              color: MaterialColors.black,
+                              fontFamily: "SF Regular",
+                              fontSize: 14),
                         )
                       ],
                     ),
@@ -1255,7 +1469,8 @@ class _OrderItemState extends State<OrderItem> {
               // SizedBox(
               //   height: 5,
               // ),
-              if (widget.statusEdge == StatusEdge.todo || widget.statusEdge == StatusEdge.done)
+              if (widget.statusEdge == StatusEdge.todo ||
+                  widget.statusEdge == StatusEdge.done)
                 Container(
                     decoration: BoxDecoration(color: Colors.white),
                     padding: EdgeInsets.only(top: 10, bottom: 10),
@@ -1266,8 +1481,19 @@ class _OrderItemState extends State<OrderItem> {
                             flex: 1,
                             child: InkWell(
                               onTap: () {
-                                showModal(widget.index, widget.status, widget.listProduct, widget.note, widget.phone, widget.name, widget.total, widget.shipCost, widget.segment, widget.shipperId,
-                                    widget.orderActionId, widget.paymentType);
+                                showModal(
+                                    widget.index,
+                                    widget.status,
+                                    widget.listProduct,
+                                    widget.note,
+                                    widget.phone,
+                                    widget.name,
+                                    widget.total,
+                                    widget.shipCost,
+                                    widget.segment,
+                                    widget.shipperId,
+                                    widget.orderActionId,
+                                    widget.paymentType);
                                 // dialogOrder(
                                 //     mystate,
                                 //     listProduct,
@@ -1286,14 +1512,19 @@ class _OrderItemState extends State<OrderItem> {
                                 child: TextButton(
                                   child: Text(
                                     "Xem chi tiết",
-                                    style: TextStyle(color: MaterialColors.primary, fontFamily: "SF SemiBold", fontSize: 15),
+                                    style: TextStyle(
+                                        color: MaterialColors.primary,
+                                        fontFamily: "SF SemiBold",
+                                        fontSize: 15),
                                   ),
                                   style: ElevatedButton.styleFrom(
                                     primary: MaterialColors.white,
-                                    textStyle: TextStyle(color: MaterialColors.primary),
+                                    textStyle: TextStyle(
+                                        color: MaterialColors.primary),
                                     shadowColor: Colors.white,
                                     shape: RoundedRectangleBorder(
-                                      side: BorderSide(color: MaterialColors.primary),
+                                      side: BorderSide(
+                                          color: MaterialColors.primary),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                   ),
@@ -1307,11 +1538,15 @@ class _OrderItemState extends State<OrderItem> {
                             flex: 1,
                             child: Container(
                               decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.all(Radius.circular(8)),
-                                gradient: const LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [
-                                  MaterialColors.primary,
-                                  Color(0xfff7892b),
-                                ]),
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(8)),
+                                gradient: const LinearGradient(
+                                    begin: Alignment.centerLeft,
+                                    end: Alignment.centerRight,
+                                    colors: [
+                                      MaterialColors.primary,
+                                      Color(0xfff7892b),
+                                    ]),
                               ),
                               height: 40,
                               child: ElevatedButton(
@@ -1323,7 +1558,10 @@ class _OrderItemState extends State<OrderItem> {
                                       )
                                     : Text(
                                         getCompleteText(widget.segment),
-                                        style: TextStyle(color: Colors.white, fontFamily: "SF SemiBold", fontSize: 15),
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: "SF SemiBold",
+                                            fontSize: 15),
                                       ),
                                 style: ElevatedButton.styleFrom(
                                   primary: Colors.transparent,
@@ -1334,7 +1572,11 @@ class _OrderItemState extends State<OrderItem> {
                                   ),
                                 ),
                                 onPressed: () => {
-                                  hanldeComplte(widget.index, widget.orderActionId, widget.shipperId, widget.segment),
+                                  hanldeComplte(
+                                      widget.index,
+                                      widget.orderActionId,
+                                      widget.shipperId,
+                                      widget.segment),
                                 },
                               ),
                             ),
