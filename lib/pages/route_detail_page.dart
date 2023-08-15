@@ -22,7 +22,12 @@ class RouteDetailPage extends StatefulWidget {
   String routeId;
   double totalBill;
   double totalCod;
-  RouteDetailPage({super.key, required this.status, required this.routeId, required this.totalBill, required this.totalCod});
+  RouteDetailPage(
+      {super.key,
+      required this.status,
+      required this.routeId,
+      required this.totalBill,
+      required this.totalCod});
 
   @override
   State<RouteDetailPage> createState() => _RouteDetailPageState();
@@ -51,7 +56,10 @@ pointPickup(EdgeModel edge, index) {
         MaterialColors.primary2,
       ];
     } else {
-      return [Color.fromRGBO(200, 200, 200, 1), Color.fromRGBO(180, 180, 180, 1)];
+      return [
+        Color.fromRGBO(200, 200, 200, 1),
+        Color.fromRGBO(180, 180, 180, 1)
+      ];
     }
   }
 
@@ -61,7 +69,13 @@ pointPickup(EdgeModel edge, index) {
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(5),
       color: Colors.white,
-      boxShadow: <BoxShadow>[BoxShadow(color: Colors.grey.shade200, offset: const Offset(2, 4), blurRadius: 5, spreadRadius: 2)],
+      boxShadow: <BoxShadow>[
+        BoxShadow(
+            color: Colors.grey.shade200,
+            offset: const Offset(2, 4),
+            blurRadius: 5,
+            spreadRadius: 2)
+      ],
     ),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -71,17 +85,26 @@ pointPickup(EdgeModel edge, index) {
           Row(
             children: [
               Container(
-                padding: EdgeInsets.only(left: 10, right: 10, bottom: 5, top: 5),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(3), border: Border.all(color: Color.fromRGBO(230, 230, 230, 1))),
-                child: Text(alphabet[index], style: TextStyle(fontSize: 14, fontFamily: "SF SemiBold")),
+                padding:
+                    EdgeInsets.only(left: 10, right: 10, bottom: 5, top: 5),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(3),
+                    border:
+                        Border.all(color: Color.fromRGBO(230, 230, 230, 1))),
+                child: Text(alphabet[index],
+                    style: TextStyle(fontSize: 14, fontFamily: "SF SemiBold")),
               ),
               SizedBox(width: 5),
               Container(
-                padding: EdgeInsets.only(left: 10, right: 10, bottom: 5, top: 5),
+                padding:
+                    EdgeInsets.only(left: 10, right: 10, bottom: 5, top: 5),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(3),
                   // color: getColorStatusTrip(edge.status),
-                  gradient: LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: getColorStatusTrip(edge.status)),
+                  gradient: LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: getColorStatusTrip(edge.status)),
                   // border: Border.all(color: getColorStatusTrip(edge.status)),
                 ),
                 child: Row(
@@ -90,7 +113,10 @@ pointPickup(EdgeModel edge, index) {
                     SizedBox(width: 7),
                     Text(
                       getStatusTrip(edge.status),
-                      style: TextStyle(fontFamily: "SF Medium", fontSize: 13, color: Colors.white),
+                      style: TextStyle(
+                          fontFamily: "SF Medium",
+                          fontSize: 13,
+                          color: Colors.white),
                     ),
                   ],
                 ),
@@ -99,7 +125,10 @@ pointPickup(EdgeModel edge, index) {
           ),
           Text(
             "${edge.orderNum} đơn hàng",
-            style: TextStyle(fontFamily: "SF Regular", fontSize: 15, color: Color.fromRGBO(150, 150, 150, 1)),
+            style: TextStyle(
+                fontFamily: "SF Regular",
+                fontSize: 15,
+                color: Color.fromRGBO(150, 150, 150, 1)),
           ),
         ]),
         SizedBox(
@@ -135,7 +164,13 @@ pointDelivery(index) {
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(5),
       color: Colors.white,
-      boxShadow: <BoxShadow>[BoxShadow(color: Colors.grey.shade200, offset: const Offset(2, 4), blurRadius: 5, spreadRadius: 2)],
+      boxShadow: <BoxShadow>[
+        BoxShadow(
+            color: Colors.grey.shade200,
+            offset: const Offset(2, 4),
+            blurRadius: 5,
+            spreadRadius: 2)
+      ],
     ),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -144,8 +179,11 @@ pointDelivery(index) {
         Row(children: [
           Container(
             padding: EdgeInsets.only(left: 10, right: 10, bottom: 5, top: 5),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(3), border: Border.all(color: Color.fromRGBO(230, 230, 230, 1))),
-            child: Text(index, style: TextStyle(fontSize: 14, fontFamily: "SF SemiBold")),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(3),
+                border: Border.all(color: Color.fromRGBO(230, 230, 230, 1))),
+            child: Text(index,
+                style: TextStyle(fontSize: 14, fontFamily: "SF SemiBold")),
           ),
           SizedBox(width: 5),
           Container(
@@ -160,7 +198,10 @@ pointDelivery(index) {
                 Icon(Icons.podcasts, size: 14, color: Colors.white),
                 Text(
                   "  Điểm giao hàng",
-                  style: TextStyle(fontFamily: "SF Medium", fontSize: 13, color: Colors.white),
+                  style: TextStyle(
+                      fontFamily: "SF Medium",
+                      fontSize: 13,
+                      color: Colors.white),
                 ),
               ],
             ),
@@ -184,7 +225,10 @@ pointDelivery(index) {
         ),
         Text(
           "S5.05, Vinhomes Grand Park, Phường Long Thạnh Mỹ, Quận 9",
-          style: TextStyle(fontFamily: "SF Regular", fontSize: 15, color: Color.fromRGBO(150, 150, 150, 1)),
+          style: TextStyle(
+              fontFamily: "SF Regular",
+              fontSize: 15,
+              color: Color.fromRGBO(150, 150, 150, 1)),
         ),
       ],
     ),
@@ -196,58 +240,62 @@ total_order(totalBill, totalCod) {
   return Container(
     padding: EdgeInsets.only(top: 30, bottom: 15, left: 15, right: 15),
     color: Colors.white,
-    child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, crossAxisAlignment: CrossAxisAlignment.center, children: [
-      Column(
+    child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            "Tổng phí".toUpperCase(),
-            style: TextStyle(
-              fontFamily: "SF SemiBold",
-              fontSize: 14,
-              color: Color.fromRGBO(170, 170, 170, 1),
-            ),
+          Column(
+            children: [
+              Text(
+                "Tổng phí".toUpperCase(),
+                style: TextStyle(
+                  fontFamily: "SF SemiBold",
+                  fontSize: 14,
+                  color: Color.fromRGBO(170, 170, 170, 1),
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Text(
+                "₫${currencyFormatter.format((totalBill!).toInt()).toString()}",
+                style: TextStyle(
+                  fontFamily: "SF SemiBold",
+                  fontSize: 17,
+                  color: MaterialColors.primary,
+                ),
+              )
+            ],
           ),
-          SizedBox(
-            height: 5,
+          Column(
+            children: [
+              Text(
+                "Tiền ứng tối thiểu".toUpperCase(),
+                style: TextStyle(
+                  fontFamily: "SF SemiBold",
+                  fontSize: 14,
+                  color: Color.fromRGBO(170, 170, 170, 1),
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Text(
+                "₫${currencyFormatter.format((totalCod!).toInt()).toString()}",
+                style: TextStyle(
+                  fontFamily: "SF SemiBold",
+                  fontSize: 17,
+                  color: MaterialColors.black,
+                ),
+              )
+            ],
           ),
-          Text(
-            "₫${currencyFormatter.format((totalBill!).toInt()).toString()}",
-            style: TextStyle(
-              fontFamily: "SF SemiBold",
-              fontSize: 17,
-              color: MaterialColors.primary,
-            ),
-          )
-        ],
-      ),
-      Column(
-        children: [
-          Text(
-            "Tiền ứng tối thiểu".toUpperCase(),
-            style: TextStyle(
-              fontFamily: "SF SemiBold",
-              fontSize: 14,
-              color: Color.fromRGBO(170, 170, 170, 1),
-            ),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Text(
-            "₫${currencyFormatter.format((totalCod!).toInt()).toString()}",
-            style: TextStyle(
-              fontFamily: "SF SemiBold",
-              fontSize: 17,
-              color: MaterialColors.black,
-            ),
-          )
-        ],
-      ),
-    ]),
+        ]),
   );
 }
 
-class _RouteDetailPageState extends State<RouteDetailPage> with TickerProviderStateMixin {
+class _RouteDetailPageState extends State<RouteDetailPage>
+    with TickerProviderStateMixin {
   late final AnimationController controller;
   MessageEdgeModel messageEdgeModel = MessageEdgeModel();
   List<EdgeModel> listEdge = [];
@@ -331,7 +379,8 @@ class _RouteDetailPageState extends State<RouteDetailPage> with TickerProviderSt
             children: [
               const Text(
                 "Hoàn thành",
-                style: TextStyle(color: Colors.black87, fontFamily: "SF Bold", fontSize: 20),
+                style: TextStyle(
+                    color: Colors.black87, fontFamily: "SF Bold", fontSize: 20),
               ),
             ],
           ),
@@ -343,7 +392,10 @@ class _RouteDetailPageState extends State<RouteDetailPage> with TickerProviderSt
             children: [
               const Text(
                 "Bạn đã hoàn thành chuyến hàng",
-                style: TextStyle(color: Colors.black45, fontFamily: "SF Regular", fontSize: 16),
+                style: TextStyle(
+                    color: Colors.black45,
+                    fontFamily: "SF Regular",
+                    fontSize: 16),
               ),
             ],
           ),
@@ -358,7 +410,10 @@ class _RouteDetailPageState extends State<RouteDetailPage> with TickerProviderSt
                   child: ElevatedButton(
                     child: const Text(
                       "Quay lại",
-                      style: TextStyle(color: Colors.white, fontFamily: "SF Medium", fontSize: 16),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: "SF Medium",
+                          fontSize: 16),
                     ),
                     style: ElevatedButton.styleFrom(
                       primary: Color.fromRGBO(56, 193, 114, 1),
@@ -393,14 +448,16 @@ class _RouteDetailPageState extends State<RouteDetailPage> with TickerProviderSt
     ApiServices.getListEdge(id)
         .then((value) => {
               messageEdgeModel = value,
-                 print("post accept route" + messageEdgeModel.statusCode.toString()),
+              print(
+                  "post accept route" + messageEdgeModel.statusCode.toString()),
               if (messageEdgeModel.statusCode == "Successful")
                 {
                   listEdge = messageEdgeModel.data!.map((item) {
                     if (item["status"] == 2) {
                       _edgeModelDoing = EdgeModel.fromJson(item);
                       isTodo = true;
-                      alphabetItem = alphabet[messageEdgeModel.data!.indexOf(item)];
+                      alphabetItem =
+                          alphabet[messageEdgeModel.data!.indexOf(item)];
                     }
                     return EdgeModel.fromJson(item);
                   }).toList(),
@@ -446,7 +503,8 @@ class _RouteDetailPageState extends State<RouteDetailPage> with TickerProviderSt
                 height: 40,
                 width: 40,
                 fit: BoxFit.cover,
-                image: NetworkImage("https://cdn-icons-png.flaticon.com/512/2058/2058197.png"),
+                image: NetworkImage(
+                    "https://cdn-icons-png.flaticon.com/512/2058/2058197.png"),
               ),
             ],
           ),
@@ -459,7 +517,10 @@ class _RouteDetailPageState extends State<RouteDetailPage> with TickerProviderSt
               const Text(
                 'Đã xảy ra lỗi gì đó!!',
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Color.fromRGBO(120, 120, 120, 1), fontFamily: "SF Regular", fontSize: 18),
+                style: TextStyle(
+                    color: Color.fromRGBO(120, 120, 120, 1),
+                    fontFamily: "SF Regular",
+                    fontSize: 18),
               ),
             ],
           ),
@@ -468,30 +529,36 @@ class _RouteDetailPageState extends State<RouteDetailPage> with TickerProviderSt
           ),
           Container(
             padding: EdgeInsets.all(5),
-            child: Row(crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              Expanded(
-                child: SizedBox(
-                  height: 40,
-                  child: ElevatedButton(
-                    child: const Text(
-                      "Quay lại",
-                      style: TextStyle(color: Colors.white, fontFamily: "SF SemiBold", fontSize: 16),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: Color.fromRGBO(239, 81, 58, 1),
-                      textStyle: TextStyle(color: Colors.white),
-                      shadowColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
+            child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: SizedBox(
+                      height: 40,
+                      child: ElevatedButton(
+                        child: const Text(
+                          "Quay lại",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: "SF SemiBold",
+                              fontSize: 16),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          primary: Color.fromRGBO(239, 81, 58, 1),
+                          textStyle: TextStyle(color: Colors.white),
+                          shadowColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                        onPressed: () => {
+                          Navigator.pop(context),
+                        },
                       ),
                     ),
-                    onPressed: () => {
-                      Navigator.pop(context),
-                    },
-                  ),
-                ),
-              )
-            ]),
+                  )
+                ]),
           )
         ],
       ),
@@ -505,7 +572,8 @@ class _RouteDetailPageState extends State<RouteDetailPage> with TickerProviderSt
     // TODO: implement initState
     super.initState();
     hanldeGetListEdge(widget.routeId);
-    controller = AnimationController(vsync: this, duration: Duration(seconds: 3));
+    controller =
+        AnimationController(vsync: this, duration: Duration(seconds: 3));
   }
 
   @override
@@ -526,15 +594,19 @@ class _RouteDetailPageState extends State<RouteDetailPage> with TickerProviderSt
                 centerTitle: true,
                 flexibleSpace: Container(
                   decoration: BoxDecoration(
-                    gradient: const LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [
-                      MaterialColors.primary,
-                      MaterialColors.primary2,
-                    ]),
+                    gradient: const LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [
+                          MaterialColors.primary,
+                          MaterialColors.primary2,
+                        ]),
                   ),
                 ),
                 title: Text(
                   "Chi tiết chuyến hàng",
-                  style: TextStyle(color: MaterialColors.white, fontFamily: "SF Bold"),
+                  style: TextStyle(
+                      color: MaterialColors.white, fontFamily: "SF Bold"),
                 ),
               ),
               body: Stack(
@@ -555,16 +627,25 @@ class _RouteDetailPageState extends State<RouteDetailPage> with TickerProviderSt
                                 return InkWell(
                                   child: pointPickup(item, index),
                                   onTap: () {
-                                    if (widget.status == 2 && _edgeModelDoing.id != null) {
+                                    if (widget.status == 2 &&
+                                        _edgeModelDoing.id != null) {
                                       Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) => OrderDetailPage(edgeId: item.id!, building: item.buildingName!, alphabet: alphabet[index], statusEdge: item.status!)))
-                                          .then((value) => {
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  OrderDetailPage(
+                                                      edgeId: item.id!,
+                                                      building:
+                                                          item.buildingName!,
+                                                      alphabet: alphabet[index],
+                                                      statusEdge:
+                                                          item.status!))).then(
+                                          (value) => {
                                                 setState(() {
                                                   isLoading = true;
                                                 }),
-                                                hanldeGetListEdge(widget.routeId)
+                                                hanldeGetListEdge(
+                                                    widget.routeId)
                                               });
                                     }
                                   },
@@ -711,12 +792,16 @@ class _RouteDetailPageState extends State<RouteDetailPage> with TickerProviderSt
                 child: Container(
                     // height: 70,
                     decoration: BoxDecoration(color: Colors.white),
-                    padding: EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
+                    padding: EdgeInsets.only(
+                        left: 15, right: 15, top: 10, bottom: 10),
                     width: MediaQuery.of(context).size.width,
                     child: Center(
                       child: SlideAction(
                         alignment: Alignment.bottomCenter,
-                        textStyle: TextStyle(fontSize: 18, fontFamily: "SF Bold", color: Colors.white),
+                        textStyle: TextStyle(
+                            fontSize: 18,
+                            fontFamily: "SF Bold",
+                            color: Colors.white),
                         // innerColor: Color.fromRGBO(219, 98, 71, 1),
                         outerColor: Color.fromARGB(255, 12, 120, 209),
                         innerColor: MaterialColors.secondary,
@@ -762,21 +847,29 @@ class _RouteDetailPageState extends State<RouteDetailPage> with TickerProviderSt
                 bottom: 0,
                 child: Container(
                     decoration: BoxDecoration(color: Colors.white),
-                    padding: EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
+                    padding: EdgeInsets.only(
+                        left: 15, right: 15, top: 10, bottom: 10),
                     width: MediaQuery.of(context).size.width,
                     child: Container(
                       decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(Radius.circular(10)),
-                        gradient: const LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [
-                          MaterialColors.primary,
-                          Color(0xfff7892b),
-                        ]),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
+                        gradient: const LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [
+                              MaterialColors.primary,
+                              Color(0xfff7892b),
+                            ]),
                       ),
                       height: 45,
                       child: ElevatedButton(
                         child: Text(
                           "Xem lộ trình hiện tại",
-                          style: TextStyle(color: Colors.white, fontFamily: "SF Bold", fontSize: 16),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: "SF Bold",
+                              fontSize: 16),
                         ),
                         style: ElevatedButton.styleFrom(
                           primary: Colors.transparent,
@@ -790,16 +883,20 @@ class _RouteDetailPageState extends State<RouteDetailPage> with TickerProviderSt
                           if (_edgeModelDoing.id != null)
                             {
                               Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              OrderDetailPage(edgeId: _edgeModelDoing.id!, building: _edgeModelDoing.buildingName!, alphabet: alphabetItem, statusEdge: _edgeModelDoing.status!)))
-                                  .then((value) => {
-                                        setState(() {
-                                          isLoading = true;
-                                        }),
-                                        hanldeGetListEdge(widget.routeId)
-                                      }),
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => OrderDetailPage(
+                                          edgeId: _edgeModelDoing.id!,
+                                          building:
+                                              _edgeModelDoing.buildingName!,
+                                          alphabet: alphabetItem,
+                                          statusEdge: _edgeModelDoing
+                                              .status!))).then((value) => {
+                                    setState(() {
+                                      isLoading = true;
+                                    }),
+                                    hanldeGetListEdge(widget.routeId)
+                                  }),
                             }
                         },
                       ),
