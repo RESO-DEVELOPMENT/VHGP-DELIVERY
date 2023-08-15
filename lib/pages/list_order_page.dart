@@ -34,54 +34,57 @@ class _ListOrderPageState extends State<ListOrderPage> {
     return Container(
       padding: EdgeInsets.only(top: 30, bottom: 15, left: 15, right: 15),
       color: Colors.white,
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, crossAxisAlignment: CrossAxisAlignment.center, children: [
-        Column(
+      child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              "Tổng phí".toUpperCase(),
-              style: TextStyle(
-                fontFamily: "SF SemiBold",
-                fontSize: 14,
-                color: Color.fromRGBO(170, 170, 170, 1),
-              ),
+            Column(
+              children: [
+                Text(
+                  "Tổng phí".toUpperCase(),
+                  style: TextStyle(
+                    fontFamily: "SF SemiBold",
+                    fontSize: 14,
+                    color: Color.fromRGBO(170, 170, 170, 1),
+                  ),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  "đ${currencyFormatter.format((widget.totalBill).toInt()).toString()}",
+                  style: TextStyle(
+                    fontFamily: "SF SemiBold",
+                    fontSize: 17,
+                    color: MaterialColors.primary,
+                  ),
+                )
+              ],
             ),
-            SizedBox(
-              height: 5,
+            Column(
+              children: [
+                Text(
+                  "Tiền ứng tối thiểu".toUpperCase(),
+                  style: TextStyle(
+                    fontFamily: "SF SemiBold",
+                    fontSize: 14,
+                    color: Color.fromRGBO(170, 170, 170, 1),
+                  ),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  "đ${currencyFormatter.format((widget.totalCod).toInt()).toString()}",
+                  style: TextStyle(
+                    fontFamily: "SF SemiBold",
+                    fontSize: 17,
+                    color: MaterialColors.black,
+                  ),
+                )
+              ],
             ),
-            Text(
-              "đ${currencyFormatter.format((widget.totalBill).toInt()).toString()}",
-              style: TextStyle(
-                fontFamily: "SF SemiBold",
-                fontSize: 17,
-                color: MaterialColors.primary,
-              ),
-            )
-          ],
-        ),
-        Column(
-          children: [
-            Text(
-              "Tiền ứng tối thiểu".toUpperCase(),
-              style: TextStyle(
-                fontFamily: "SF SemiBold",
-                fontSize: 14,
-                color: Color.fromRGBO(170, 170, 170, 1),
-              ),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Text(
-              "đ${currencyFormatter.format((widget.totalCod).toInt()).toString()}",
-              style: TextStyle(
-                fontFamily: "SF SemiBold",
-                fontSize: 17,
-                color: MaterialColors.black,
-              ),
-            )
-          ],
-        ),
-      ]),
+          ]),
     );
   }
 
@@ -89,30 +92,33 @@ class _ListOrderPageState extends State<ListOrderPage> {
     return Container(
       padding: EdgeInsets.only(top: 15, left: 15, right: 15, bottom: 15),
       decoration: BoxDecoration(color: Colors.white),
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, crossAxisAlignment: CrossAxisAlignment.center, children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
+      child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              "Số chuyến hàng - 05",
-              style: TextStyle(
-                fontSize: 17,
-                fontFamily: "SF Bold",
-                color: Colors.black,
-              ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  "Số chuyến hàng - 05",
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontFamily: "SF Bold",
+                    color: Colors.black,
+                  ),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+              ],
             ),
-            SizedBox(
-              height: 5,
+            Icon(
+              Icons.more_vert,
+              color: Colors.white,
+              size: 28,
             ),
-          ],
-        ),
-        Icon(
-          Icons.more_vert,
-          color: Colors.white,
-          size: 28,
-        ),
-      ]),
+          ]),
     );
   }
 
@@ -199,130 +205,157 @@ class _ListOrderPageState extends State<ListOrderPage> {
     return showModalBottomSheet(
         isScrollControlled: true,
         context: context,
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(8.0))),
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(8.0))),
         builder: (BuildContext context) {
-          return StatefulBuilder(builder: (BuildContext context, StateSetter mystate) {
+          return StatefulBuilder(
+              builder: (BuildContext context, StateSetter mystate) {
             return Container(
               height: MediaQuery.of(context).size.height * 0.9,
               width: MediaQuery.of(context).size.width,
               padding: EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 5),
-              child: Column(mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Container(
-                  padding: EdgeInsets.only(top: 5),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      InkWell(
-                        child: Icon(
-                          Icons.arrow_back_ios,
-                          size: 18,
-                          color: Colors.black87,
-                        ),
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text("Hãy chọn lý do giao hàng thất bại?", style: const TextStyle(fontFamily: "SF Bold", fontSize: 18, color: Colors.black87)),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 10),
-                ),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        ...MessageCancelStore.map((e) {
-                          return InkWell(
-                            child: Container(
-                              padding: EdgeInsets.only(left: 15, right: 15),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                              ),
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    height: 15,
-                                  ),
-                                  Container(
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          child: Row(children: [
-                                            Icon(activeRadio == e["id"] ? Icons.radio_button_checked : Icons.radio_button_unchecked, size: 18, color: Color.fromRGBO(100, 100, 100, 1)),
-                                          ]),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Container(
-                                          child: Row(children: [
-                                            Text(
-                                              e["message"],
-                                              style: TextStyle(color: Color.fromRGBO(100, 100, 100, 1), fontFamily: "SF Medium", fontSize: 16),
-                                            ),
-                                          ]),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                ],
-                              ),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(top: 5),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          InkWell(
+                            child: Icon(
+                              Icons.arrow_back_ios,
+                              size: 18,
+                              color: Colors.black87,
                             ),
                             onTap: () {
-                              mystate(() {
-                                activeRadio = e["id"];
-                              });
+                              Navigator.pop(context);
                             },
-                          );
-                        }).toList()
-                      ],
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text("Hãy chọn lý do giao hàng thất bại?",
+                              style: const TextStyle(
+                                  fontFamily: "SF Bold",
+                                  fontSize: 18,
+                                  color: Colors.black87)),
+                        ],
+                      ),
                     ),
-                  ),
-                ),
-                Container(
-                  color: Colors.white,
-                  padding: EdgeInsets.only(top: 10),
-                  child: Column(
-                    children: [
-                      Container(
-                        height: 45,
-                        margin: EdgeInsets.only(left: 15, right: 15, top: 0, bottom: 0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: MaterialColors.primary,
-                          border: Border.all(color: Color.fromRGBO(200, 200, 200, 1)),
-                        ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
+                    Container(
+                      margin: const EdgeInsets.only(top: 10),
+                    ),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Column(
                           children: [
-                            Container(
-                              child: Row(children: [
-                                TextButton(
-                                  child: Text(
-                                    "Xác nhận",
-                                    style: TextStyle(color: Color.fromARGB(255, 255, 255, 255), fontFamily: "SF Bold", fontSize: 16),
+                            ...MessageCancelStore.map((e) {
+                              return InkWell(
+                                child: Container(
+                                  padding: EdgeInsets.only(left: 15, right: 15),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
                                   ),
-                                  onPressed: () {},
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                      Container(
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              child: Row(children: [
+                                                Icon(
+                                                    activeRadio == e["id"]
+                                                        ? Icons
+                                                            .radio_button_checked
+                                                        : Icons
+                                                            .radio_button_unchecked,
+                                                    size: 18,
+                                                    color: Color.fromRGBO(
+                                                        100, 100, 100, 1)),
+                                              ]),
+                                            ),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Container(
+                                              child: Row(children: [
+                                                Text(
+                                                  e["message"],
+                                                  style: TextStyle(
+                                                      color: Color.fromRGBO(
+                                                          100, 100, 100, 1),
+                                                      fontFamily: "SF Medium",
+                                                      fontSize: 16),
+                                                ),
+                                              ]),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ]),
-                            ),
+                                onTap: () {
+                                  mystate(() {
+                                    activeRadio = e["id"];
+                                  });
+                                },
+                              );
+                            }).toList()
                           ],
                         ),
                       ),
-                    ],
-                  ),
-                ),
-              ]),
+                    ),
+                    Container(
+                      color: Colors.white,
+                      padding: EdgeInsets.only(top: 10),
+                      child: Column(
+                        children: [
+                          Container(
+                            height: 45,
+                            margin: EdgeInsets.only(
+                                left: 15, right: 15, top: 0, bottom: 0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: MaterialColors.primary,
+                              border: Border.all(
+                                  color: Color.fromRGBO(200, 200, 200, 1)),
+                            ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  child: Row(children: [
+                                    TextButton(
+                                      child: Text(
+                                        "Xác nhận",
+                                        style: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 255, 255, 255),
+                                            fontFamily: "SF Bold",
+                                            fontSize: 16),
+                                      ),
+                                      onPressed: () {},
+                                    ),
+                                  ]),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ]),
             );
           });
         });
@@ -333,24 +366,29 @@ class _ListOrderPageState extends State<ListOrderPage> {
       context: context,
       builder: (BuildContext context) => AlertDialog(
         insetPadding: EdgeInsets.all(15),
-        actionsPadding: EdgeInsets.only(left: 15, right: 15, bottom: 15, top: 10),
+        actionsPadding:
+            EdgeInsets.only(left: 15, right: 15, bottom: 15, top: 10),
         titlePadding: EdgeInsets.only(left: 10, right: 10, top: 15, bottom: 10),
-        title: Row(crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          const Text(
-            'Chi tiết đơn hàng',
-            style: TextStyle(color: Colors.black, fontFamily: "SF Bold", fontSize: 18),
-          ),
-          InkWell(
-            child: Icon(
-              Icons.close,
-              size: 20,
-              color: Colors.black54,
-            ),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          )
-        ]),
+        title: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Chi tiết đơn hàng',
+                style: TextStyle(
+                    color: Colors.black, fontFamily: "SF Bold", fontSize: 18),
+              ),
+              InkWell(
+                child: Icon(
+                  Icons.close,
+                  size: 20,
+                  color: Colors.black54,
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              )
+            ]),
         actions: <Widget>[
           Container(
             // padding: EdgeInsets.all(0),
@@ -375,7 +413,8 @@ class _ListOrderPageState extends State<ListOrderPage> {
                         height: 25,
                         width: 25,
                         fit: BoxFit.cover,
-                        image: NetworkImage("https://firebasestorage.googleapis.com/v0/b/deliveryfood-9c436.appspot.com/o/icon%2Fcutlery.png?alt=media&token=18690a73-6b12-40b6-a055-3c212ebcdad4"),
+                        image: NetworkImage(
+                            "https://firebasestorage.googleapis.com/v0/b/deliveryfood-9c436.appspot.com/o/icon%2Fcutlery.png?alt=media&token=18690a73-6b12-40b6-a055-3c212ebcdad4"),
                       )),
                 ),
                 Expanded(
@@ -389,14 +428,20 @@ class _ListOrderPageState extends State<ListOrderPage> {
                         children: [
                           Text(
                             "Đặt bởi",
-                            style: const TextStyle(color: Color.fromRGBO(100, 100, 100, 1), fontFamily: "SF Regular", fontSize: 16),
+                            style: const TextStyle(
+                                color: Color.fromRGBO(100, 100, 100, 1),
+                                fontFamily: "SF Regular",
+                                fontSize: 16),
                           ),
                           SizedBox(
                             height: 5,
                           ),
                           Text(
                             "Văn Dương",
-                            style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Bold", fontSize: 16),
+                            style: const TextStyle(
+                                color: MaterialColors.black,
+                                fontFamily: "SF Bold",
+                                fontSize: 16),
                           ),
                         ],
                       ),
@@ -418,13 +463,18 @@ class _ListOrderPageState extends State<ListOrderPage> {
           ),
           Container(
             margin: EdgeInsets.only(top: 15, bottom: 15),
-            decoration: BoxDecoration(border: Border(top: BorderSide(color: Color.fromRGBO(230, 230, 230, 1)))),
+            decoration: BoxDecoration(
+                border: Border(
+                    top: BorderSide(color: Color.fromRGBO(230, 230, 230, 1)))),
           ),
           Row(
             children: [
               Text(
                 "Ghi chú khách hàng",
-                style: const TextStyle(color: Color.fromRGBO(150, 150, 150, 1), fontFamily: "SF Regular", fontSize: 16),
+                style: const TextStyle(
+                    color: Color.fromRGBO(150, 150, 150, 1),
+                    fontFamily: "SF Regular",
+                    fontSize: 16),
               ),
             ],
           ),
@@ -446,7 +496,10 @@ class _ListOrderPageState extends State<ListOrderPage> {
                       ),
                       child: Text(
                         "Xin ớt",
-                        style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Medium", fontSize: 16),
+                        style: const TextStyle(
+                            color: MaterialColors.black,
+                            fontFamily: "SF Medium",
+                            fontSize: 16),
                       ),
                     )),
               )
@@ -454,13 +507,18 @@ class _ListOrderPageState extends State<ListOrderPage> {
           ),
           Container(
             margin: EdgeInsets.only(top: 15, bottom: 15),
-            decoration: BoxDecoration(border: Border(top: BorderSide(color: Color.fromRGBO(230, 230, 230, 1)))),
+            decoration: BoxDecoration(
+                border: Border(
+                    top: BorderSide(color: Color.fromRGBO(230, 230, 230, 1)))),
           ),
           Row(
             children: [
               Text(
                 "Danh sách món",
-                style: const TextStyle(color: Color.fromRGBO(150, 150, 150, 1), fontFamily: "SF Regular", fontSize: 16),
+                style: const TextStyle(
+                    color: Color.fromRGBO(150, 150, 150, 1),
+                    fontFamily: "SF Regular",
+                    fontSize: 16),
               ),
             ],
           ),
@@ -480,7 +538,10 @@ class _ListOrderPageState extends State<ListOrderPage> {
                     children: [
                       Text(
                         "1 x",
-                        style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
+                        style: const TextStyle(
+                            color: MaterialColors.black,
+                            fontFamily: "SF Regular",
+                            fontSize: 16),
                       ),
                       SizedBox(
                         width: 10,
@@ -488,7 +549,10 @@ class _ListOrderPageState extends State<ListOrderPage> {
                       Expanded(
                         child: Text(
                           "Kebab Thịt heo",
-                          style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
+                          style: const TextStyle(
+                              color: MaterialColors.black,
+                              fontFamily: "SF Regular",
+                              fontSize: 16),
                         ),
                       )
                     ],
@@ -499,7 +563,10 @@ class _ListOrderPageState extends State<ListOrderPage> {
                 ),
                 Text(
                   "₫ 25.000",
-                  style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
+                  style: const TextStyle(
+                      color: MaterialColors.black,
+                      fontFamily: "SF Regular",
+                      fontSize: 16),
                 )
               ],
             ),
@@ -520,7 +587,10 @@ class _ListOrderPageState extends State<ListOrderPage> {
                     children: [
                       Text(
                         "1 x",
-                        style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
+                        style: const TextStyle(
+                            color: MaterialColors.black,
+                            fontFamily: "SF Regular",
+                            fontSize: 16),
                       ),
                       SizedBox(
                         width: 10,
@@ -528,7 +598,10 @@ class _ListOrderPageState extends State<ListOrderPage> {
                       Expanded(
                         child: Text(
                           "Kebab Thịt heo đặc biệt có phô mai mai mai",
-                          style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
+                          style: const TextStyle(
+                              color: MaterialColors.black,
+                              fontFamily: "SF Regular",
+                              fontSize: 16),
                         ),
                       )
                     ],
@@ -539,14 +612,19 @@ class _ListOrderPageState extends State<ListOrderPage> {
                 ),
                 Text(
                   "₫ 25.000",
-                  style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
+                  style: const TextStyle(
+                      color: MaterialColors.black,
+                      fontFamily: "SF Regular",
+                      fontSize: 16),
                 )
               ],
             ),
           ),
           Container(
             margin: EdgeInsets.only(top: 15, bottom: 15),
-            decoration: BoxDecoration(border: Border(top: BorderSide(color: Color.fromRGBO(230, 230, 230, 1)))),
+            decoration: BoxDecoration(
+                border: Border(
+                    top: BorderSide(color: Color.fromRGBO(230, 230, 230, 1)))),
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -554,11 +632,17 @@ class _ListOrderPageState extends State<ListOrderPage> {
             children: [
               Text(
                 "Thu tiền mặt khách hàng",
-                style: TextStyle(color: Color.fromRGBO(150, 150, 150, 1), fontFamily: "SF Regular", fontSize: 16),
+                style: TextStyle(
+                    color: Color.fromRGBO(150, 150, 150, 1),
+                    fontFamily: "SF Regular",
+                    fontSize: 16),
               ),
               Text(
                 "đ50.000",
-                style: TextStyle(color: Colors.black, fontFamily: "SF Semibold", fontSize: 16),
+                style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: "SF Semibold",
+                    fontSize: 16),
               )
             ],
           ),
@@ -571,11 +655,17 @@ class _ListOrderPageState extends State<ListOrderPage> {
             children: [
               Text(
                 "Tổng cộng",
-                style: TextStyle(color: Color.fromRGBO(150, 150, 150, 1), fontFamily: "SF Regular", fontSize: 16),
+                style: TextStyle(
+                    color: Color.fromRGBO(150, 150, 150, 1),
+                    fontFamily: "SF Regular",
+                    fontSize: 16),
               ),
               Text(
                 "đ50.000",
-                style: TextStyle(color: Colors.black, fontFamily: "SF Semibold", fontSize: 16),
+                style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: "SF Semibold",
+                    fontSize: 16),
               )
             ],
           ),
@@ -583,47 +673,59 @@ class _ListOrderPageState extends State<ListOrderPage> {
             height: 20,
           ),
           Container(
-            child: Row(crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              Expanded(
-                child: SizedBox(
-                  height: 40,
-                  child: ElevatedButton(
-                    child: Text(
-                      "Thất bại",
-                      style: TextStyle(color: Colors.black45, fontFamily: "SF Medium", fontSize: 16),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      textStyle: TextStyle(color: Colors.black),
-                      shadowColor: Colors.white,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5), side: BorderSide(color: Colors.black45, width: 1)),
-                    ),
-                    onPressed: () => {showModal()},
-                  ),
-                ),
-              ),
-              Padding(padding: EdgeInsets.all(7)),
-              Expanded(
-                child: SizedBox(
-                  height: 40,
-                  child: ElevatedButton(
-                    child: const Text(
-                      "Thành công",
-                      style: TextStyle(color: Colors.white, fontFamily: "SF Medium", fontSize: 16),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      primary: MaterialColors.primary,
-                      textStyle: TextStyle(color: Colors.white),
-                      shadowColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
+            child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: SizedBox(
+                      height: 40,
+                      child: ElevatedButton(
+                        child: Text(
+                          "Thất bại",
+                          style: TextStyle(
+                              color: Colors.black45,
+                              fontFamily: "SF Medium",
+                              fontSize: 16),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                          textStyle: TextStyle(color: Colors.black),
+                          shadowColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                              side:
+                                  BorderSide(color: Colors.black45, width: 1)),
+                        ),
+                        onPressed: () => {showModal()},
                       ),
                     ),
-                    onPressed: () => {},
                   ),
-                ),
-              )
-            ]),
+                  Padding(padding: EdgeInsets.all(7)),
+                  Expanded(
+                    child: SizedBox(
+                      height: 40,
+                      child: ElevatedButton(
+                        child: const Text(
+                          "Thành công",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: "SF Medium",
+                              fontSize: 16),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          primary: MaterialColors.primary,
+                          textStyle: TextStyle(color: Colors.white),
+                          shadowColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                        onPressed: () => {},
+                      ),
+                    ),
+                  )
+                ]),
           )
         ],
       ),
@@ -642,7 +744,10 @@ class _ListOrderPageState extends State<ListOrderPage> {
             children: [
               Container(
                 padding: EdgeInsets.only(bottom: 10),
-                decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Color.fromRGBO(220, 220, 220, 1)))),
+                decoration: BoxDecoration(
+                    border: Border(
+                        bottom: BorderSide(
+                            color: Color.fromRGBO(220, 220, 220, 1)))),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -664,12 +769,15 @@ class _ListOrderPageState extends State<ListOrderPage> {
                             height: 20,
                             width: 20,
                             fit: BoxFit.cover,
-                            image: NetworkImage(segment == 0 ? "https://cdn-icons-png.flaticon.com/512/4521/4521931.png" : "https://cdn-icons-png.flaticon.com/512/7541/7541900.png")),
+                            image: NetworkImage(segment == 0
+                                ? "https://cdn-icons-png.flaticon.com/512/4521/4521931.png"
+                                : "https://cdn-icons-png.flaticon.com/512/7541/7541900.png")),
                         SizedBox(width: 5),
                         Container(
                           padding: EdgeInsets.only(top: 5),
                           child: Text(
-                            (segment == 0 ? "Lấy Hàng" : "Giao hàng") + " - 3 món",
+                            (segment == 0 ? "Lấy Hàng" : "Giao hàng") +
+                                " - 3 món",
                             style: TextStyle(
                               fontFamily: "SF Medium",
                               color: MaterialColors.primary,
@@ -690,8 +798,12 @@ class _ListOrderPageState extends State<ListOrderPage> {
                         //             statusStrip: StatusTrip.create)));
                       },
                       child: Container(
-                          padding: EdgeInsets.only(left: 5, right: 5, top: 3, bottom: 3),
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(2), border: Border.all(color: MaterialColors.primary)),
+                          padding: EdgeInsets.only(
+                              left: 5, right: 5, top: 3, bottom: 3),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(2),
+                              border:
+                                  Border.all(color: MaterialColors.primary)),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -732,7 +844,10 @@ class _ListOrderPageState extends State<ListOrderPage> {
                         children: [
                           Text(
                             "1 x",
-                            style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 14),
+                            style: const TextStyle(
+                                color: MaterialColors.black,
+                                fontFamily: "SF Regular",
+                                fontSize: 14),
                           ),
                           SizedBox(
                             width: 10,
@@ -740,7 +855,10 @@ class _ListOrderPageState extends State<ListOrderPage> {
                           Expanded(
                             child: Text(
                               "Kebab Thịt heo",
-                              style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 14),
+                              style: const TextStyle(
+                                  color: MaterialColors.black,
+                                  fontFamily: "SF Regular",
+                                  fontSize: 14),
                             ),
                           )
                         ],
@@ -751,7 +869,10 @@ class _ListOrderPageState extends State<ListOrderPage> {
                     ),
                     Text(
                       "25.000 ₫",
-                      style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 14),
+                      style: const TextStyle(
+                          color: MaterialColors.black,
+                          fontFamily: "SF Regular",
+                          fontSize: 14),
                     )
                   ],
                 ),
@@ -769,7 +890,10 @@ class _ListOrderPageState extends State<ListOrderPage> {
                         children: [
                           Text(
                             "1 x",
-                            style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 14),
+                            style: const TextStyle(
+                                color: MaterialColors.black,
+                                fontFamily: "SF Regular",
+                                fontSize: 14),
                           ),
                           SizedBox(
                             width: 10,
@@ -777,7 +901,10 @@ class _ListOrderPageState extends State<ListOrderPage> {
                           Expanded(
                             child: Text(
                               "Kebab Thịt heo đặc biệt có phô mai mai mai",
-                              style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 14),
+                              style: const TextStyle(
+                                  color: MaterialColors.black,
+                                  fontFamily: "SF Regular",
+                                  fontSize: 14),
                             ),
                           )
                         ],
@@ -788,7 +915,10 @@ class _ListOrderPageState extends State<ListOrderPage> {
                     ),
                     Text(
                       "25.000 ₫",
-                      style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 14),
+                      style: const TextStyle(
+                          color: MaterialColors.black,
+                          fontFamily: "SF Regular",
+                          fontSize: 14),
                     )
                   ],
                 ),
@@ -801,7 +931,10 @@ class _ListOrderPageState extends State<ListOrderPage> {
                   children: [
                     Text(
                       "Xem thêm",
-                      style: const TextStyle(color: Color.fromRGBO(150, 150, 150, 1), fontFamily: "SF Regular", fontSize: 14),
+                      style: const TextStyle(
+                          color: Color.fromRGBO(150, 150, 150, 1),
+                          fontFamily: "SF Regular",
+                          fontSize: 14),
                       textAlign: TextAlign.center,
                     ),
                     SizedBox(width: 5),
@@ -1055,15 +1188,27 @@ class _ListOrderPageState extends State<ListOrderPage> {
                 child: Row(children: [
                   Text(
                     "Đơn hàng",
-                    style: TextStyle(fontSize: 16, color: Color.fromRGBO(150, 150, 150, 1), fontFamily: "SF SemiBold", height: 1.3),
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Color.fromRGBO(150, 150, 150, 1),
+                        fontFamily: "SF SemiBold",
+                        height: 1.3),
                   ),
                   Text(
                     " - ",
-                    style: TextStyle(fontSize: 16, color: Color.fromRGBO(150, 150, 150, 1), fontFamily: "SF SemiBold", height: 1.3),
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Color.fromRGBO(150, 150, 150, 1),
+                        fontFamily: "SF SemiBold",
+                        height: 1.3),
                   ),
                   Text(
                     "5 đơn hàng",
-                    style: TextStyle(fontSize: 17, color: Colors.black, fontFamily: "SF SemiBold", height: 1.3),
+                    style: TextStyle(
+                        fontSize: 17,
+                        color: Colors.black,
+                        fontFamily: "SF SemiBold",
+                        height: 1.3),
                   )
                 ]),
               ),
@@ -1082,7 +1227,10 @@ class _ListOrderPageState extends State<ListOrderPage> {
               // ),
               Container(
                 margin: EdgeInsets.only(left: 10, right: 10, bottom: 15),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: getColor(StatusAccordionOrder.done))),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border:
+                        Border.all(color: getColor(StatusAccordionOrder.done))),
                 child: AccordionOrder(
                   open: false,
                   status: StatusAccordionOrder.done,
@@ -1092,7 +1240,10 @@ class _ListOrderPageState extends State<ListOrderPage> {
               ),
               Container(
                 margin: EdgeInsets.only(left: 10, right: 10, bottom: 15),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: getColor(StatusAccordionOrder.done))),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border:
+                        Border.all(color: getColor(StatusAccordionOrder.done))),
                 child: AccordionOrder(
                   open: false,
                   status: StatusAccordionOrder.done,
@@ -1102,7 +1253,10 @@ class _ListOrderPageState extends State<ListOrderPage> {
               ),
               Container(
                 margin: EdgeInsets.only(left: 10, right: 10, bottom: 15),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: getColor(StatusAccordionOrder.create))),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(
+                        color: getColor(StatusAccordionOrder.create))),
                 child: AccordionOrder(
                   open: false,
                   status: StatusAccordionOrder.create,
@@ -1112,7 +1266,10 @@ class _ListOrderPageState extends State<ListOrderPage> {
               ),
               Container(
                 margin: EdgeInsets.only(left: 10, right: 10, bottom: 15),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: getColor(StatusAccordionOrder.create))),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(
+                        color: getColor(StatusAccordionOrder.create))),
                 child: AccordionOrder(
                   open: false,
                   status: StatusAccordionOrder.create,
@@ -1122,7 +1279,10 @@ class _ListOrderPageState extends State<ListOrderPage> {
               ),
               Container(
                 margin: EdgeInsets.only(left: 10, right: 10, bottom: 15),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: getColor(StatusAccordionOrder.create))),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(
+                        color: getColor(StatusAccordionOrder.create))),
                 child: AccordionOrder(
                   open: false,
                   status: StatusAccordionOrder.create,

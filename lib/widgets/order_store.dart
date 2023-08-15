@@ -18,7 +18,13 @@ class OrderStore extends StatefulWidget {
   String building;
   Function callbackLoading;
   List<OrderEdgeModel> orderEdgeList;
-  OrderStore({Key? key, required this.statusEdge, required this.orderEdgeList, required this.building, required this.callbackLoading}) : super(key: key);
+  OrderStore(
+      {Key? key,
+      required this.statusEdge,
+      required this.orderEdgeList,
+      required this.building,
+      required this.callbackLoading})
+      : super(key: key);
 
   @override
   _OrderStoreState createState() => _OrderStoreState();
@@ -59,7 +65,8 @@ class _OrderStoreState extends State<OrderStore> {
     });
   }
 
-  void _cancelListOrder(int index, String orderActionId, String shipperId, int actionType, String message) {
+  void _cancelListOrder(int index, String orderActionId, String shipperId,
+      int actionType, String message) {
     setState(() {
       widget.callbackLoading(true);
       Navigator.pop(context);
@@ -137,7 +144,8 @@ class _OrderStoreState extends State<OrderStore> {
                     height: 25,
                     width: 25,
                     fit: BoxFit.cover,
-                    image: NetworkImage("https://cdn-icons-png.flaticon.com/512/3788/3788029.png"),
+                    image: NetworkImage(
+                        "https://cdn-icons-png.flaticon.com/512/3788/3788029.png"),
                   ),
                   SizedBox(width: 15),
                   Expanded(
@@ -150,7 +158,10 @@ class _OrderStoreState extends State<OrderStore> {
                           child: Text(
                             overflow: TextOverflow.ellipsis,
                             "Tòa ${widget.building}",
-                            style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Bold", fontSize: 18),
+                            style: const TextStyle(
+                                color: MaterialColors.black,
+                                fontFamily: "SF Bold",
+                                fontSize: 18),
                             maxLines: 1,
                           ),
                         ),
@@ -160,7 +171,11 @@ class _OrderStoreState extends State<OrderStore> {
                         Container(
                           child: Text(
                             "${widget.building}, Vinhomes Grand Park, Phường Long Thạnh Mỹ, Quận 9",
-                            style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Ruglar", height: 1.3, fontSize: 14),
+                            style: const TextStyle(
+                                color: MaterialColors.black,
+                                fontFamily: "SF Ruglar",
+                                height: 1.3,
+                                fontSize: 14),
                           ),
                         ),
                         SizedBox(
@@ -294,9 +309,12 @@ class _OrderStoreState extends State<OrderStore> {
               return Container(
                 child: Column(children: [
                   // note(),
-                  Container(color: MaterialColors.grey, padding: EdgeInsets.only(top: 10)),
                   Container(
-                    padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
+                      color: MaterialColors.grey,
+                      padding: EdgeInsets.only(top: 10)),
+                  Container(
+                    padding:
+                        const EdgeInsets.only(top: 10, left: 15, right: 15),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -318,7 +336,8 @@ class _OrderStoreState extends State<OrderStore> {
                                 height: 25,
                                 width: 25,
                                 fit: BoxFit.cover,
-                                image: NetworkImage("https://cdn-icons-png.flaticon.com/512/4507/4507529.png"),
+                                image: NetworkImage(
+                                    "https://cdn-icons-png.flaticon.com/512/4507/4507529.png"),
                               )),
                         ),
                         SizedBox(
@@ -326,7 +345,11 @@ class _OrderStoreState extends State<OrderStore> {
                         ),
                         Container(
                           alignment: Alignment.centerLeft,
-                          child: Text("Danh sách đơn", style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Bold", fontSize: 16)),
+                          child: Text("Danh sách đơn",
+                              style: const TextStyle(
+                                  color: MaterialColors.black,
+                                  fontFamily: "SF Bold",
+                                  fontSize: 16)),
                         ),
                       ],
                     ),
@@ -344,7 +367,10 @@ class _OrderStoreState extends State<OrderStore> {
                         margin: EdgeInsets.only(top: 10, bottom: 5),
                         child: Container(
                           margin: EdgeInsets.only(left: 10, right: 10),
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: Color.fromRGBO(200, 200, 200, 1))),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              border: Border.all(
+                                  color: Color.fromRGBO(200, 200, 200, 1))),
                           child: AccordionOrder(
                             open: index == indexOpen ? true : false,
                             status: getAccordionOrder(item.actionStatus),
@@ -381,7 +407,8 @@ class _OrderStoreState extends State<OrderStore> {
               );
             }),
 
-            Container(color: MaterialColors.grey, padding: EdgeInsets.only(top: 10)),
+            Container(
+                color: MaterialColors.grey, padding: EdgeInsets.only(top: 10)),
             //thanh toán
             Container(
               padding: EdgeInsets.all(15),
@@ -392,108 +419,130 @@ class _OrderStoreState extends State<OrderStore> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        child: Text(
-                          "Thanh toán",
-                          style: const TextStyle(color: MaterialColors.black, fontFamily: "SF SemiBold", fontSize: 16),
-                        ),
-                      ),
+                          // child: Text(
+                          //   "Thanh toán",
+                          //   style: const TextStyle(
+                          //       color: MaterialColors.black,
+                          //       fontFamily: "SF SemiBold",
+                          //       fontSize: 16),
+                          // ),
+                          ),
                     ],
                   ),
                   SizedBox(
                     height: 15,
                   ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        child: Row(
-                          children: [
-                            Container(
-                              child: Text(
-                                "Tổng tiền cần ứng ",
-                                style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
-                              ),
-                            ),
-                            Container(
-                              child: Icon(
-                                Icons.error_outline,
-                                color: Color.fromARGB(255, 125, 125, 131),
-                                size: 15,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Container(
-                        child: Row(
-                          children: [
-                            Container(
-                              child: Text(
-                                "- ₫",
-                                style: const TextStyle(color: MaterialColors.orange, fontFamily: "SF Regular", fontSize: 16),
-                              ),
-                            ),
-                            Container(
-                              child: Text(
-                                "${currencyFormatter.format((totalCod).toInt()).toString()}",
-                                style: const TextStyle(color: MaterialColors.orange, fontFamily: "SF Regular", fontSize: 16),
-                              ),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        child: Row(
-                          children: [
-                            Container(
-                              child: Text(
-                                "Tổng tiền cần thu ",
-                                style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
-                              ),
-                            ),
-                            Container(
-                              child: Icon(
-                                Icons.error_outline,
-                                color: Color.fromARGB(255, 125, 125, 131),
-                                size: 15,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Container(
-                        child: Row(
-                          children: [
-                            Container(
-                              child: Text(
-                                "+ ₫",
-                                style: const TextStyle(color: MaterialColors.success, fontFamily: "SF Regular", fontSize: 16),
-                              ),
-                            ),
-                            Container(
-                              child: Text(
-                                "${currencyFormatter.format((totalReceive).toInt()).toString()}",
-                                style: const TextStyle(color: MaterialColors.success, fontFamily: "SF Regular", fontSize: 16),
-                              ),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
+                  // Row(
+                  //   crossAxisAlignment: CrossAxisAlignment.center,
+                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //   children: [
+                  //     Container(
+                  //       child: Row(
+                  //         children: [
+                  //           Container(
+                  //             child: Text(
+                  //               "Tổng tiền cần ứng ",
+                  //               style: const TextStyle(
+                  //                   color: MaterialColors.black,
+                  //                   fontFamily: "SF Regular",
+                  //                   fontSize: 16),
+                  //             ),
+                  //           ),
+                  //           Container(
+                  //             child: Icon(
+                  //               Icons.error_outline,
+                  //               color: Color.fromARGB(255, 125, 125, 131),
+                  //               size: 15,
+                  //             ),
+                  //           )
+                  //         ],
+                  //       ),
+                  //     ),
+                  //     Container(
+                  //       child: Row(
+                  //         children: [
+                  //           Container(
+                  //             child: Text(
+                  //               "- ₫",
+                  //               style: const TextStyle(
+                  //                   color: MaterialColors.orange,
+                  //                   fontFamily: "SF Regular",
+                  //                   fontSize: 16),
+                  //             ),
+                  //           ),
+                  //           Container(
+                  //             child: Text(
+                  //               // "${currencyFormatter.format((shipCost).toInt()).toString()}}"
+                  //               "${currencyFormatter.format((totalCod).toInt()).toString()}",
+                  //               style: const TextStyle(
+                  //                   color: MaterialColors.orange,
+                  //                   fontFamily: "SF Regular",
+                  //                   fontSize: 16),
+                  //             ),
+                  //           )
+                  //         ],
+                  //       ),
+                  //     )
+                  //   ],
+                  // ),
+                  //   SizedBox(
+                  //     height: 15,
+                  //   ),
+                  //   Row(
+                  //     crossAxisAlignment: CrossAxisAlignment.center,
+                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     children: [
+                  //       Container(
+                  //         child: Row(
+                  //           children: [
+                  //             Container(
+                  //               child: Text(
+                  //                 "Tổng tiền cần thu ",
+                  //                 style: const TextStyle(
+                  //                     color: MaterialColors.black,
+                  //                     fontFamily: "SF Regular",
+                  //                     fontSize: 16),
+                  //               ),
+                  //             ),
+                  //             Container(
+                  //               child: Icon(
+                  //                 Icons.error_outline,
+                  //                 color: Color.fromARGB(255, 125, 125, 131),
+                  //                 size: 15,
+                  //               ),
+                  //             )
+                  //           ],
+                  //         ),
+                  //       ),
+                  //       Container(
+                  //         child: Row(
+                  //           children: [
+                  //             Container(
+                  //               child: Text(
+                  //                 "+ ₫",
+                  //                 style: const TextStyle(
+                  //                     color: MaterialColors.success,
+                  //                     fontFamily: "SF Regular",
+                  //                     fontSize: 16),
+                  //               ),
+                  //             ),
+                  //             Container(
+                  //               child: Text(
+                  //                 "${currencyFormatter.format((totalReceive).toInt()).toString()}",
+                  //                 style: const TextStyle(
+                  //                     color: MaterialColors.success,
+                  //                     fontFamily: "SF Regular",
+                  //                     fontSize: 16),
+                  //               ),
+                  //             )
+                  //           ],
+                  //         ),
+                  //       )
+                  //     ],
+                  //   ),
+                  //   SizedBox(
+                  //     height: 15,
+                  //   ),
                 ],
               ),
             ),

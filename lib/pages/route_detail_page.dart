@@ -258,7 +258,7 @@ total_order(totalBill, totalCod) {
                 height: 5,
               ),
               Text(
-                "₫${currencyFormatter.format((totalBill!).toInt()).toString()}",
+                "₫${currencyFormatter.format((totalCod!).toInt()).toString()}",
                 style: TextStyle(
                   fontFamily: "SF SemiBold",
                   fontSize: 17,
@@ -270,7 +270,7 @@ total_order(totalBill, totalCod) {
           Column(
             children: [
               Text(
-                "Tiền ứng tối thiểu".toUpperCase(),
+                "Tổng tiền ứng".toUpperCase(),
                 style: TextStyle(
                   fontFamily: "SF SemiBold",
                   fontSize: 14,
@@ -281,7 +281,8 @@ total_order(totalBill, totalCod) {
                 height: 5,
               ),
               Text(
-                "₫${currencyFormatter.format((totalCod!).toInt()).toString()}",
+                "₫${currencyFormatter.format((totalBill!).toInt()).toString()}"
+                "",
                 style: TextStyle(
                   fontFamily: "SF SemiBold",
                   fontSize: 17,
