@@ -223,69 +223,55 @@ class _TransactionPageState extends State<TransactionPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          getTransactionType(
-                                                  item.transactionType)
-                                              .toUpperCase(),
-                                          style: TextStyle(
-                                              fontFamily: "SF Regular",
-                                              fontSize: 15),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: kSpacingUnit * 1,
-                                  ),
-                                  Container(
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          height: 15,
-                                          width: 15,
-                                          child: Image.asset(
-                                              item.transactionAction == 1
-                                                  ? 'assets/images/green-tag.png'
-                                                  : 'assets/images/red-tag.png',
-                                              fit: BoxFit.cover,
-                                              color: Color.fromRGBO(
-                                                  255, 255, 255, 0.5),
-                                              colorBlendMode:
-                                                  BlendMode.modulate),
-                                        ),
-                                        SizedBox(
-                                          width: kSpacingUnit * 0.5,
-                                        ),
-                                        Text(
+                              Text(
+                                getTransactionType(item.transactionType)
+                                    .toUpperCase(),
+                                maxLines: 2,
+                                style: TextStyle(
+                                    fontFamily: "SF Regular", fontSize: 13),
+                              ),
+                              SizedBox(
+                                height: kSpacingUnit * 1,
+                              ),
+                              Container(
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: 15,
+                                      width: 15,
+                                      child: Image.asset(
                                           item.transactionAction == 1
-                                              ? "Nhận tiền vào"
-                                              : "Chuyển tiền đi",
-                                          style: TextStyle(
-                                              fontFamily: "SF Regular",
-                                              fontSize: 14,
-                                              color: Color.fromRGBO(
-                                                  120, 120, 120, 1)),
-                                        ),
-                                      ],
+                                              ? 'assets/images/green-tag.png'
+                                              : 'assets/images/red-tag.png',
+                                          fit: BoxFit.cover,
+                                          color: Color.fromRGBO(
+                                              255, 255, 255, 0.5),
+                                          colorBlendMode: BlendMode.modulate),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: kSpacingUnit * 1,
-                                  ),
-                                ],
-                              )
+                                    SizedBox(
+                                      width: kSpacingUnit * 0.5,
+                                    ),
+                                    Text(
+                                      item.transactionAction == 1
+                                          ? "Nhận tiền đến"
+                                          : "Chuyển tiền đi",
+                                      style: TextStyle(
+                                          fontFamily: "SF Regular",
+                                          fontSize: 14,
+                                          color:
+                                              Color.fromRGBO(120, 120, 120, 1)),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: kSpacingUnit * 1,
+                              ),
                             ],
                           ),
                         ),
@@ -295,8 +281,17 @@ class _TransactionPageState extends State<TransactionPage> {
                               fontFamily: "SF SemiBold",
                               fontSize: 16,
                               color: item.transactionAction == 1
-                                  ? MaterialColors.success
-                                  : MaterialColors.black),
+                                  ? (item.transactionType == 1
+                                      ? Colors.green
+                                      : (item.transactionType == 2 ||
+                                              item.transactionType == 3)
+                                          ? Colors.blue
+                                          : Colors.green)
+                                  : (item.transactionType == 4
+                                      ? Colors.orange
+                                      : (item.transactionType == 5)
+                                          ? Colors.red
+                                          : Colors.orange)),
                         ),
                       ],
                     ),
@@ -319,110 +314,117 @@ class _TransactionPageState extends State<TransactionPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Tài khoản thu hộ",
-            style: TextStyle(
-                color: Colors.black54, fontSize: 16, fontFamily: "SF Regular"),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Text(
-            "${currencyFormatter.format((wallet).toInt()).toString()} ",
-            style: TextStyle(
-                color: Colors.black, fontSize: 24, fontFamily: "SF Bold"),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                "Tài khoản thu hộ",
+                style: TextStyle(
+                    color: Colors.black54,
+                    fontSize: 16,
+                    fontFamily: "SF Regular"),
+              ),
+              Text(
+                "${currencyFormatter.format((debitWallet).toInt()).toString()}  đ",
+                style: TextStyle(
+                    color: Colors.blue, fontSize: 24, fontFamily: "SF Bold"),
+              ),
+            ],
           ),
           SizedBox(height: 10),
+          const Divider(
+            color: Colors.grey,
+            height: 2,
+          ),
+          SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                "Tài khoản cá nhân",
+                style: TextStyle(
+                    color: Colors.black54,
+                    fontSize: 16,
+                    fontFamily: "SF Regular"),
+              ),
+              Text(
+                "${currencyFormatter.format((refundWallet).toInt()).toString()} đ",
+                style: TextStyle(
+                    color: Colors.green, fontSize: 24, fontFamily: "SF Bold"),
+              ),
+            ],
+          ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  Icon(
-                    Icons.event_available,
-                    size: 20,
-                    color: Color.fromRGBO(80, 80, 80, 1),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        "0",
-                        style: TextStyle(
-                            color: Color.fromRGBO(80, 80, 80, 1), fontSize: 14),
-                      ),
-                      Text(
-                        " đơn hàng hoàn tất",
-                        style: TextStyle(
-                            color: Color.fromRGBO(80, 80, 80, 1), fontSize: 14),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              Container(
-                  decoration: BoxDecoration(color: Colors.white),
-                  width: 120,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(8)),
-                      gradient: const LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [
-                            MaterialColors.primary,
-                            Color(0xfff7892b),
-                          ]),
-                    ),
-                    height: 38,
-                    child: ElevatedButton(
-                      child: Text(
-                        "Xem chi tiết",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: "SF SemiBold",
-                            fontSize: 15),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.transparent,
-                        textStyle: TextStyle(color: Colors.black),
-                        shadowColor: Colors.transparent,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                      onPressed: () => {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ColectionDetail()))
-                      },
-                    ),
-                  )),
-              // Column(
+              // Row(
               //   children: [
-
-              //     // Container(
-              //     //   child: OutlinedButton(
-              //     //     style: ButtonStyle(
-              //     //       backgroundColor: MaterialStatePropertyAll<Color>(MaterialColors.primary),
-              //     //       shape: MaterialStateProperty.all(
-              //     //         RoundedRectangleBorder(
-              //     //           borderRadius: BorderRadius.circular(30.0),
-              //     //         ),
-              //     //       ),
-              //     //     ),
-              //     //     onPressed: () {
-              //     //       Navigator.push(context, MaterialPageRoute(builder: (context) => ColectionDetail()));
-              //     //     },
-              //     //     child: Text('Xem chi tiết', style: TextStyle(color: Color.fromARGB(255, 255, 255, 255), fontSize: 16, fontFamily: "SF SemiBold")),
-              //     //   ),
-              //     // ),
+              //     Icon(
+              //       Icons.event_available,
+              //       size: 20,
+              //       color: Color.fromRGBO(80, 80, 80, 1),
+              //     ),
+              //     SizedBox(
+              //       width: 10,
+              //     ),
+              //     Row(
+              //       children: [
+              //         Text(
+              //           "0",
+              //           style: TextStyle(
+              //               color: Color.fromRGBO(80, 80, 80, 1), fontSize: 14),
+              //         ),
+              //         Text(
+              //           " đơn hàng hoàn tất",
+              //           style: TextStyle(
+              //               color: Color.fromRGBO(80, 80, 80, 1), fontSize: 14),
+              //         ),
+              //       ],
+              //     ),
               //   ],
               // ),
+              // Container(
+              //     decoration: BoxDecoration(color: Colors.white),
+              //     width: 120,
+              //     child: Container(
+              //       decoration: BoxDecoration(
+              //         borderRadius: const BorderRadius.all(Radius.circular(8)),
+              //         gradient: const LinearGradient(
+              //             begin: Alignment.centerLeft,
+              //             end: Alignment.centerRight,
+              //             colors: [
+              //               MaterialColors.primary,
+              //               Color(0xfff7892b),
+              //             ]),
+              //       ),
+              //       height: 38,
+              //       child: ElevatedButton(
+              //         child: Text(
+              //           "Xem chi tiết",
+              //           style: TextStyle(
+              //               color: Colors.white,
+              //               fontFamily: "SF SemiBold",
+              //               fontSize: 15),
+              //         ),
+              //         style: ElevatedButton.styleFrom(
+              //           primary: Colors.transparent,
+              //           textStyle: TextStyle(color: Colors.black),
+              //           shadowColor: Colors.transparent,
+              //           shape: RoundedRectangleBorder(
+              //             borderRadius: BorderRadius.circular(8),
+              //           ),
+              //         ),
+              //         onPressed: () => {
+              //           Navigator.push(
+              //               context,
+              //               MaterialPageRoute(
+              //                   builder: (context) => ColectionDetail()))
+              //         },
+              //       ),
+              //     )),
             ],
           )
         ],
@@ -437,7 +439,8 @@ class _TransactionPageState extends State<TransactionPage> {
   var outputDate;
   var nowDate;
   MessageEdgeModelHistory messageEdgeModelHistory = MessageEdgeModelHistory();
-  num wallet = 0;
+  num debitWallet = 0;
+  num refundWallet = 0;
   var outputFormat = DateFormat('dd/MM/yyyy');
   hanldeGetTransaction(String shipperId) {
     var newList = [];
@@ -498,7 +501,10 @@ class _TransactionPageState extends State<TransactionPage> {
                       {
                         setState(() {
                           isLoading = false;
-                          wallet = messageEdgeModelHistory.data["debitBalance"];
+                          debitWallet =
+                              messageEdgeModelHistory.data["debitBalance"];
+                          refundWallet =
+                              messageEdgeModelHistory.data["refundBalance"];
                         })
                       }
                     else

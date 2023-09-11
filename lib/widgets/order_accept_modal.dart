@@ -1,12 +1,12 @@
 import 'dart:async';
 
+import 'package:action_slider/action_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
 import 'package:vh_shipper_app/Colors/color.dart';
 import 'package:dotted_border/dotted_border.dart';
-import 'package:slide_to_act/slide_to_act.dart';
 
 class OrderAcceptModal extends StatefulWidget {
   late ValueChanged<void> function;
@@ -66,7 +66,9 @@ class _OrderAcceptModal extends State<OrderAcceptModal> {
           height: MediaQuery.of(context).size.height * 1,
           width: MediaQuery.of(context).size.width,
           margin: EdgeInsets.only(top: 40, bottom: 5),
-          decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(15))),
+          decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(15))),
           child: Stack(
             children: [
               SingleChildScrollView(
@@ -74,7 +76,11 @@ class _OrderAcceptModal extends State<OrderAcceptModal> {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                          color: Color.fromRGBO(250, 250, 250, 1), border: Border.all(color: Color.fromRGBO(200, 200, 200, 1), width: 1), borderRadius: BorderRadius.all(Radius.circular(8))),
+                          color: Color.fromRGBO(250, 250, 250, 1),
+                          border: Border.all(
+                              color: Color.fromRGBO(200, 200, 200, 1),
+                              width: 1),
+                          borderRadius: BorderRadius.all(Radius.circular(8))),
                       padding: EdgeInsets.all(15),
                       margin: EdgeInsets.only(left: 15, right: 15, top: 15),
                       child: Row(
@@ -108,18 +114,26 @@ class _OrderAcceptModal extends State<OrderAcceptModal> {
                               children: [
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       "Đặt bởi",
-                                      style: const TextStyle(color: Color.fromRGBO(100, 100, 100, 1), fontFamily: "SF Regular", fontSize: 16),
+                                      style: const TextStyle(
+                                          color:
+                                              Color.fromRGBO(100, 100, 100, 1),
+                                          fontFamily: "SF Regular",
+                                          fontSize: 16),
                                     ),
                                     SizedBox(
                                       height: 5,
                                     ),
                                     Text(
                                       "Văn Dương",
-                                      style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Bold", fontSize: 16),
+                                      style: const TextStyle(
+                                          color: MaterialColors.black,
+                                          fontFamily: "SF Bold",
+                                          fontSize: 16),
                                     ),
                                   ],
                                 ),
@@ -133,7 +147,12 @@ class _OrderAcceptModal extends State<OrderAcceptModal> {
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                              color: Color.fromRGBO(250, 250, 250, 1), border: Border.all(color: Color.fromRGBO(200, 200, 200, 1), width: 1), borderRadius: BorderRadius.all(Radius.circular(8))),
+                              color: Color.fromRGBO(250, 250, 250, 1),
+                              border: Border.all(
+                                  color: Color.fromRGBO(200, 200, 200, 1),
+                                  width: 1),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8))),
                           padding: EdgeInsets.all(15),
                           margin: EdgeInsets.all(15),
                           child: Row(
@@ -148,7 +167,9 @@ class _OrderAcceptModal extends State<OrderAcceptModal> {
                                     height: 5,
                                   ),
                                   Container(
-                                    decoration: BoxDecoration(shape: BoxShape.circle, color: MaterialColors.secondary),
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: MaterialColors.secondary),
                                     width: 10,
                                     height: 10,
                                   ),
@@ -157,13 +178,20 @@ class _OrderAcceptModal extends State<OrderAcceptModal> {
                                   ),
                                   Container(
                                     height: 45,
-                                    decoration: const BoxDecoration(border: Border(right: BorderSide(color: Color.fromRGBO(200, 200, 200, 1), width: 1))),
+                                    decoration: const BoxDecoration(
+                                        border: Border(
+                                            right: BorderSide(
+                                                color: Color.fromRGBO(
+                                                    200, 200, 200, 1),
+                                                width: 1))),
                                   ),
                                   SizedBox(
                                     height: 5,
                                   ),
                                   Container(
-                                    decoration: BoxDecoration(shape: BoxShape.circle, color: MaterialColors.primary),
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: MaterialColors.primary),
                                     width: 10,
                                     height: 10,
                                   ),
@@ -182,7 +210,10 @@ class _OrderAcceptModal extends State<OrderAcceptModal> {
                                       child: Text(
                                         overflow: TextOverflow.ellipsis,
                                         "Bánh Mì Kebab Gia Thành Bánh Mì Kebab Gia Thành",
-                                        style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Bold", fontSize: 18),
+                                        style: const TextStyle(
+                                            color: MaterialColors.black,
+                                            fontFamily: "SF Bold",
+                                            fontSize: 18),
                                         maxLines: 1,
                                       ),
                                     ),
@@ -192,7 +223,10 @@ class _OrderAcceptModal extends State<OrderAcceptModal> {
                                     Container(
                                       child: Text(
                                         "20 Trương Công Định",
-                                        style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Ruglar", fontSize: 14),
+                                        style: const TextStyle(
+                                            color: MaterialColors.black,
+                                            fontFamily: "SF Ruglar",
+                                            fontSize: 14),
                                       ),
                                       height: 40,
                                     ),
@@ -200,7 +234,10 @@ class _OrderAcceptModal extends State<OrderAcceptModal> {
                                       decoration: BoxDecoration(),
                                       child: Text(
                                         "Tòa S1.07",
-                                        style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Bold", fontSize: 18),
+                                        style: const TextStyle(
+                                            color: MaterialColors.black,
+                                            fontFamily: "SF Bold",
+                                            fontSize: 18),
                                       ),
                                     ),
                                     SizedBox(
@@ -209,16 +246,29 @@ class _OrderAcceptModal extends State<OrderAcceptModal> {
                                     Container(
                                       child: Text(
                                         "Tòa S1.07, Rainbow, Vinhomes Grand Park",
-                                        style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Ruglar", fontSize: 14),
+                                        style: const TextStyle(
+                                            color: MaterialColors.black,
+                                            fontFamily: "SF Ruglar",
+                                            fontSize: 14),
                                       ),
                                     ),
                                     Container(
-                                        decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: Color.fromRGBO(230, 230, 230, 1), width: 1))),
-                                        margin: EdgeInsets.only(top: 15, bottom: 15)),
+                                        decoration: const BoxDecoration(
+                                            border: Border(
+                                                bottom: BorderSide(
+                                                    color: Color.fromRGBO(
+                                                        230, 230, 230, 1),
+                                                    width: 1))),
+                                        margin: EdgeInsets.only(
+                                            top: 15, bottom: 15)),
                                     Container(
                                       child: Text(
                                         "FD-0939",
-                                        style: const TextStyle(color: Color.fromRGBO(100, 100, 100, 1), fontFamily: "SF Ruglar", fontSize: 14),
+                                        style: const TextStyle(
+                                            color: Color.fromRGBO(
+                                                100, 100, 100, 1),
+                                            fontFamily: "SF Ruglar",
+                                            fontSize: 14),
                                       ),
                                     ),
                                   ],
@@ -229,25 +279,37 @@ class _OrderAcceptModal extends State<OrderAcceptModal> {
                         ),
                         Container(
                           decoration: BoxDecoration(
-                              color: Color.fromRGBO(250, 250, 250, 1), border: Border.all(color: Color.fromRGBO(200, 200, 200, 1), width: 1), borderRadius: BorderRadius.all(Radius.circular(8))),
+                              color: Color.fromRGBO(250, 250, 250, 1),
+                              border: Border.all(
+                                  color: Color.fromRGBO(200, 200, 200, 1),
+                                  width: 1),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8))),
                           padding: EdgeInsets.all(15),
                           margin: EdgeInsets.only(left: 15, right: 15),
                           child: Column(
                             children: [
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Container(
                                     child: Text(
                                       "Phương thức thanh toán",
-                                      style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
+                                      style: const TextStyle(
+                                          color: MaterialColors.black,
+                                          fontFamily: "SF Regular",
+                                          fontSize: 16),
                                     ),
                                   ),
                                   Container(
                                     child: Text(
                                       "Tiền mặt",
-                                      style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
+                                      style: const TextStyle(
+                                          color: MaterialColors.black,
+                                          fontFamily: "SF Regular",
+                                          fontSize: 16),
                                     ),
                                   )
                                 ],
@@ -257,18 +319,25 @@ class _OrderAcceptModal extends State<OrderAcceptModal> {
                               ),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Container(
                                     child: Text(
                                       "Cước phí",
-                                      style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
+                                      style: const TextStyle(
+                                          color: MaterialColors.black,
+                                          fontFamily: "SF Regular",
+                                          fontSize: 16),
                                     ),
                                   ),
                                   Container(
                                     child: Text(
                                       "₫ 15.000",
-                                      style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
+                                      style: const TextStyle(
+                                          color: MaterialColors.black,
+                                          fontFamily: "SF Regular",
+                                          fontSize: 16),
                                     ),
                                   )
                                 ],
@@ -278,18 +347,25 @@ class _OrderAcceptModal extends State<OrderAcceptModal> {
                               ),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Container(
                                     child: Text(
                                       "Tổng phí",
-                                      style: const TextStyle(color: Color.fromRGBO(255, 105, 0, 1), fontFamily: "SF Regular", fontSize: 16),
+                                      style: const TextStyle(
+                                          color: Color.fromRGBO(255, 105, 0, 1),
+                                          fontFamily: "SF Regular",
+                                          fontSize: 16),
                                     ),
                                   ),
                                   Container(
                                     child: Text(
                                       "₫ 70.000",
-                                      style: const TextStyle(color: Color.fromRGBO(255, 105, 0, 1), fontFamily: "SF Regular", fontSize: 16),
+                                      style: const TextStyle(
+                                          color: Color.fromRGBO(255, 105, 0, 1),
+                                          fontFamily: "SF Regular",
+                                          fontSize: 16),
                                     ),
                                   )
                                 ],
@@ -310,58 +386,119 @@ class _OrderAcceptModal extends State<OrderAcceptModal> {
                   child: Container(
                       // height: 70,
                       decoration: BoxDecoration(color: Colors.white),
-                      padding: EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
+                      padding: EdgeInsets.only(
+                          left: 15, right: 15, top: 10, bottom: 10),
                       width: MediaQuery.of(context).size.width,
                       child: Center(
-                        child: SlideAction(
-                          alignment: Alignment.bottomCenter,
-                          textStyle: TextStyle(fontSize: 18, fontFamily: "SF Bold", color: Colors.white),
-                          // innerColor: Color.fromRGBO(219, 98, 71, 1),
-                          outerColor: Color.fromARGB(255, 12, 120, 209),
-                          innerColor: MaterialColors.secondary,
-                          // text: "Chấp nhận" + ,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                width: MediaQuery.of(context).size.width - 140,
-                                child: Text("Chấp nhận", textAlign: TextAlign.center, style: TextStyle(fontSize: 18, fontFamily: "SF Bold", color: Colors.white)),
-                              ),
-                              Container(
-                                  alignment: Alignment.center,
-                                  height: 35,
-                                  width: 35,
-                                  decoration: BoxDecoration(color: Color.fromRGBO(200, 200, 200, 1).withOpacity(0.5), borderRadius: BorderRadius.all(Radius.circular(50))),
-                                  child: Text(count.toString(), style: TextStyle(fontSize: 18, fontFamily: "SF Bold", color: Colors.white))),
-                              SizedBox(
-                                width: 20,
-                              )
-                            ],
-                          ),
-                          height: 55,
-                          sliderButtonIconSize: 35,
-                          sliderRotate: false,
-                          borderRadius: 10,
-                          sliderButtonIconPadding: 15,
-                          submittedIcon: Icon(
-                            Icons.check,
-                            color: Colors.white,
-                          ),
-                          sliderButtonYOffset: -8,
-                          sliderButtonIcon: Icon(
-                            Icons.arrow_forward,
-                            color: Colors.white,
-                          ),
-                          onSubmit: () {
+                        child: ActionSlider.standard(
+                          sliderBehavior: SliderBehavior.stretch,
+                          rolling: true,
+                          width: 300.0,
+                          backgroundColor: Colors.white,
+                          toggleColor: Colors.blueAccent,
+                          iconAlignment: Alignment.centerRight,
+                          loadingIcon: const SizedBox(
+                              width: 55,
+                              child: Center(
+                                  child: SizedBox(
+                                width: 24.0,
+                                height: 24.0,
+                                child: CircularProgressIndicator(
+                                    strokeWidth: 2.0, color: Colors.green),
+                              ))),
+                          successIcon: const SizedBox(
+                              width: 55,
+                              child: Center(child: Icon(Icons.arrow_forward))),
+                          icon: const SizedBox(
+                              width: 55,
+                              child:
+                                  Center(child: Icon(Icons.refresh_rounded))),
+                          action: (controller) async {
+                            controller.loading(); //starts loading animation
                             Future.delayed(
                               Duration(milliseconds: 200),
                               () => {
                                 Navigator.pop(context),
                               },
                             );
+                            controller.success(); //starts success animation
+                            await Future.delayed(const Duration(seconds: 1));
+                            controller.reset(); //resets the slider
                           },
+                          child: Text(
+                            "Chấp nhận",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: "SF Bold",
+                                color: Colors.white),
+                          ),
                         ),
+                        //  SlideAction(
+                        //   alignment: Alignment.bottomCenter,
+                        //   textStyle: TextStyle(
+                        //       fontSize: 18,
+                        //       fontFamily: "SF Bold",
+                        //       color: Colors.white),
+                        //   // innerColor: Color.fromRGBO(219, 98, 71, 1),
+                        //   outerColor: Color.fromARGB(255, 12, 120, 209),
+                        //   innerColor: MaterialColors.secondary,
+                        //   // text: "Chấp nhận" + ,
+                        //   child: Row(
+                        //     mainAxisAlignment: MainAxisAlignment.end,
+                        //     crossAxisAlignment: CrossAxisAlignment.center,
+                        //     children: [
+                        //       Container(
+                        //         width: MediaQuery.of(context).size.width - 140,
+                        //         child: Text("Chấp nhận",
+                        //             textAlign: TextAlign.center,
+                        //             style: TextStyle(
+                        //                 fontSize: 18,
+                        //                 fontFamily: "SF Bold",
+                        //                 color: Colors.white)),
+                        //       ),
+                        //       Container(
+                        //           alignment: Alignment.center,
+                        //           height: 35,
+                        //           width: 35,
+                        //           decoration: BoxDecoration(
+                        //               color: Color.fromRGBO(200, 200, 200, 1)
+                        //                   .withOpacity(0.5),
+                        //               borderRadius: BorderRadius.all(
+                        //                   Radius.circular(50))),
+                        //           child: Text(count.toString(),
+                        //               style: TextStyle(
+                        //                   fontSize: 18,
+                        //                   fontFamily: "SF Bold",
+                        //                   color: Colors.white))),
+                        //       SizedBox(
+                        //         width: 20,
+                        //       )
+                        //     ],
+                        //   ),
+                        //   height: 55,
+                        //   sliderButtonIconSize: 35,
+                        //   sliderRotate: false,
+                        //   borderRadius: 10,
+                        //   sliderButtonIconPadding: 15,
+                        //   submittedIcon: Icon(
+                        //     Icons.check,
+                        //     color: Colors.white,
+                        //   ),
+                        //   sliderButtonYOffset: -8,
+                        //   sliderButtonIcon: Icon(
+                        //     Icons.arrow_forward,
+                        //     color: Colors.white,
+                        //   ),
+                        //   onSubmit: () {
+                        //     Future.delayed(
+                        //       Duration(milliseconds: 200),
+                        //       () => {
+                        //         Navigator.pop(context),
+                        //       },
+                        //     );
+                        //   },
+                        // ),
                       ))),
             ],
           ))

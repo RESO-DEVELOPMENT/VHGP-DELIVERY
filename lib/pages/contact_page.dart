@@ -25,7 +25,8 @@ class _ContactPageState extends State<ContactPage> {
   bool isLoading = false;
   void handleLogout() async {
     FirebaseAuth auth = FirebaseAuth.instance;
-    var docSnapshot = await db.collection("users").doc(auth.currentUser!.email).get();
+    var docSnapshot =
+        await db.collection("users").doc(auth.currentUser!.email).get();
     if (docSnapshot.exists) {
       Map<String, dynamic>? data = docSnapshot.data();
       var fcmToken = data?['fcmToken'];
@@ -35,7 +36,8 @@ class _ContactPageState extends State<ContactPage> {
                   setState(() {
                     isLoading = false;
                   }),
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()))
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()))
                 })
           });
     }

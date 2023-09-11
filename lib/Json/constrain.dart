@@ -268,15 +268,15 @@ class TransactionType {
 String getTransactionType(transactionType) {
   switch (transactionType) {
     case TransactionType.refund:
-      return "Hoàn trả";
+      return "Hoàn trả tài xế (Ví tài xế)";
     case TransactionType.cod:
-      return "Phí thu hộ khách hàng";
+      return "Phí thu hộ khách hàng (Ví thu hộ)";
     case TransactionType.shippingCost:
-      return "Phí giao hàng";
+      return "Chiết khấu phí giao hàng (Ví thu hộ)";
     case TransactionType.recharge:
-      return "Nạp tiền";
+      return "Nộp tiền ứng dụng (Ví thu hộ)";
     case TransactionType.withdraw:
-      return "Rút tiền";
+      return "Rút tiền (Ví cá nhân)";
     default:
       return "---";
   }

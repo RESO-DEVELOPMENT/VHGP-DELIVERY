@@ -1,12 +1,12 @@
 import 'dart:async';
 
+import 'package:action_slider/action_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
 import 'package:vh_shipper_app/Colors/color.dart';
 import 'package:dotted_border/dotted_border.dart';
-import 'package:slide_to_act/slide_to_act.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vh_shipper_app/Json/constrain.dart';
 import 'package:vh_shipper_app/pages/home_page.dart';
@@ -15,7 +15,8 @@ class OrderShippingModal extends StatefulWidget {
   late ValueChanged<void> function;
   late String menuId;
   late String storeId;
-  OrderShippingModal({required this.function, required this.menuId, required this.storeId});
+  OrderShippingModal(
+      {required this.function, required this.menuId, required this.storeId});
   @override
   State<StatefulWidget> createState() => _OrderShippingModal();
 }
@@ -58,130 +59,157 @@ class _OrderShippingModal extends State<OrderShippingModal> {
     return showModalBottomSheet(
         isScrollControlled: true,
         context: context,
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(8.0))),
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(8.0))),
         builder: (BuildContext context) {
-          return StatefulBuilder(builder: (BuildContext context, StateSetter mystate) {
+          return StatefulBuilder(
+              builder: (BuildContext context, StateSetter mystate) {
             return Container(
               height: MediaQuery.of(context).size.height * 0.9,
               width: MediaQuery.of(context).size.width,
               padding: EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 5),
-              child: Column(mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Container(
-                  padding: EdgeInsets.only(top: 5),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      InkWell(
-                        child: Icon(
-                          Icons.arrow_back_ios,
-                          size: 18,
-                          color: Colors.black87,
-                        ),
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text("Tại sao bạn hủy đơn?", style: const TextStyle(fontFamily: "SF Bold", fontSize: 18, color: Colors.black87)),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(bottom: 15, top: 10),
-                ),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        ...MessageCancelCustomer.map((e) {
-                          return InkWell(
-                            child: Container(
-                              padding: EdgeInsets.only(left: 15, right: 15),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                              ),
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    height: 15,
-                                  ),
-                                  Container(
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          child: Row(children: [
-                                            Icon(activeRadio == e["id"] ? Icons.radio_button_checked : Icons.radio_button_unchecked, size: 18, color: Color.fromRGBO(100, 100, 100, 1)),
-                                          ]),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Container(
-                                          child: Row(children: [
-                                            Text(
-                                              e["message"],
-                                              style: TextStyle(color: Color.fromRGBO(100, 100, 100, 1), fontFamily: "SF Medium", fontSize: 16),
-                                            ),
-                                          ]),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                ],
-                              ),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(top: 5),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          InkWell(
+                            child: Icon(
+                              Icons.arrow_back_ios,
+                              size: 18,
+                              color: Colors.black87,
                             ),
                             onTap: () {
-                              mystate(() {
-                                activeRadio = e["id"];
-                              });
+                              Navigator.pop(context);
                             },
-                          );
-                        }).toList()
-                      ],
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text("Tại sao bạn hủy đơn?",
+                              style: const TextStyle(
+                                  fontFamily: "SF Bold",
+                                  fontSize: 18,
+                                  color: Colors.black87)),
+                        ],
+                      ),
                     ),
-                  ),
-                ),
-                Container(
-                  color: Colors.white,
-                  padding: EdgeInsets.only(top: 10),
-                  child: Column(
-                    children: [
-                      Container(
-                        height: 45,
-                        margin: EdgeInsets.only(left: 15, right: 15, top: 0, bottom: 0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: MaterialColors.primary,
-                          border: Border.all(color: Color.fromRGBO(200, 200, 200, 1)),
-                        ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 15, top: 10),
+                    ),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Column(
                           children: [
-                            Container(
-                              child: Row(children: [
-                                TextButton(
-                                  child: Text(
-                                    "Xác nhận",
-                                    style: TextStyle(color: Color.fromARGB(255, 255, 255, 255), fontFamily: "SF Bold", fontSize: 16),
+                            ...MessageCancelCustomer.map((e) {
+                              return InkWell(
+                                child: Container(
+                                  padding: EdgeInsets.only(left: 15, right: 15),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
                                   ),
-                                  onPressed: () {},
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                      Container(
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              child: Row(children: [
+                                                Icon(
+                                                    activeRadio == e["id"]
+                                                        ? Icons
+                                                            .radio_button_checked
+                                                        : Icons
+                                                            .radio_button_unchecked,
+                                                    size: 18,
+                                                    color: Color.fromRGBO(
+                                                        100, 100, 100, 1)),
+                                              ]),
+                                            ),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Container(
+                                              child: Row(children: [
+                                                Text(
+                                                  e["message"],
+                                                  style: TextStyle(
+                                                      color: Color.fromRGBO(
+                                                          100, 100, 100, 1),
+                                                      fontFamily: "SF Medium",
+                                                      fontSize: 16),
+                                                ),
+                                              ]),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ]),
-                            ),
+                                onTap: () {
+                                  mystate(() {
+                                    activeRadio = e["id"];
+                                  });
+                                },
+                              );
+                            }).toList()
                           ],
                         ),
                       ),
-                    ],
-                  ),
-                ),
-              ]),
+                    ),
+                    Container(
+                      color: Colors.white,
+                      padding: EdgeInsets.only(top: 10),
+                      child: Column(
+                        children: [
+                          Container(
+                            height: 45,
+                            margin: EdgeInsets.only(
+                                left: 15, right: 15, top: 0, bottom: 0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: MaterialColors.primary,
+                              border: Border.all(
+                                  color: Color.fromRGBO(200, 200, 200, 1)),
+                            ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  child: Row(children: [
+                                    TextButton(
+                                      child: Text(
+                                        "Xác nhận",
+                                        style: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 255, 255, 255),
+                                            fontFamily: "SF Bold",
+                                            fontSize: 16),
+                                      ),
+                                      onPressed: () {},
+                                    ),
+                                  ]),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ]),
             );
           });
         });
@@ -325,7 +353,9 @@ class _OrderShippingModal extends State<OrderShippingModal> {
           height: MediaQuery.of(context).size.height * 1,
           width: MediaQuery.of(context).size.width,
           margin: EdgeInsets.only(top: 30, bottom: 5),
-          decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(15))),
+          decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(15))),
           child: Stack(
             children: [
               SingleChildScrollView(
@@ -365,18 +395,26 @@ class _OrderShippingModal extends State<OrderShippingModal> {
                               children: [
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       "Đặt bởi",
-                                      style: const TextStyle(color: Color.fromRGBO(100, 100, 100, 1), fontFamily: "SF Regular", fontSize: 16),
+                                      style: const TextStyle(
+                                          color:
+                                              Color.fromRGBO(100, 100, 100, 1),
+                                          fontFamily: "SF Regular",
+                                          fontSize: 16),
                                     ),
                                     SizedBox(
                                       height: 5,
                                     ),
                                     Text(
                                       "Văn Dương",
-                                      style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Bold", fontSize: 16),
+                                      style: const TextStyle(
+                                          color: MaterialColors.black,
+                                          fontFamily: "SF Bold",
+                                          fontSize: 16),
                                     ),
                                   ],
                                 ),
@@ -396,7 +434,13 @@ class _OrderShippingModal extends State<OrderShippingModal> {
                         ],
                       ),
                     ),
-                    Container(decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: Color.fromRGBO(230, 230, 230, 1), width: 1))), margin: EdgeInsets.only(top: 5, bottom: 5)),
+                    Container(
+                        decoration: const BoxDecoration(
+                            border: Border(
+                                bottom: BorderSide(
+                                    color: Color.fromRGBO(230, 230, 230, 1),
+                                    width: 1))),
+                        margin: EdgeInsets.only(top: 5, bottom: 5)),
                     Column(
                       children: [
                         Container(
@@ -413,7 +457,9 @@ class _OrderShippingModal extends State<OrderShippingModal> {
                                     height: 5,
                                   ),
                                   Container(
-                                    decoration: BoxDecoration(shape: BoxShape.circle, color: MaterialColors.secondary),
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: MaterialColors.secondary),
                                     width: 10,
                                     height: 10,
                                   ),
@@ -422,13 +468,20 @@ class _OrderShippingModal extends State<OrderShippingModal> {
                                   ),
                                   Container(
                                     height: 45,
-                                    decoration: const BoxDecoration(border: Border(right: BorderSide(color: Color.fromRGBO(200, 200, 200, 1), width: 1))),
+                                    decoration: const BoxDecoration(
+                                        border: Border(
+                                            right: BorderSide(
+                                                color: Color.fromRGBO(
+                                                    200, 200, 200, 1),
+                                                width: 1))),
                                   ),
                                   SizedBox(
                                     height: 5,
                                   ),
                                   Container(
-                                    decoration: BoxDecoration(shape: BoxShape.circle, color: MaterialColors.primary),
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: MaterialColors.primary),
                                     width: 10,
                                     height: 10,
                                   ),
@@ -447,7 +500,10 @@ class _OrderShippingModal extends State<OrderShippingModal> {
                                       child: Text(
                                         overflow: TextOverflow.ellipsis,
                                         "Bánh Mì Kebab Gia Thành Bánh Mì Kebab Gia Thành",
-                                        style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Bold", fontSize: 18),
+                                        style: const TextStyle(
+                                            color: MaterialColors.black,
+                                            fontFamily: "SF Bold",
+                                            fontSize: 18),
                                         maxLines: 1,
                                       ),
                                     ),
@@ -457,7 +513,10 @@ class _OrderShippingModal extends State<OrderShippingModal> {
                                     Container(
                                       child: Text(
                                         "20 Trương Công Định",
-                                        style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Ruglar", fontSize: 14),
+                                        style: const TextStyle(
+                                            color: MaterialColors.black,
+                                            fontFamily: "SF Ruglar",
+                                            fontSize: 14),
                                       ),
                                       height: 40,
                                     ),
@@ -465,7 +524,10 @@ class _OrderShippingModal extends State<OrderShippingModal> {
                                       decoration: BoxDecoration(),
                                       child: Text(
                                         "Tòa S1.07",
-                                        style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Bold", fontSize: 18),
+                                        style: const TextStyle(
+                                            color: MaterialColors.black,
+                                            fontFamily: "SF Bold",
+                                            fontSize: 18),
                                       ),
                                     ),
                                     SizedBox(
@@ -474,14 +536,23 @@ class _OrderShippingModal extends State<OrderShippingModal> {
                                     Container(
                                       child: Text(
                                         "Tòa S1.07, Rainbow, Vinhomes Grand Park",
-                                        style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Ruglar", fontSize: 14),
+                                        style: const TextStyle(
+                                            color: MaterialColors.black,
+                                            fontFamily: "SF Ruglar",
+                                            fontSize: 14),
                                       ),
                                     ),
-                                    Container(margin: EdgeInsets.only(top: 0, bottom: 15)),
+                                    Container(
+                                        margin: EdgeInsets.only(
+                                            top: 0, bottom: 15)),
                                     Container(
                                       child: Text(
                                         "FD-0939",
-                                        style: const TextStyle(color: Color.fromRGBO(100, 100, 100, 1), fontFamily: "SF Ruglar", fontSize: 14),
+                                        style: const TextStyle(
+                                            color: Color.fromRGBO(
+                                                100, 100, 100, 1),
+                                            fontFamily: "SF Ruglar",
+                                            fontSize: 14),
                                       ),
                                     ),
                                   ],
@@ -490,9 +561,12 @@ class _OrderShippingModal extends State<OrderShippingModal> {
                             ],
                           ),
                         ),
-                        Container(color: MaterialColors.grey, padding: EdgeInsets.only(top: 10)),
                         Container(
-                          padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
+                            color: MaterialColors.grey,
+                            padding: EdgeInsets.only(top: 10)),
+                        Container(
+                          padding: const EdgeInsets.only(
+                              top: 10, left: 15, right: 15),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -523,13 +597,18 @@ class _OrderShippingModal extends State<OrderShippingModal> {
                               ),
                               Container(
                                 alignment: Alignment.centerLeft,
-                                child: Text("Danh sách món", style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Bold", fontSize: 16)),
+                                child: Text("Danh sách món",
+                                    style: const TextStyle(
+                                        color: MaterialColors.black,
+                                        fontFamily: "SF Bold",
+                                        fontSize: 16)),
                               ),
                             ],
                           ),
                         ),
                         Container(
-                          padding: EdgeInsets.only(left: 35, right: 15, bottom: 10, top: 10),
+                          padding: EdgeInsets.only(
+                              left: 35, right: 15, bottom: 10, top: 10),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -541,7 +620,10 @@ class _OrderShippingModal extends State<OrderShippingModal> {
                                   children: [
                                     Text(
                                       "1 x",
-                                      style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
+                                      style: const TextStyle(
+                                          color: MaterialColors.black,
+                                          fontFamily: "SF Regular",
+                                          fontSize: 16),
                                     ),
                                     SizedBox(
                                       width: 10,
@@ -549,7 +631,10 @@ class _OrderShippingModal extends State<OrderShippingModal> {
                                     Expanded(
                                       child: Text(
                                         "Kebab Thịt heo",
-                                        style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
+                                        style: const TextStyle(
+                                            color: MaterialColors.black,
+                                            fontFamily: "SF Regular",
+                                            fontSize: 16),
                                       ),
                                     )
                                   ],
@@ -560,13 +645,17 @@ class _OrderShippingModal extends State<OrderShippingModal> {
                               ),
                               Text(
                                 "₫ 55.000",
-                                style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
+                                style: const TextStyle(
+                                    color: MaterialColors.black,
+                                    fontFamily: "SF Regular",
+                                    fontSize: 16),
                               )
                             ],
                           ),
                         ),
                         Container(
-                          padding: EdgeInsets.only(left: 35, right: 15, bottom: 10, top: 10),
+                          padding: EdgeInsets.only(
+                              left: 35, right: 15, bottom: 10, top: 10),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -578,7 +667,10 @@ class _OrderShippingModal extends State<OrderShippingModal> {
                                   children: [
                                     Text(
                                       "1 x",
-                                      style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
+                                      style: const TextStyle(
+                                          color: MaterialColors.black,
+                                          fontFamily: "SF Regular",
+                                          fontSize: 16),
                                     ),
                                     SizedBox(
                                       width: 10,
@@ -586,7 +678,10 @@ class _OrderShippingModal extends State<OrderShippingModal> {
                                     Expanded(
                                       child: Text(
                                         "Kebab Thịt heo đặc biệt có phô mai mai mai",
-                                        style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
+                                        style: const TextStyle(
+                                            color: MaterialColors.black,
+                                            fontFamily: "SF Regular",
+                                            fontSize: 16),
                                       ),
                                     )
                                   ],
@@ -597,30 +692,42 @@ class _OrderShippingModal extends State<OrderShippingModal> {
                               ),
                               Text(
                                 "₫ 55.000",
-                                style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
+                                style: const TextStyle(
+                                    color: MaterialColors.black,
+                                    fontFamily: "SF Regular",
+                                    fontSize: 16),
                               )
                             ],
                           ),
                         ),
-                        Container(color: MaterialColors.grey, padding: EdgeInsets.only(top: 10)),
+                        Container(
+                            color: MaterialColors.grey,
+                            padding: EdgeInsets.only(top: 10)),
                         Container(
                           padding: EdgeInsets.all(15),
                           child: Column(
                             children: [
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Container(
                                     child: Text(
                                       "Trả tiền mặt cho nhà hàng",
-                                      style: const TextStyle(color: MaterialColors.black, fontFamily: "SF SemiBold", fontSize: 16),
+                                      style: const TextStyle(
+                                          color: MaterialColors.black,
+                                          fontFamily: "SF SemiBold",
+                                          fontSize: 16),
                                     ),
                                   ),
                                   Container(
                                     child: Text(
                                       "₫ 55.000",
-                                      style: const TextStyle(color: MaterialColors.black, fontFamily: "SF SemiBold", fontSize: 16),
+                                      style: const TextStyle(
+                                          color: MaterialColors.black,
+                                          fontFamily: "SF SemiBold",
+                                          fontSize: 16),
                                     ),
                                   )
                                 ],
@@ -629,11 +736,13 @@ class _OrderShippingModal extends State<OrderShippingModal> {
                                 height: 15,
                               ),
                               LayoutBuilder(
-                                builder: (BuildContext context, BoxConstraints constraints) {
+                                builder: (BuildContext context,
+                                    BoxConstraints constraints) {
                                   final boxWidth = constraints.constrainWidth();
                                   const dashWidth = 5.0;
                                   final dashHeight = 1;
-                                  final dashCount = (boxWidth / (2 * dashWidth)).floor();
+                                  final dashCount =
+                                      (boxWidth / (2 * dashWidth)).floor();
                                   return Flex(
                                     children: List.generate(dashCount, (_) {
                                       return SizedBox(
@@ -641,11 +750,13 @@ class _OrderShippingModal extends State<OrderShippingModal> {
                                         height: 1,
                                         child: DecoratedBox(
                                             decoration: BoxDecoration(
-                                          color: Color.fromRGBO(200, 200, 200, 1),
+                                          color:
+                                              Color.fromRGBO(200, 200, 200, 1),
                                         )),
                                       );
                                     }),
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     direction: Axis.horizontal,
                                   );
                                 },
@@ -655,18 +766,25 @@ class _OrderShippingModal extends State<OrderShippingModal> {
                               ),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Container(
                                     child: Text(
                                       "Cước phí",
-                                      style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
+                                      style: const TextStyle(
+                                          color: MaterialColors.black,
+                                          fontFamily: "SF Regular",
+                                          fontSize: 16),
                                     ),
                                   ),
                                   Container(
                                     child: Text(
                                       "₫ 15.000",
-                                      style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
+                                      style: const TextStyle(
+                                          color: MaterialColors.black,
+                                          fontFamily: "SF Regular",
+                                          fontSize: 16),
                                     ),
                                   )
                                 ],
@@ -676,18 +794,25 @@ class _OrderShippingModal extends State<OrderShippingModal> {
                               ),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Container(
                                     child: Text(
                                       "Thu tiền mặt",
-                                      style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
+                                      style: const TextStyle(
+                                          color: MaterialColors.black,
+                                          fontFamily: "SF Regular",
+                                          fontSize: 16),
                                     ),
                                   ),
                                   Container(
                                     child: Text(
                                       "₫ 70.000",
-                                      style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
+                                      style: const TextStyle(
+                                          color: MaterialColors.black,
+                                          fontFamily: "SF Regular",
+                                          fontSize: 16),
                                     ),
                                   )
                                 ],
@@ -695,7 +820,13 @@ class _OrderShippingModal extends State<OrderShippingModal> {
                             ],
                           ),
                         ),
-                        Container(decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: Color.fromRGBO(230, 230, 230, 1), width: 1))), margin: EdgeInsets.only(top: 15, bottom: 30)),
+                        Container(
+                            decoration: const BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(
+                                        color: Color.fromRGBO(230, 230, 230, 1),
+                                        width: 1))),
+                            margin: EdgeInsets.only(top: 15, bottom: 30)),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -719,7 +850,10 @@ class _OrderShippingModal extends State<OrderShippingModal> {
                                 ),
                                 Text(
                                   "Hủy",
-                                  style: TextStyle(color: Colors.red[800], fontFamily: "SF Regular", fontSize: 16),
+                                  style: TextStyle(
+                                      color: Colors.red[800],
+                                      fontFamily: "SF Regular",
+                                      fontSize: 16),
                                 )
                               ],
                             ),
@@ -727,13 +861,17 @@ class _OrderShippingModal extends State<OrderShippingModal> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.help_outline_rounded, color: Color.fromRGBO(100, 100, 100, 1)),
+                                Icon(Icons.help_outline_rounded,
+                                    color: Color.fromRGBO(100, 100, 100, 1)),
                                 SizedBox(
                                   height: 5,
                                 ),
                                 Text(
                                   "Trợ giúp",
-                                  style: TextStyle(color: Color.fromRGBO(100, 100, 100, 1), fontFamily: "SF Regular", fontSize: 16),
+                                  style: TextStyle(
+                                      color: Color.fromRGBO(100, 100, 100, 1),
+                                      fontFamily: "SF Regular",
+                                      fontSize: 16),
                                 )
                               ],
                             ),
@@ -752,40 +890,80 @@ class _OrderShippingModal extends State<OrderShippingModal> {
                 child: Container(
                   // height: 70,
                   decoration: BoxDecoration(color: Colors.white),
-                  padding: EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
+                  padding:
+                      EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
                   width: MediaQuery.of(context).size.width,
                   child: Center(
-                    child: SlideAction(
-                      alignment: Alignment.bottomCenter,
-                      textStyle: TextStyle(fontSize: 18, fontFamily: "SF Bold", color: Colors.white),
-                      // innerColor: Color.fromRGBO(219, 98, 71, 1),
-                      outerColor: Color.fromARGB(255, 12, 120, 209),
-                      innerColor: MaterialColors.secondary,
-                      // text: "Chấp nhận" + ,
-                      text: "Đã lấy đơn hàng",
-                      height: 55,
-                      sliderButtonIconSize: 35,
-                      sliderRotate: false,
-                      borderRadius: 10,
-                      sliderButtonIconPadding: 15,
-                      submittedIcon: Icon(
-                        Icons.check,
-                        color: Colors.white,
-                      ),
-                      sliderButtonYOffset: -8,
-                      sliderButtonIcon: Icon(
-                        Icons.arrow_forward,
-                        color: Colors.white,
-                      ),
-                      onSubmit: () {
+                    child: ActionSlider.standard(
+                      sliderBehavior: SliderBehavior.stretch,
+                      rolling: true,
+                      width: 300.0,
+                      backgroundColor: Colors.white,
+                      toggleColor: Colors.amber,
+                      iconAlignment: Alignment.centerRight,
+                      loadingIcon: const SizedBox(
+                          width: 55,
+                          child: Center(
+                              child: SizedBox(
+                            width: 24.0,
+                            height: 24.0,
+                            child: CircularProgressIndicator(
+                                strokeWidth: 2.0, color: Colors.green),
+                          ))),
+                      successIcon: const SizedBox(
+                          width: 55,
+                          child: Center(child: Icon(Icons.check_rounded))),
+                      icon: const SizedBox(
+                          width: 55,
+                          child: Center(child: Icon(Icons.refresh_rounded))),
+                      action: (controller) async {
+                        controller.loading(); //starts loading animation
                         Future.delayed(
                           Duration(milliseconds: 200),
                           () => {
                             Navigator.pop(context),
                           },
                         );
+                        controller.success(); //starts success animation
+                        await Future.delayed(const Duration(seconds: 1));
+                        controller.reset(); //resets the slider
                       },
+                      child: const Text('Chấp nhận chuyến hàng'),
                     ),
+                    //  SlideAction(
+                    //   alignment: Alignment.bottomCenter,
+                    //   textStyle: TextStyle(
+                    //       fontSize: 18,
+                    //       fontFamily: "SF Bold",
+                    //       color: Colors.white),
+                    //   // innerColor: Color.fromRGBO(219, 98, 71, 1),
+                    //   outerColor: Color.fromARGB(255, 12, 120, 209),
+                    //   innerColor: MaterialColors.secondary,
+                    //   // text: "Chấp nhận" + ,
+                    //   text: "Đã lấy đơn hàng",
+                    //   height: 55,
+                    //   sliderButtonIconSize: 35,
+                    //   sliderRotate: false,
+                    //   borderRadius: 10,
+                    //   sliderButtonIconPadding: 15,
+                    //   submittedIcon: Icon(
+                    //     Icons.check,
+                    //     color: Colors.white,
+                    //   ),
+                    //   sliderButtonYOffset: -8,
+                    //   sliderButtonIcon: Icon(
+                    //     Icons.arrow_forward,
+                    //     color: Colors.white,
+                    //   ),
+                    //   onSubmit: () {
+                    //     Future.delayed(
+                    //       Duration(milliseconds: 200),
+                    //       () => {
+                    //         Navigator.pop(context),
+                    //       },
+                    //     );
+                    //   },
+                    // ),
                   ),
                 ),
               ),

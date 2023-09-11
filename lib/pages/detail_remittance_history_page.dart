@@ -12,10 +12,15 @@ class DetailRemittanceHistory extends StatefulWidget {
   TransactionModel transaction;
   String shipperId;
   String name;
-  DetailRemittanceHistory({super.key, required this.transaction, required this.shipperId, required this.name});
+  DetailRemittanceHistory(
+      {super.key,
+      required this.transaction,
+      required this.shipperId,
+      required this.name});
 
   @override
-  State<DetailRemittanceHistory> createState() => _DetailRemittanceHistoryState();
+  State<DetailRemittanceHistory> createState() =>
+      _DetailRemittanceHistoryState();
 }
 
 historyTitle(amount, transactionAction) {
@@ -27,7 +32,10 @@ historyTitle(amount, transactionAction) {
         Container(
           child: Text(
             "SỐ TIỀN GIAO DỊCH",
-            style: TextStyle(color: MaterialColors.primary, fontSize: 16, fontFamily: "SF Medium"),
+            style: TextStyle(
+                color: MaterialColors.primary,
+                fontSize: 16,
+                fontFamily: "SF Medium"),
           ),
         ),
         SizedBox(
@@ -114,7 +122,8 @@ historyInfor(shipperId, name) {
           decoration: const BoxDecoration(
             color: Colors.white,
             border: Border(
-              bottom: BorderSide(color: Color.fromRGBO(240, 240, 240, 1), width: 1),
+              bottom:
+                  BorderSide(color: Color.fromRGBO(240, 240, 240, 1), width: 1),
             ),
           ),
           margin: EdgeInsets.only(top: 30),
@@ -159,7 +168,10 @@ historyTime(date, id, transactionType, status) {
                 //flex: 6,
                 child: Text(
                   getTime(date),
-                  style: TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 15, fontFamily: "SF Medium"),
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      fontSize: 15,
+                      fontFamily: "SF Medium"),
                 ),
               ),
             ],
@@ -187,7 +199,10 @@ historyTime(date, id, transactionType, status) {
                 //flex: 6,
                 child: Text(
                   id,
-                  style: TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 15, fontFamily: "SF Medium"),
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      fontSize: 15,
+                      fontFamily: "SF Medium"),
                 ),
               ),
             ],
@@ -215,7 +230,10 @@ historyTime(date, id, transactionType, status) {
                 //flex: 6,
                 child: Text(
                   getTransactionType(transactionType).toUpperCase(),
-                  style: TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 15, fontFamily: "SF Medium"),
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      fontSize: 15,
+                      fontFamily: "SF Medium"),
                 ),
               ),
             ],
@@ -243,7 +261,12 @@ historyTime(date, id, transactionType, status) {
                 //flex: 6,
                 child: Text(
                   status == 1 ? "Thành công" : "Thất bại",
-                  style: TextStyle(color: status == 1 ? MaterialColors.success : Colors.red[400], fontSize: 15, fontFamily: "SF Medium"),
+                  style: TextStyle(
+                      color: status == 1
+                          ? MaterialColors.success
+                          : Colors.red[400],
+                      fontSize: 15,
+                      fontFamily: "SF Medium"),
                 ),
               ),
             ],
@@ -267,13 +290,16 @@ class _DetailRemittanceHistoryState extends State<DetailRemittanceHistory> {
             ),
             flexibleSpace: Container(
               decoration: BoxDecoration(
-                gradient: LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [
-                  MaterialColors.primary,
-                  MaterialColors.primary.withOpacity(0.99),
-                  MaterialColors.primary.withOpacity(0.97),
-                  MaterialColors.primary.withOpacity(0.95),
-                  MaterialColors.primary.withOpacity(0.9),
-                ]),
+                gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [
+                      MaterialColors.primary,
+                      MaterialColors.primary.withOpacity(0.99),
+                      MaterialColors.primary.withOpacity(0.97),
+                      MaterialColors.primary.withOpacity(0.95),
+                      MaterialColors.primary.withOpacity(0.9),
+                    ]),
               ),
             ),
             centerTitle: true,
@@ -289,12 +315,18 @@ class _DetailRemittanceHistoryState extends State<DetailRemittanceHistory> {
                 SizedBox(
                   height: kSpacingUnit * 3,
                 ),
-                historyTitle("${currencyFormatter.format((widget.transaction.amount!).toInt()).toString()}", widget.transaction.transactionAction),
+                historyTitle(
+                    "${currencyFormatter.format((widget.transaction.amount!).toInt()).toString()}",
+                    widget.transaction.transactionAction),
                 SizedBox(
                   height: kSpacingUnit * 0.5,
                 ),
                 historyInfor(widget.shipperId, widget.name),
-                historyTime(widget.transaction.fullDate, widget.transaction.id ?? "", widget.transaction.transactionType, widget.transaction.status)
+                historyTime(
+                    widget.transaction.fullDate,
+                    widget.transaction.id ?? "",
+                    widget.transaction.transactionType,
+                    widget.transaction.status)
               ],
             ),
           ),

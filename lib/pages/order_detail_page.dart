@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:vh_shipper_app/Colors/color.dart';
 import 'package:vh_shipper_app/Json/constrain.dart';
-import 'package:slide_to_act/slide_to_act.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:vh_shipper_app/apis/apiServices.dart';
 import 'package:vh_shipper_app/models/MessageEdgeModel.dart';
 import 'package:vh_shipper_app/models/OrderEdgeModel.dart';
-import 'package:vh_shipper_app/widgets/order_ship.dart';
 import 'package:vh_shipper_app/widgets/order_store.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
