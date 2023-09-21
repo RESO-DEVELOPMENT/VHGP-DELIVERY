@@ -224,20 +224,20 @@ class _ListOrderAceeptPageState extends State<ListOrderAceeptPage> {
                     Text(
                       "${firstEdge}, Vinhomes Grand Park, Quận 9",
                       maxLines: 1,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 15,
                           color: Color.fromRGBO(20, 20, 20, 1),
                           fontFamily: "SF Medium",
                           overflow: TextOverflow.ellipsis),
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: 6, bottom: 6),
+                      margin: const EdgeInsets.only(top: 6, bottom: 6),
                     ),
                     if (edgeNum > 2) ...[
                       Text(
                         "+${edgeNum - 2} điểm đến...",
                         maxLines: 1,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 15,
                             color: Color.fromRGBO(170, 170, 170, 1),
                             fontFamily: "SF Regular",
@@ -245,12 +245,12 @@ class _ListOrderAceeptPageState extends State<ListOrderAceeptPage> {
                       ),
                     ],
                     Container(
-                      margin: EdgeInsets.only(top: 6, bottom: 6),
+                      margin: const EdgeInsets.only(top: 6, bottom: 6),
                     ),
                     Text(
                       "${lastEdge}, Vinhomes Grand Park, Quận 9",
                       maxLines: 1,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 15,
                           color: Color.fromRGBO(20, 20, 20, 1),
                           fontFamily: "SF Medium",
@@ -275,8 +275,8 @@ class _ListOrderAceeptPageState extends State<ListOrderAceeptPage> {
             automaticallyImplyLeading: false,
             // backgroundColor: MaterialColors.primary,
             flexibleSpace: Container(
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                     colors: [
@@ -285,7 +285,7 @@ class _ListOrderAceeptPageState extends State<ListOrderAceeptPage> {
                     ]),
               ),
             ),
-            title: Text(
+            title: const Text(
               "Đơn hàng",
               style:
                   TextStyle(color: MaterialColors.white, fontFamily: "SF Bold"),
@@ -295,144 +295,147 @@ class _ListOrderAceeptPageState extends State<ListOrderAceeptPage> {
               child: Stack(
             children: [
               Column(children: [
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 StreamBuilder<QuerySnapshot>(
                   stream: _usersStream,
                   builder: (BuildContext context,
                       AsyncSnapshot<QuerySnapshot> snapshot) {
-                    bool flag = false;
-                    String routeId = "";
+                    // bool flag = false;
+                    // String routeId = "";
                     if (snapshot.hasError) {
                       return Text('Something went wrong');
                     }
+
                     if (!snapshot.hasData) {
                       return Container(
                         height: MediaQuery.of(context).size.height - 200,
                         width: MediaQuery.of(context).size.width,
-                        child: SpinKitDualRing(
+                        child: const SpinKitDualRing(
                           color: MaterialColors.primary,
                           size: 40.0,
                         ),
                       );
                     }
+
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return Positioned(
                           top: 50,
                           child: Container(
                             height: MediaQuery.of(context).size.height - 200,
                             width: MediaQuery.of(context).size.width,
-                            child: SpinKitDualRing(
+                            child: const SpinKitDualRing(
                               color: MaterialColors.primary,
                               size: 40.0,
                             ),
                           ));
                     }
+
                     // print("snapshot.data!.docs: " + snapshot.data!.docs.isNotEmpty.toString());
                     if (snapshot.data!.docs.isNotEmpty) {
-                      snapshot.data!.docs.forEach((DocumentSnapshot document) {
-                        Map<String, dynamic> dataTmp =
-                            document.data()! as Map<String, dynamic>;
-                        if (dataTmp["Status"] == 2 &&
-                            dataTmp["ShipperId"] == shipperId) {
-                          flag = true;
-                          routeId = dataTmp["RouteId"];
-                        }
-                      });
-                      print(flag);
-                      return flag
-                          ? Column(
-                              children: snapshot.data!.docs
-                                  .map((DocumentSnapshot document) {
-                                Map<String, dynamic> data =
-                                    document.data()! as Map<String, dynamic>;
-                                if (data["RouteId"] == routeId) {
-                                  return InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => RouteDetailPage(
-                                              routeId: data["RouteId"],
-                                              status: data["Status"] ,
-                                              totalBill:  data["TotalAdvance"] ?? 0,
-                                              totalCod: data["TotalCod"] ?? 0)
-                                        ),
-                                      );
-                                    },
-                                    child: order_item(
-                                      data["EdgeNum"] ?? 0,
-                                      data["FirstEdge"] ?? "",
-                                      data["LastEdge"] ?? "",
-                                      data["OrderNum"] ?? 0,
-                                      data["ShipperId"] ?? "",
-                                      data["Status"] ?? 1,
-                                      data["TotalAdvance"] ?? 0,
-                                      data["TotalCod"] ?? 0,
-                                    ),
-                                  );
-                                } else {
-                                  return Container();
-                                }
-                              }).toList(),
-                            )
-                          : Column(
-                              children: snapshot.data!.docs
-                                  .map((DocumentSnapshot document) {
-                                Map<String, dynamic> data =
-                                    document.data()! as Map<String, dynamic>;
-                                if (data["Status"] == 1) {
-                                  return InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => RouteDetailPage(
-                                              routeId: data["RouteId"],
-                                              status: data["Status"] ?? 1,
-                                              totalBill: data["TotalAdvance"] ?? 0,
-                                              totalCod: data["TotalCod"] ?? 0),
-                                        ),
-                                      );
-                                    },
-                                    child: order_item(
-                                      data["EdgeNum"] ?? 0,
-                                      data["FirstEdge"] ?? "",
-                                      data["LastEdge"] ?? "",
-                                      data["OrderNum"] ?? 0,
-                                      data["ShipperId"] ?? "",
-                                      data["Status"] ?? 1,
-                                      data["TotalAdvance"] ?? 0,
-                                      data["TotalCod"] ?? 0,
-                                    ),
-                                  );
-                                } else {
-                                  return Container(
-                                      // padding: EdgeInsets.only(top: 100),
-                                      // child: Center(
-                                      //     child: Column(
-                                      //   mainAxisAlignment: MainAxisAlignment.center,
-                                      //   crossAxisAlignment: CrossAxisAlignment.center,
-                                      //   children: [
-                                      //     Container(
-                                      //       height: 100,
-                                      //       width: 100,
-                                      //       child: Image.asset(
-                                      //         'assets/images/empty-order.png',
-                                      //         fit: BoxFit.cover,
-                                      //       ),
-                                      //     ),
-                                      //     Text(
-                                      //       "Hiện tại không có đơn hàng nào",
-                                      //       style: TextStyle(fontFamily: "SF Regular", fontSize: 16, color: Color.fromRGBO(120, 120, 120, 1)),
-                                      //     ),
-                                      //   ],
-                                      // )),
-                                      );
-                                }
-                              }).toList(),
-                            );
+                      // snapshot.data!.docs.forEach((DocumentSnapshot document) {
+                      //   Map<String, dynamic> dataTmp =
+                      //       document.data()! as Map<String, dynamic>;
+                      //   if (dataTmp["Status"] == 1 &&
+                      //       dataTmp["ShipperId"] == shipperId) {
+                      //     // flag = true;
+                      //     routeId = dataTmp["RouteId"];
+                      //   }
+                      // });
+                      // print(flag);
+
+                      return Column(
+                        children: snapshot.data!.docs
+                            .map((DocumentSnapshot document) {
+                          Map<String, dynamic> data =
+                              document.data()! as Map<String, dynamic>;
+                          // if (data["RouteId"] == routeId) {
+                          return InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => RouteDetailPage(
+                                        routeId: data["RouteId"],
+                                        status: data["Status"],
+                                        totalBill: data["TotalAdvance"] ?? 0,
+                                        totalCod: data["TotalCod"] ?? 0)),
+                              );
+                            },
+                            child: order_item(
+                              data["EdgeNum"] ?? 0,
+                              data["FirstEdge"] ?? "",
+                              data["LastEdge"] ?? "",
+                              data["OrderNum"] ?? 0,
+                              data["ShipperId"] ?? "",
+                              data["Status"] ?? 1,
+                              data["TotalAdvance"] ?? 0,
+                              data["TotalCod"] ?? 0,
+                            ),
+                          );
+                          // } else {
+                          //   return Container();
+                          // }
+                        }).toList(),
+                      );
+                      // : Column(
+                      //     children: snapshot.data!.docs
+                      //         .map((DocumentSnapshot document) {
+                      //       Map<String, dynamic> data =
+                      //           document.data()! as Map<String, dynamic>;
+                      //       if (data["Status"] == 1) {
+                      //         return InkWell(
+                      //           onTap: () {
+                      //             Navigator.push(
+                      //               context,
+                      //               MaterialPageRoute(
+                      //                 builder: (context) => RouteDetailPage(
+                      //                     routeId: data["RouteId"],
+                      //                     status: data["Status"] ?? 1,
+                      //                     totalBill:
+                      //                         data["TotalAdvance"] ?? 0,
+                      //                     totalCod: data["TotalCod"] ?? 0),
+                      //               ),
+                      //             );
+                      //           },
+                      //           child: order_item(
+                      //             data["EdgeNum"] ?? 0,
+                      //             data["FirstEdge"] ?? "",
+                      //             data["LastEdge"] ?? "",
+                      //             data["OrderNum"] ?? 0,
+                      //             data["ShipperId"] ?? "",
+                      //             data["Status"] ?? 1,
+                      //             data["TotalAdvance"] ?? 0,
+                      //             data["TotalCod"] ?? 0,
+                      //           ),
+                      //         );
+                      //       } else {
+                      //         return Container(
+                      //             // padding: EdgeInsets.only(top: 100),
+                      //             // child: Center(
+                      //             //     child: Column(
+                      //             //   mainAxisAlignment: MainAxisAlignment.center,
+                      //             //   crossAxisAlignment: CrossAxisAlignment.center,
+                      //             //   children: [
+                      //             //     Container(
+                      //             //       height: 100,
+                      //             //       width: 100,
+                      //             //       child: Image.asset(
+                      //             //         'assets/images/empty-order.png',
+                      //             //         fit: BoxFit.cover,
+                      //             //       ),
+                      //             //     ),
+                      //             //     Text(
+                      //             //       "Hiện tại không có đơn hàng nào",
+                      //             //       style: TextStyle(fontFamily: "SF Regular", fontSize: 16, color: Color.fromRGBO(120, 120, 120, 1)),
+                      //             //     ),
+                      //             //   ],
+                      //             // )),
+                      //             );
+                      //       }
+                      //     }).toList(),
+                      //   );
                     } else {
                       return Container(
                         padding: EdgeInsets.only(top: 100),

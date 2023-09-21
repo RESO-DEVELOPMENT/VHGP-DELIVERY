@@ -42,18 +42,18 @@ class _ListOrderPageState extends State<ListOrderPage> {
               children: [
                 Text(
                   "Tổng phí".toUpperCase(),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: "SF SemiBold",
                     fontSize: 14,
                     color: Color.fromRGBO(170, 170, 170, 1),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Text(
                   "đ${currencyFormatter.format((widget.totalBill).toInt()).toString()}",
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: "SF SemiBold",
                     fontSize: 17,
                     color: MaterialColors.primary,
@@ -65,18 +65,18 @@ class _ListOrderPageState extends State<ListOrderPage> {
               children: [
                 Text(
                   "Tiền ứng tối thiểu".toUpperCase(),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: "SF SemiBold",
                     fontSize: 14,
                     color: Color.fromRGBO(170, 170, 170, 1),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Text(
                   "đ${currencyFormatter.format((widget.totalCod).toInt()).toString()}",
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontFamily: "SF SemiBold",
                     fontSize: 17,
                     color: MaterialColors.black,
@@ -90,9 +90,9 @@ class _ListOrderPageState extends State<ListOrderPage> {
 
   header() {
     return Container(
-      padding: EdgeInsets.only(top: 15, left: 15, right: 15, bottom: 15),
-      decoration: BoxDecoration(color: Colors.white),
-      child: Row(
+      padding: const EdgeInsets.only(top: 15, left: 15, right: 15, bottom: 15),
+      decoration: const BoxDecoration(color: Colors.white),
+      child: const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -127,13 +127,13 @@ class _ListOrderPageState extends State<ListOrderPage> {
       // width: MediaQuery.of(context).size.width,
 
       color: Colors.white,
-      padding: EdgeInsets.only(
+      padding: const EdgeInsets.only(
         left: 15,
         right: 15,
         bottom: 15,
         top: 15,
       ),
-      child: Column(
+      child: const Column(
         children: [
           Column(
             children: [
@@ -213,19 +213,20 @@ class _ListOrderPageState extends State<ListOrderPage> {
             return Container(
               height: MediaQuery.of(context).size.height * 0.9,
               width: MediaQuery.of(context).size.width,
-              padding: EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 5),
+              padding: const EdgeInsets.only(
+                  left: 15, right: 15, top: 15, bottom: 5),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      padding: EdgeInsets.only(top: 5),
+                      padding: const EdgeInsets.only(top: 5),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           InkWell(
-                            child: Icon(
+                            child: const Icon(
                               Icons.arrow_back_ios,
                               size: 18,
                               color: Colors.black87,
@@ -234,11 +235,11 @@ class _ListOrderPageState extends State<ListOrderPage> {
                               Navigator.pop(context);
                             },
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
-                          Text("Hãy chọn lý do giao hàng thất bại?",
-                              style: const TextStyle(
+                          const Text("Hãy chọn lý do giao hàng thất bại?",
+                              style: TextStyle(
                                   fontFamily: "SF Bold",
                                   fontSize: 18,
                                   color: Colors.black87)),
@@ -255,13 +256,14 @@ class _ListOrderPageState extends State<ListOrderPage> {
                             ...MessageCancelStore.map((e) {
                               return InkWell(
                                 child: Container(
-                                  padding: EdgeInsets.only(left: 15, right: 15),
-                                  decoration: BoxDecoration(
+                                  padding: const EdgeInsets.only(
+                                      left: 15, right: 15),
+                                  decoration: const BoxDecoration(
                                     color: Colors.white,
                                   ),
                                   child: Column(
                                     children: [
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 15,
                                       ),
                                       Container(
@@ -276,18 +278,18 @@ class _ListOrderPageState extends State<ListOrderPage> {
                                                         : Icons
                                                             .radio_button_unchecked,
                                                     size: 18,
-                                                    color: Color.fromRGBO(
+                                                    color: const Color.fromRGBO(
                                                         100, 100, 100, 1)),
                                               ]),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 10,
                                             ),
                                             Container(
                                               child: Row(children: [
                                                 Text(
                                                   e["message"],
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                       color: Color.fromRGBO(
                                                           100, 100, 100, 1),
                                                       fontFamily: "SF Medium",
@@ -298,7 +300,7 @@ class _ListOrderPageState extends State<ListOrderPage> {
                                           ],
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 10,
                                       ),
                                     ],
@@ -317,18 +319,19 @@ class _ListOrderPageState extends State<ListOrderPage> {
                     ),
                     Container(
                       color: Colors.white,
-                      padding: EdgeInsets.only(top: 10),
+                      padding: const EdgeInsets.only(top: 10),
                       child: Column(
                         children: [
                           Container(
                             height: 45,
-                            margin: EdgeInsets.only(
+                            margin: const EdgeInsets.only(
                                 left: 15, right: 15, top: 0, bottom: 0),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: MaterialColors.primary,
                               border: Border.all(
-                                  color: Color.fromRGBO(200, 200, 200, 1)),
+                                  color:
+                                      const Color.fromRGBO(200, 200, 200, 1)),
                             ),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -365,10 +368,11 @@ class _ListOrderPageState extends State<ListOrderPage> {
     return showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        insetPadding: EdgeInsets.all(15),
+        insetPadding: const EdgeInsets.all(15),
         actionsPadding:
-            EdgeInsets.only(left: 15, right: 15, bottom: 15, top: 10),
-        titlePadding: EdgeInsets.only(left: 10, right: 10, top: 15, bottom: 10),
+            const EdgeInsets.only(left: 15, right: 15, bottom: 15, top: 10),
+        titlePadding:
+            const EdgeInsets.only(left: 10, right: 10, top: 15, bottom: 10),
         title: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -379,7 +383,7 @@ class _ListOrderPageState extends State<ListOrderPage> {
                     color: Colors.black, fontFamily: "SF Bold", fontSize: 18),
               ),
               InkWell(
-                child: Icon(
+                child: const Icon(
                   Icons.close,
                   size: 20,
                   color: Colors.black54,
@@ -399,7 +403,7 @@ class _ListOrderPageState extends State<ListOrderPage> {
                   width: 25,
                   height: 25,
                   margin: const EdgeInsets.only(right: 15),
-                  child: ClipRRect(
+                  child: const ClipRRect(
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(50),
                         bottomLeft: Radius.circular(50),
@@ -422,13 +426,13 @@ class _ListOrderPageState extends State<ListOrderPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Column(
+                      const Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             "Đặt bởi",
-                            style: const TextStyle(
+                            style: TextStyle(
                                 color: Color.fromRGBO(100, 100, 100, 1),
                                 fontFamily: "SF Regular",
                                 fontSize: 16),
@@ -438,7 +442,7 @@ class _ListOrderPageState extends State<ListOrderPage> {
                           ),
                           Text(
                             "Văn Dương",
-                            style: const TextStyle(
+                            style: TextStyle(
                                 color: MaterialColors.black,
                                 fontFamily: "SF Bold",
                                 fontSize: 16),
@@ -449,7 +453,7 @@ class _ListOrderPageState extends State<ListOrderPage> {
                         onTap: () {
                           _makePhoneCall("09873782823");
                         },
-                        child: Icon(
+                        child: const Icon(
                           Icons.phone_in_talk,
                           size: 24,
                           color: Color.fromRGBO(100, 100, 100, 1),

@@ -39,6 +39,7 @@ class _HomePageState extends State<HomePage> {
   int subtractFilter = 0;
   // MessageEdgeModelHistory messageEdgeModel = MessageEdgeModelHistory();
   EdgeModel _edgeModel = EdgeModel();
+
   void _ModalAccept(context) {
     showModalBottomSheet(
         isScrollControlled: true,
