@@ -730,7 +730,7 @@ class _OrderItemState extends State<OrderItem> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Hub",
+                        "Hub ",
                         style: const TextStyle(
                             color: Color.fromRGBO(100, 100, 100, 1),
                             fontFamily: "SF Regular",
@@ -1398,7 +1398,7 @@ class _OrderItemState extends State<OrderItem> {
                               fontSize: 15,
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ],

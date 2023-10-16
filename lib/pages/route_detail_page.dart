@@ -23,12 +23,14 @@ class RouteDetailPage extends StatefulWidget {
   String routeId;
   double totalBill;
   double totalCod;
+  String orderId;
   RouteDetailPage(
       {super.key,
       required this.status,
       required this.routeId,
       required this.totalBill,
-      required this.totalCod});
+      required this.totalCod,
+      required this.orderId});
 
   @override
   State<RouteDetailPage> createState() => _RouteDetailPageState();

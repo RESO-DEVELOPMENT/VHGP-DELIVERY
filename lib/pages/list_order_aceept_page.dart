@@ -22,7 +22,7 @@ class _ListOrderAceeptPageState extends State<ListOrderAceeptPage> {
   final Stream<QuerySnapshot> _usersStream =
       FirebaseFirestore.instance.collection('routes').snapshots();
   order_item(edgeNum, firstEdge, lastEdge, orderNum, shipperId, status,
-      totalBill, totalCod) {
+      totalBill, totalCod, orderId) {
     return Container(
         margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
         padding: EdgeInsets.all(15),
@@ -45,32 +45,53 @@ class _ListOrderAceeptPageState extends State<ListOrderAceeptPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    padding:
-                        EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: status == 1
-                          ? Color.fromRGBO(220, 220, 220, 1)
-                          : MaterialColors.primary,
-                    ),
-                    child: status == 1
-                        ? Text(
-                            "Đang tìm",
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Color.fromRGBO(80, 80, 80, 1),
-                              fontFamily: "SF Medium",
-                            ),
-                          )
-                        : Text(
-                            "Đang thực hiện",
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: MaterialColors.white,
-                              fontFamily: "SF Medium",
-                            ),
-                          ),
+                  Column(
+                    children: [
+                      Text(
+                        "#${orderId}",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontFamily: "SF Regular",
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        // width: 100,
+                        padding: EdgeInsets.only(
+                            left: 10, right: 10, top: 5, bottom: 5),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color: status == 1
+                              ? Color.fromRGBO(220, 220, 220, 1)
+                              : MaterialColors.primary,
+                        ),
+                        child: Column(
+                          children: [
+                            status == 1
+                                ? Text(
+                                    "Đang tìm",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Color.fromRGBO(80, 80, 80, 1),
+                                      fontFamily: "SF Medium",
+                                    ),
+                                  )
+                                : Text(
+                                    "Đang thực hiện",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: MaterialColors.white,
+                                      fontFamily: "SF Medium",
+                                    ),
+                                  ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -162,6 +183,19 @@ class _ListOrderAceeptPageState extends State<ListOrderAceeptPage> {
                           )
                         ],
                       ),
+                      SizedBox(height: 7),
+                      // Row(
+                      //   children: [
+                      //     Text(
+                      //       "${orderId}",
+                      //       style: TextStyle(
+                      //         fontSize: 14,
+                      //         color: Colors.black,
+                      //         fontFamily: "SF Regular",
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
                     ],
                   ),
                 ]),
@@ -357,10 +391,12 @@ class _ListOrderAceeptPageState extends State<ListOrderAceeptPage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => RouteDetailPage(
-                                        routeId: data["RouteId"],
-                                        status: data["Status"],
-                                        totalBill: data["TotalAdvance"] ?? 0,
-                                        totalCod: data["TotalCod"] ?? 0)),
+                                          routeId: data["RouteId"],
+                                          status: data["Status"],
+                                          totalBill: data["TotalAdvance"] ?? 0,
+                                          totalCod: data["TotalCod"] ?? 0,
+                                          orderId: data["OrderId"] ?? "",
+                                        )),
                               );
                             },
                             child: order_item(
@@ -372,6 +408,7 @@ class _ListOrderAceeptPageState extends State<ListOrderAceeptPage> {
                               data["Status"] ?? 1,
                               data["TotalAdvance"] ?? 0,
                               data["TotalCod"] ?? 0,
+                              data["OrderId"] ?? "",
                             ),
                           );
                           // } else {
