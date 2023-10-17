@@ -2,7 +2,7 @@ class RouteModel {
   String? orderId;
   String? routeId;
   String? firstEdge;
-  Null? lastEdge;
+  String? lastEdge;
   int? edgeNum;
   int? orderNum;
   int? totalAdvance;

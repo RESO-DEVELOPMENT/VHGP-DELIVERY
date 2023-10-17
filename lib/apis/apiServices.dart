@@ -24,7 +24,7 @@ class ApiServices {
     var body;
     try {
       var response = await http.get(
-        Uri.parse('${baseURL}/${SHIP}/${"shippers"}/ByShipId?id=${id}'),
+        Uri.parse('${baseURL}/${SHIP}/shippers/ByShipId?id=${id}'),
       );
       body = convert.jsonDecode(response.body);
       driverModel.complete(DriverModel.fromJson(body['data']));
@@ -36,16 +36,18 @@ class ApiServices {
 
   static Future<List<RouteModel>?> getListRoutes() async {
     print('getListRoutes');
-    List<RouteModel> body;
+
+    List<RouteModel> list;
     try {
       var response = await http.get(
         Uri.parse('${baseURL}/routes/GetRoute'),
       );
-      body = RouteModel.fromList(response.body);
-      if (body != null) {
-        return body;
+      var body = convert.jsonDecode(response.body);
+      list = RouteModel.fromList(body);
+      if (list != null) {
+        return list;
       }
-      return body;
+      return list;
     } catch (e) {
       // messageEdgeModel.complete(MessageEdgeModel.fromJson(body));
       print('Error with status code: ${e}');

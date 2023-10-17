@@ -20,20 +20,21 @@ class ListOrderAceeptPage extends StatefulWidget {
   _ListOrderAceeptPageState createState() => _ListOrderAceeptPageState();
 }
 
-List<RouteModel> listRoute = [];
-
-@override
-void initState() {
-  ApiServices.getListRoutes().then((value) => {
-        if (value != null) {listRoute = value}
-      });
-}
-
 class _ListOrderAceeptPageState extends State<ListOrderAceeptPage> {
   final currencyFormatter = NumberFormat('#,##0', 'ID');
 
   final Stream<QuerySnapshot> _usersStream =
       FirebaseFirestore.instance.collection('routes').snapshots();
+  List<RouteModel> listRoute = [];
+
+  @override
+  void initState() {
+    ApiServices.getListRoutes().then((value) => {
+          if (value != null) {listRoute = value}
+        });
+    super.initState();
+  }
+
   order_item(edgeNum, firstEdge, lastEdge, orderNum, shipperId, status,
       totalBill, totalCod, orderId) {
     return Container(
@@ -61,7 +62,7 @@ class _ListOrderAceeptPageState extends State<ListOrderAceeptPage> {
                   Column(
                     children: [
                       Text(
-                        "#${orderId}",
+                        "${orderId}",
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
