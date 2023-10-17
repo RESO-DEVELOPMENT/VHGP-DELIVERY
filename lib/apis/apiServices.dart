@@ -9,6 +9,8 @@ import 'package:vh_shipper_app/models/MessageEdgeModelHistory.dart';
 import 'package:vh_shipper_app/models/TransactionModel.dart';
 import 'package:vh_shipper_app/models/orderModel.dart';
 
+import '../models/RouteModel.dart';
+
 class ApiServices {
   static const baseURL = 'https://api.vhgp.net/api/v1';
   static const SHIP = "shipper-management";
@@ -30,6 +32,24 @@ class ApiServices {
       driverModel.complete(DriverModel.fromJson(body));
     }
     return driverModel.future;
+  }
+
+  static Future<List<RouteModel>?> getListRoutes() async {
+    print('getListRoutes');
+    List<RouteModel> body;
+    try {
+      var response = await http.get(
+        Uri.parse('${baseURL}/routes/GetRoute'),
+      );
+      body = RouteModel.fromList(response.body);
+      if (body != null) {
+        return body;
+      }
+      return body;
+    } catch (e) {
+      // messageEdgeModel.complete(MessageEdgeModel.fromJson(body));
+      print('Error with status code: ${e}');
+    }
   }
 
 //https://deliveryvhgp-webapi.azurewebsites.net/api/v1/routes/b6261fcf-4b85-41b5-be97-84237f956022/edges

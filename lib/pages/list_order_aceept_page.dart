@@ -10,6 +10,9 @@ import 'package:vh_shipper_app/pages/route_detail_page.dart';
 import 'package:vh_shipper_app/provider/appProvider.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
+import '../apis/apiServices.dart';
+import '../models/RouteModel.dart';
+
 class ListOrderAceeptPage extends StatefulWidget {
   const ListOrderAceeptPage({Key? key}) : super(key: key);
 
@@ -17,8 +20,18 @@ class ListOrderAceeptPage extends StatefulWidget {
   _ListOrderAceeptPageState createState() => _ListOrderAceeptPageState();
 }
 
+List<RouteModel> listRoute = [];
+
+@override
+void initState() {
+  ApiServices.getListRoutes().then((value) => {
+        if (value != null) {listRoute = value}
+      });
+}
+
 class _ListOrderAceeptPageState extends State<ListOrderAceeptPage> {
   final currencyFormatter = NumberFormat('#,##0', 'ID');
+
   final Stream<QuerySnapshot> _usersStream =
       FirebaseFirestore.instance.collection('routes').snapshots();
   order_item(edgeNum, firstEdge, lastEdge, orderNum, shipperId, status,
@@ -380,35 +393,31 @@ class _ListOrderAceeptPageState extends State<ListOrderAceeptPage> {
                       // print(flag);
 
                       return Column(
-                        children: snapshot.data!.docs
-                            .map((DocumentSnapshot document) {
-                          Map<String, dynamic> data =
-                              document.data()! as Map<String, dynamic>;
-                          // if (data["RouteId"] == routeId) {
+                        children: listRoute.map((RouteModel document) {
                           return InkWell(
                             onTap: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => RouteDetailPage(
-                                          routeId: data["RouteId"],
-                                          status: data["Status"],
-                                          totalBill: data["TotalAdvance"] ?? 0,
-                                          totalCod: data["TotalCod"] ?? 0,
-                                          orderId: data["OrderId"] ?? "",
+                                          routeId: document.routeId!,
+                                          status: document.status!,
+                                          totalBill: document.totalAdvance ?? 0,
+                                          totalCod: document.totalCod ?? 0,
+                                          orderId: document.orderId ?? "",
                                         )),
                               );
                             },
                             child: order_item(
-                              data["EdgeNum"] ?? 0,
-                              data["FirstEdge"] ?? "",
-                              data["LastEdge"] ?? "",
-                              data["OrderNum"] ?? 0,
-                              data["ShipperId"] ?? "",
-                              data["Status"] ?? 1,
-                              data["TotalAdvance"] ?? 0,
-                              data["TotalCod"] ?? 0,
-                              data["OrderId"] ?? "",
+                              document.edgeNum ?? 0,
+                              document.firstEdge ?? "",
+                              document.lastEdge ?? "",
+                              document.orderNum ?? 0,
+                              document.shipperId ?? "",
+                              document.status ?? 1,
+                              document.totalAdvance ?? 0,
+                              document.totalCod ?? 0,
+                              document.orderId ?? "",
                             ),
                           );
                           // } else {

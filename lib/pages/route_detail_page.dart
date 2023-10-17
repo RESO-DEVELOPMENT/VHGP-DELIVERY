@@ -21,8 +21,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 class RouteDetailPage extends StatefulWidget {
   int status;
   String routeId;
-  double totalBill;
-  double totalCod;
+  num totalBill;
+  num totalCod;
   String orderId;
   RouteDetailPage(
       {super.key,
