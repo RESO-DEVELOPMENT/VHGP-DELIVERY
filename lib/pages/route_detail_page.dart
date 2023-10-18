@@ -250,7 +250,7 @@ total_order(totalBill, totalCod) {
           Column(
             children: [
               Text(
-                "Tổng phí".toUpperCase(),
+                "Tổng tiền COD".toUpperCase(),
                 style: TextStyle(
                   fontFamily: "SF SemiBold",
                   fontSize: 14,
@@ -273,7 +273,7 @@ total_order(totalBill, totalCod) {
           Column(
             children: [
               Text(
-                "Tổng tiền ứng".toUpperCase(),
+                "Tiền hàng".toUpperCase(),
                 style: TextStyle(
                   fontFamily: "SF SemiBold",
                   fontSize: 14,
@@ -452,8 +452,6 @@ class _RouteDetailPageState extends State<RouteDetailPage>
     ApiServices.getListEdge(id)
         .then((value) => {
               messageEdgeModel = value,
-              print(
-                  "post accept route" + messageEdgeModel.statusCode.toString()),
               if (messageEdgeModel.statusCode == "Successful")
                 {
                   listEdge = messageEdgeModel.data!.map((item) {

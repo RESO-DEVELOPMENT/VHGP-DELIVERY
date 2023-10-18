@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,20 +24,170 @@ class ListOrderAceeptPage extends StatefulWidget {
 
 class _ListOrderAceeptPageState extends State<ListOrderAceeptPage> {
   final currencyFormatter = NumberFormat('#,##0', 'ID');
-
+  StreamController _productsController = new StreamController();
   final Stream<QuerySnapshot> _usersStream =
       FirebaseFirestore.instance.collection('routes').snapshots();
   List<RouteModel> listRoute = [];
+  bool isLoading = true;
 
   @override
   void initState() {
     ApiServices.getListRoutes().then((value) => {
-          if (value != null) {listRoute = value}
+          if (value != null)
+            {listRoute = value, _productsController.add(listRoute)}
         });
     super.initState();
   }
 
-  order_item(edgeNum, firstEdge, lastEdge, orderNum, shipperId, status,
+  Future<void> _pullRefresh() async {
+    ApiServices.getListRoutes().then((value) => {
+          if (value != null)
+            {
+              setState(() {
+                listRoute = value;
+              }),
+              _productsController.add(listRoute)
+            }
+        });
+    // why use freshNumbers var? https://stackoverflow.com/a/52992836/2301224
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<AppProvider>(builder: (context, provider, child) {
+      var shipperId = context.read<AppProvider>().getUserId;
+      return Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          elevation: 10.0,
+          automaticallyImplyLeading: false,
+          // backgroundColor: MaterialColors.primary,
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    MaterialColors.primary,
+                    Color(0xfff7892b),
+                  ]),
+            ),
+          ),
+          title: const Text(
+            "Đơn hàng",
+            style:
+                TextStyle(color: MaterialColors.white, fontFamily: "SF Bold"),
+          ),
+        ),
+        body: RefreshIndicator(
+            onRefresh: _pullRefresh,
+            child: ListView(children: [
+              const SizedBox(
+                height: 10,
+              ),
+              StreamBuilder(
+                stream: _productsController.stream,
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  // bool flag = false;
+                  // String routeId = "";
+                  if (snapshot.hasError) {
+                    return Text('Something went wrong');
+                  }
+
+                  if (!snapshot.hasData) {
+                    return Container(
+                      height: MediaQuery.of(context).size.height - 200,
+                      width: MediaQuery.of(context).size.width,
+                      child: const SpinKitDualRing(
+                        color: MaterialColors.primary,
+                        size: 40.0,
+                      ),
+                    );
+                  }
+
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Positioned(
+                        top: 50,
+                        child: Container(
+                          height: MediaQuery.of(context).size.height - 200,
+                          width: MediaQuery.of(context).size.width,
+                          child: const SpinKitDualRing(
+                            color: MaterialColors.primary,
+                            size: 40.0,
+                          ),
+                        ));
+                  }
+
+                  // print("snapshot.data!.docs: " + snapshot.data!.docs.isNotEmpty.toString());
+                  if (snapshot.data!.isNotEmpty) {
+                    return Column(
+                      children: listRoute.map((RouteModel document) {
+                        return InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => RouteDetailPage(
+                                        routeId: document.routeId!,
+                                        status: document.status!,
+                                        totalBill: document.totalAdvance ?? 0,
+                                        totalCod: document.totalCod ?? 0,
+                                        orderId: document.orderId ?? "",
+                                      )),
+                            );
+                          },
+                          child: order_item(
+                            document.edgeNum ?? 0,
+                            document.firstEdge ?? "",
+                            document.lastEdge ?? "",
+                            document.orderNum ?? 0,
+                            document.shipperId ?? "",
+                            document.status ?? 1,
+                            document.totalAdvance ?? 0,
+                            document.totalCod ?? 0,
+                            document.orderId ?? "",
+                          ),
+                        );
+                        // } else {
+                        //   return Container();
+                        // }
+                      }).toList(),
+                    );
+                  } else {
+                    return Container(
+                      padding: EdgeInsets.only(top: 100),
+                      child: Center(
+                          child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            height: 100,
+                            width: 100,
+                            child: Image.asset(
+                              'assets/images/empty-order.png',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Text(
+                            "Hiện tại không có đơn hàng nào",
+                            style: TextStyle(
+                                fontFamily: "SF Regular",
+                                fontSize: 16,
+                                color: Color.fromRGBO(120, 120, 120, 1)),
+                          ),
+                        ],
+                      )),
+                    );
+                  }
+                },
+              )
+            ])),
+      );
+    });
+  }
+
+  Widget order_item(edgeNum, firstEdge, lastEdge, orderNum, shipperId, status,
       totalBill, totalCod, orderId) {
     return Container(
         margin: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
@@ -310,211 +462,5 @@ class _ListOrderAceeptPageState extends State<ListOrderAceeptPage> {
             )
           ],
         ));
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Consumer<AppProvider>(builder: (context, provider, child) {
-      var shipperId = context.read<AppProvider>().getUserId;
-      return Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            elevation: 10.0,
-            automaticallyImplyLeading: false,
-            // backgroundColor: MaterialColors.primary,
-            flexibleSpace: Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: [
-                      MaterialColors.primary,
-                      Color(0xfff7892b),
-                    ]),
-              ),
-            ),
-            title: const Text(
-              "Đơn hàng",
-              style:
-                  TextStyle(color: MaterialColors.white, fontFamily: "SF Bold"),
-            ),
-          ),
-          body: SingleChildScrollView(
-              child: Stack(
-            children: [
-              Column(children: [
-                const SizedBox(
-                  height: 10,
-                ),
-                StreamBuilder<QuerySnapshot>(
-                  stream: _usersStream,
-                  builder: (BuildContext context,
-                      AsyncSnapshot<QuerySnapshot> snapshot) {
-                    // bool flag = false;
-                    // String routeId = "";
-                    if (snapshot.hasError) {
-                      return Text('Something went wrong');
-                    }
-
-                    if (!snapshot.hasData) {
-                      return Container(
-                        height: MediaQuery.of(context).size.height - 200,
-                        width: MediaQuery.of(context).size.width,
-                        child: const SpinKitDualRing(
-                          color: MaterialColors.primary,
-                          size: 40.0,
-                        ),
-                      );
-                    }
-
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Positioned(
-                          top: 50,
-                          child: Container(
-                            height: MediaQuery.of(context).size.height - 200,
-                            width: MediaQuery.of(context).size.width,
-                            child: const SpinKitDualRing(
-                              color: MaterialColors.primary,
-                              size: 40.0,
-                            ),
-                          ));
-                    }
-
-                    // print("snapshot.data!.docs: " + snapshot.data!.docs.isNotEmpty.toString());
-                    if (snapshot.data!.docs.isNotEmpty) {
-                      // snapshot.data!.docs.forEach((DocumentSnapshot document) {
-                      //   Map<String, dynamic> dataTmp =
-                      //       document.data()! as Map<String, dynamic>;
-                      //   if (dataTmp["Status"] == 1 &&
-                      //       dataTmp["ShipperId"] == shipperId) {
-                      //     // flag = true;
-                      //     routeId = dataTmp["RouteId"];
-                      //   }
-                      // });
-                      // print(flag);
-
-                      return Column(
-                        children: listRoute.map((RouteModel document) {
-                          return InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => RouteDetailPage(
-                                          routeId: document.routeId!,
-                                          status: document.status!,
-                                          totalBill: document.totalAdvance ?? 0,
-                                          totalCod: document.totalCod ?? 0,
-                                          orderId: document.orderId ?? "",
-                                        )),
-                              );
-                            },
-                            child: order_item(
-                              document.edgeNum ?? 0,
-                              document.firstEdge ?? "",
-                              document.lastEdge ?? "",
-                              document.orderNum ?? 0,
-                              document.shipperId ?? "",
-                              document.status ?? 1,
-                              document.totalAdvance ?? 0,
-                              document.totalCod ?? 0,
-                              document.orderId ?? "",
-                            ),
-                          );
-                          // } else {
-                          //   return Container();
-                          // }
-                        }).toList(),
-                      );
-                      // : Column(
-                      //     children: snapshot.data!.docs
-                      //         .map((DocumentSnapshot document) {
-                      //       Map<String, dynamic> data =
-                      //           document.data()! as Map<String, dynamic>;
-                      //       if (data["Status"] == 1) {
-                      //         return InkWell(
-                      //           onTap: () {
-                      //             Navigator.push(
-                      //               context,
-                      //               MaterialPageRoute(
-                      //                 builder: (context) => RouteDetailPage(
-                      //                     routeId: data["RouteId"],
-                      //                     status: data["Status"] ?? 1,
-                      //                     totalBill:
-                      //                         data["TotalAdvance"] ?? 0,
-                      //                     totalCod: data["TotalCod"] ?? 0),
-                      //               ),
-                      //             );
-                      //           },
-                      //           child: order_item(
-                      //             data["EdgeNum"] ?? 0,
-                      //             data["FirstEdge"] ?? "",
-                      //             data["LastEdge"] ?? "",
-                      //             data["OrderNum"] ?? 0,
-                      //             data["ShipperId"] ?? "",
-                      //             data["Status"] ?? 1,
-                      //             data["TotalAdvance"] ?? 0,
-                      //             data["TotalCod"] ?? 0,
-                      //           ),
-                      //         );
-                      //       } else {
-                      //         return Container(
-                      //             // padding: EdgeInsets.only(top: 100),
-                      //             // child: Center(
-                      //             //     child: Column(
-                      //             //   mainAxisAlignment: MainAxisAlignment.center,
-                      //             //   crossAxisAlignment: CrossAxisAlignment.center,
-                      //             //   children: [
-                      //             //     Container(
-                      //             //       height: 100,
-                      //             //       width: 100,
-                      //             //       child: Image.asset(
-                      //             //         'assets/images/empty-order.png',
-                      //             //         fit: BoxFit.cover,
-                      //             //       ),
-                      //             //     ),
-                      //             //     Text(
-                      //             //       "Hiện tại không có đơn hàng nào",
-                      //             //       style: TextStyle(fontFamily: "SF Regular", fontSize: 16, color: Color.fromRGBO(120, 120, 120, 1)),
-                      //             //     ),
-                      //             //   ],
-                      //             // )),
-                      //             );
-                      //       }
-                      //     }).toList(),
-                      //   );
-                    } else {
-                      return Container(
-                        padding: EdgeInsets.only(top: 100),
-                        child: Center(
-                            child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              height: 100,
-                              width: 100,
-                              child: Image.asset(
-                                'assets/images/empty-order.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            Text(
-                              "Hiện tại không có đơn hàng nào",
-                              style: TextStyle(
-                                  fontFamily: "SF Regular",
-                                  fontSize: 16,
-                                  color: Color.fromRGBO(120, 120, 120, 1)),
-                            ),
-                          ],
-                        )),
-                      );
-                    }
-                  },
-                )
-              ]),
-            ],
-          )));
-    });
   }
 }
