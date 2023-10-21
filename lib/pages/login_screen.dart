@@ -61,7 +61,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 if (value != null)
                   {
                     user = value.user!,
-                    context.read<AppProvider>().setUserLogin(user.email.toString()),
+                    context
+                        .read<AppProvider>()
+                        .setUserLogin(user.email.toString()),
                     db.collection("users").doc(user.email).set({
                       'email': user.email,
                       'fcmToken': fcmToken,
@@ -70,7 +72,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       isLoading = false;
                       isLogin = true;
                     }),
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => LandingScreen()))
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => LandingScreen()))
                   }
               })
           .catchError((onError) => {
@@ -99,7 +104,9 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  Widget _entryField(String title, String error, TextEditingController controller, {bool isPassword = false}) {
+  Widget _entryField(
+      String title, String error, TextEditingController controller,
+      {bool isPassword = false}) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 15),
       child: Column(
@@ -195,11 +202,20 @@ class _LoginScreenState extends State<LoginScreen> {
         alignment: Alignment.center,
         decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(8)),
-            boxShadow: <BoxShadow>[BoxShadow(color: Colors.grey.shade200, offset: const Offset(2, 4), blurRadius: 5, spreadRadius: 2)],
-            gradient: const LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [
-              MaterialColors.primary,
-              MaterialColors.primary2,
-            ])),
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                  color: Colors.grey.shade200,
+                  offset: const Offset(2, 4),
+                  blurRadius: 5,
+                  spreadRadius: 2)
+            ],
+            gradient: const LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  MaterialColors.primary,
+                  MaterialColors.primary2,
+                ])),
         child: const Text(
           'Đăng nhập',
           style: TextStyle(
@@ -216,18 +232,18 @@ class _LoginScreenState extends State<LoginScreen> {
     return RichText(
       textAlign: TextAlign.center,
       text: const TextSpan(
-          text: 'Cộng Đồng ',
-          style: TextStyle(
-              fontFamily: "SF Heavy",
-              fontSize: 28,
-              // fontWeight: FontWeight.w700,
-              color: Color(0xffe46b10)),
-          children: [
-            TextSpan(
-              text: 'Chung Cư ',
-              style: TextStyle(color: Colors.black, fontSize: 30),
-            ),
-          ]),
+        text: 'VHGP.NET ',
+        style: TextStyle(
+            fontFamily: "SF Heavy",
+            fontSize: 28,
+            // fontWeight: FontWeight.w700,
+            color: Color(0xffe46b10)),
+        // children: [
+        //   TextSpan(
+        //     text: 'Chung Cư ',
+        //     style: TextStyle(color: Colors.black, fontSize: 30),
+        //   ),
+      ),
     );
   }
 
@@ -242,7 +258,10 @@ class _LoginScreenState extends State<LoginScreen> {
             height: height,
             child: Stack(
               children: <Widget>[
-                Positioned(top: -height * .15, right: -MediaQuery.of(context).size.width * .4, child: const BezierContainer()),
+                Positioned(
+                    top: -height * .15,
+                    right: -MediaQuery.of(context).size.width * .4,
+                    child: const BezierContainer()),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: SingleChildScrollView(
@@ -257,14 +276,21 @@ class _LoginScreenState extends State<LoginScreen> {
                         if (!isLogin)
                           Container(
                             alignment: Alignment.centerLeft,
-                            child: Text("Tên đăng nhập hoặc mật khẩu không đúng!", style: TextStyle(fontSize: 15, fontFamily: "SF Medium", color: Colors.red)),
+                            child: Text(
+                                "Tên đăng nhập hoặc mật khẩu không đúng!",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontFamily: "SF Medium",
+                                    color: Colors.red)),
                           ),
                         const SizedBox(height: 20),
                         _submitButton(),
                         Container(
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           alignment: Alignment.centerRight,
-                          child: const Text('Quên mật khẩu ?', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
+                          child: const Text('Quên mật khẩu ?',
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.w500)),
                         ),
                         SizedBox(height: height * .055),
                       ],
@@ -305,10 +331,13 @@ class BezierContainer extends StatelessWidget {
           height: MediaQuery.of(context).size.height * .5,
           width: MediaQuery.of(context).size.width,
           decoration: const BoxDecoration(
-              gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [
-            MaterialColors.primary,
-            MaterialColors.primary2,
-          ])),
+              gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                MaterialColors.primary,
+                MaterialColors.primary2,
+              ])),
         ),
       ),
     ));
@@ -329,17 +358,20 @@ class ClipPainter extends CustomClipper<Path> {
     /// [Top Left corner]
     var secondControlPoint = const Offset(0, 0);
     var secondEndPoint = Offset(width * .2, height * .3);
-    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy, secondEndPoint.dx, secondEndPoint.dy);
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+        secondEndPoint.dx, secondEndPoint.dy);
 
     /// [Left Middle]
     var fifthControlPoint = Offset(width * .3, height * .5);
     var fiftEndPoint = Offset(width * .23, height * .6);
-    path.quadraticBezierTo(fifthControlPoint.dx, fifthControlPoint.dy, fiftEndPoint.dx, fiftEndPoint.dy);
+    path.quadraticBezierTo(fifthControlPoint.dx, fifthControlPoint.dy,
+        fiftEndPoint.dx, fiftEndPoint.dy);
 
     /// [Bottom Left corner]
     var thirdControlPoint = Offset(0, height);
     var thirdEndPoint = Offset(width, height);
-    path.quadraticBezierTo(thirdControlPoint.dx, thirdControlPoint.dy, thirdEndPoint.dx, thirdEndPoint.dy);
+    path.quadraticBezierTo(thirdControlPoint.dx, thirdControlPoint.dy,
+        thirdEndPoint.dx, thirdEndPoint.dy);
 
     path.lineTo(0, size.height);
     path.close();

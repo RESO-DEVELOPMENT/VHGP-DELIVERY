@@ -61,17 +61,21 @@ class _HistoryPageState extends State<HistoryPage> {
           appBar: AppBar(
               flexibleSpace: Container(
                 decoration: BoxDecoration(
-                  gradient: const LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [
-                    MaterialColors.primary,
-                    MaterialColors.primary2,
-                  ]),
+                  gradient: const LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: [
+                        Color.fromARGB(243, 255, 85, 76),
+                        Color.fromARGB(255, 249, 136, 36)
+                      ]),
                 ),
               ),
               automaticallyImplyLeading: false,
               centerTitle: true,
               title: Text(
                 "Lịch sử",
-                style: TextStyle(color: MaterialColors.white, fontFamily: "SF Bold"),
+                style: TextStyle(
+                    color: MaterialColors.white, fontFamily: "SF Bold"),
               ),
               bottom: PreferredSize(
                 preferredSize: _tabBar.preferredSize,

@@ -68,8 +68,8 @@ class _ListOrderAceeptPageState extends State<ListOrderAceeptPage> {
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                   colors: [
-                    MaterialColors.primary,
-                    Color(0xfff7892b),
+                    Color.fromARGB(243, 255, 85, 76),
+                    Color.fromARGB(255, 249, 136, 36)
                   ]),
             ),
           ),

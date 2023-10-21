@@ -58,8 +58,8 @@ class _ContactPageState extends State<ContactPage> {
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                     colors: [
-                      MaterialColors.primary,
-                      MaterialColors.primary2,
+                      Color.fromARGB(243, 255, 85, 76),
+                      Color.fromARGB(255, 249, 136, 36)
                     ]),
               ),
             ),
@@ -86,7 +86,7 @@ class _ContactPageState extends State<ContactPage> {
                                   height: 70,
                                   margin: const EdgeInsets.only(right: 15),
                                   child: ClipRRect(
-                                      borderRadius: BorderRadius.only(
+                                      borderRadius: const BorderRadius.only(
                                         topLeft: Radius.circular(50),
                                         bottomLeft: Radius.circular(50),
                                         topRight: Radius.circular(50),
@@ -94,7 +94,7 @@ class _ContactPageState extends State<ContactPage> {
                                       ),
                                       child: Container(
                                         height: 70,
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                           borderRadius: BorderRadius.only(
                                             topLeft: Radius.circular(50),
                                             bottomLeft: Radius.circular(50),
@@ -103,10 +103,11 @@ class _ContactPageState extends State<ContactPage> {
                                           ),
                                         ),
                                         width: 70,
-                                        child: Icon(
+                                        child: const Icon(
                                           Icons.account_circle_rounded,
                                           size: 70,
-                                          color: MaterialColors.primary,
+                                          color:
+                                              Color.fromARGB(255, 249, 136, 36),
                                         ),
                                       ))),
                               Expanded(
@@ -380,7 +381,8 @@ class _ContactPageState extends State<ContactPage> {
                                                       ),
                                                       style: ElevatedButton
                                                           .styleFrom(
-                                                        primary: Colors.white,
+                                                        backgroundColor:
+                                                            Colors.white,
                                                         textStyle: TextStyle(
                                                             color:
                                                                 Colors.black),
@@ -418,8 +420,10 @@ class _ContactPageState extends State<ContactPage> {
                                                       ),
                                                       style: ElevatedButton
                                                           .styleFrom(
-                                                        primary: MaterialColors
-                                                            .primary,
+                                                        backgroundColor:
+                                                            const Color
+                                                                .fromARGB(255,
+                                                                249, 136, 36),
                                                         textStyle: TextStyle(
                                                             color:
                                                                 Colors.white),
@@ -484,8 +488,8 @@ class _ContactPageState extends State<ContactPage> {
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
                   color: Colors.white.withOpacity(0.5),
-                  child: SpinKitDualRing(
-                    color: MaterialColors.primary,
+                  child: const SpinKitDualRing(
+                    color: Color.fromARGB(255, 249, 136, 36),
                     size: 50.0,
                   ),
                 )

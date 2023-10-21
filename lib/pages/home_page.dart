@@ -1477,8 +1477,8 @@ class _HomePageState extends State<HomePage> {
                               begin: Alignment.centerLeft,
                               end: Alignment.centerRight,
                               colors: [
-                                Color(0xfff7892b),
-                                MaterialColors.primary,
+                                Color.fromARGB(243, 255, 85, 76),
+                                Color.fromARGB(255, 249, 136, 36)
                               ]),
                         ),
                         padding: EdgeInsets.only(

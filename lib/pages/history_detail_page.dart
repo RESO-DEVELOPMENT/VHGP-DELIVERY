@@ -13,7 +13,12 @@ class HistoryDetailPage extends StatefulWidget {
   StatusHistoryOrder status;
   String historyOrderId;
   int actionType;
-  HistoryDetailPage({Key? key, required this.status, required this.historyOrderId, required this.actionType}) : super(key: key);
+  HistoryDetailPage(
+      {Key? key,
+      required this.status,
+      required this.historyOrderId,
+      required this.actionType})
+      : super(key: key);
 
   @override
   _HistoryDetailPageState createState() => _HistoryDetailPageState();
@@ -53,13 +58,18 @@ class _HistoryDetailPageState extends State<HistoryDetailPage> {
                             height: 16,
                             width: 16,
                             fit: BoxFit.cover,
-                            image: NetworkImage("https://cdn-icons-png.flaticon.com/512/1946/1946770.png")),
+                            image: NetworkImage(
+                                "https://cdn-icons-png.flaticon.com/512/1946/1946770.png")),
                         SizedBox(
                           height: 5,
                         ),
                         Container(
                           height: 30,
-                          decoration: const BoxDecoration(border: Border(right: BorderSide(color: Color.fromRGBO(200, 200, 200, 1), width: 1))),
+                          decoration: const BoxDecoration(
+                              border: Border(
+                                  right: BorderSide(
+                                      color: Color.fromRGBO(200, 200, 200, 1),
+                                      width: 1))),
                         ),
                         SizedBox(
                           height: 5,
@@ -85,15 +95,25 @@ class _HistoryDetailPageState extends State<HistoryDetailPage> {
                               Text(
                                 _historyDetailModel.start!,
                                 maxLines: 1,
-                                style: const TextStyle(color: MaterialColors.black, overflow: TextOverflow.ellipsis, fontFamily: "SF Bold", fontSize: 18),
+                                style: const TextStyle(
+                                    color: MaterialColors.black,
+                                    overflow: TextOverflow.ellipsis,
+                                    fontFamily: "SF Bold",
+                                    fontSize: 18),
                               ),
                               SizedBox(
                                 height: 3,
                               ),
                               Text(
-                                _historyDetailModel.startBuilding! + ", Vinhomes Grand Park, Quận 9",
+                                _historyDetailModel.startBuilding! +
+                                    ", Vinhomes Grand Park, Quận 9",
                                 maxLines: 1,
-                                style: TextStyle(overflow: TextOverflow.ellipsis, fontSize: 15, color: Colors.black, fontFamily: "SF Regular", height: 1.3),
+                                style: TextStyle(
+                                    overflow: TextOverflow.ellipsis,
+                                    fontSize: 15,
+                                    color: Colors.black,
+                                    fontFamily: "SF Regular",
+                                    height: 1.3),
                               ),
                             ],
                           ),
@@ -106,15 +126,25 @@ class _HistoryDetailPageState extends State<HistoryDetailPage> {
                               Text(
                                 _historyDetailModel.end!,
                                 maxLines: 1,
-                                style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Bold", overflow: TextOverflow.ellipsis, fontSize: 18),
+                                style: const TextStyle(
+                                    color: MaterialColors.black,
+                                    fontFamily: "SF Bold",
+                                    overflow: TextOverflow.ellipsis,
+                                    fontSize: 18),
                               ),
                               SizedBox(
                                 height: 3,
                               ),
                               Text(
-                                _historyDetailModel.endBuilding! + ", Vinhomes Grand Park, Quận 9",
+                                _historyDetailModel.endBuilding! +
+                                    ", Vinhomes Grand Park, Quận 9",
                                 maxLines: 1,
-                                style: TextStyle(fontSize: 15, color: Colors.black, fontFamily: "SF Regular", overflow: TextOverflow.ellipsis, height: 1.3),
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.black,
+                                    fontFamily: "SF Regular",
+                                    overflow: TextOverflow.ellipsis,
+                                    height: 1.3),
                               ),
                             ],
                           ),
@@ -146,16 +176,23 @@ class _HistoryDetailPageState extends State<HistoryDetailPage> {
                         _historyDetailModel = HistoryDetailModel(
                           orderId: messageEdgeModelHistory.data["orderId"],
                           start: messageEdgeModelHistory.data["start"],
-                          startBuilding: messageEdgeModelHistory.data["startBuilding"],
+                          startBuilding:
+                              messageEdgeModelHistory.data["startBuilding"],
                           end: messageEdgeModelHistory.data["end"],
-                          endBuilding: messageEdgeModelHistory.data["endBuilding"],
+                          endBuilding:
+                              messageEdgeModelHistory.data["endBuilding"],
                           note: messageEdgeModelHistory.data["note"],
-                          orderDetails: messageEdgeModelHistory.data["orderDetails"],
-                          paymentType: messageEdgeModelHistory.data["paymentType"],
+                          orderDetails:
+                              messageEdgeModelHistory.data["orderDetails"],
+                          paymentType:
+                              messageEdgeModelHistory.data["paymentType"],
                           phone: messageEdgeModelHistory.data["phone"],
-                          serviceName: messageEdgeModelHistory.data["serviceName"],
-                          shipCost: messageEdgeModelHistory.data["shipCost"].toDouble(),
-                          total: messageEdgeModelHistory.data["total"].toDouble(),
+                          serviceName:
+                              messageEdgeModelHistory.data["serviceName"],
+                          shipCost: messageEdgeModelHistory.data["shipCost"]
+                              .toDouble(),
+                          total:
+                              messageEdgeModelHistory.data["total"].toDouble(),
                         ),
                         isLoading = false
                       })
@@ -176,15 +213,22 @@ class _HistoryDetailPageState extends State<HistoryDetailPage> {
             appBar: AppBar(
               flexibleSpace: Container(
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [
-                    // MaterialColors.primary,
-                    // MaterialColors.primary.withOpacity(0.99),
-                    // MaterialColors.primary.withOpacity(0.97),
-                    // MaterialColors.primary.withOpacity(0.95),
-                    // MaterialColors.primary.withOpacity(0.9),
-                    widget.status == StatusHistoryOrder.done ? Colors.green : Colors.redAccent,
-                    widget.status == StatusHistoryOrder.done ? Colors.green : Colors.redAccent
-                  ]),
+                  gradient: LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: [
+                        // MaterialColors.primary,
+                        // MaterialColors.primary.withOpacity(0.99),
+                        // MaterialColors.primary.withOpacity(0.97),
+                        // MaterialColors.primary.withOpacity(0.95),
+                        // MaterialColors.primary.withOpacity(0.9),
+                        widget.status == StatusHistoryOrder.done
+                            ? Colors.green
+                            : Colors.redAccent,
+                        widget.status == StatusHistoryOrder.done
+                            ? Colors.green
+                            : Colors.redAccent
+                      ]),
                 ),
               ),
               titleSpacing: 0,
@@ -210,7 +254,9 @@ class _HistoryDetailPageState extends State<HistoryDetailPage> {
                     height: 5,
                   ),
                   Text(
-                    widget.status == StatusHistoryOrder.done ? "Đã hoàn thành" : "Thất bại",
+                    widget.status == StatusHistoryOrder.done
+                        ? "Đã hoàn thành"
+                        : "Thất bại",
                     style: TextStyle(
                       fontSize: 14,
                       fontFamily: "SF Regular",
@@ -301,27 +347,45 @@ class _HistoryDetailPageState extends State<HistoryDetailPage> {
                                           //   ),
                                           // ),
                                           Container(
-                                            margin: EdgeInsets.only(left: 15, right: 15, top: 5, bottom: 5),
-                                            decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: Color.fromRGBO(230, 230, 230, 1), width: 1))),
+                                            margin: EdgeInsets.only(
+                                                left: 15,
+                                                right: 15,
+                                                top: 5,
+                                                bottom: 5),
+                                            decoration: const BoxDecoration(
+                                                border: Border(
+                                                    bottom: BorderSide(
+                                                        color: Color.fromRGBO(
+                                                            230, 230, 230, 1),
+                                                        width: 1))),
                                           ),
                                           Container(
                                               // color: MaterialColors.grey,
-                                              padding: EdgeInsets.only(top: 10)),
+                                              padding:
+                                                  EdgeInsets.only(top: 10)),
                                           Container(
-                                            padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
+                                            padding: const EdgeInsets.only(
+                                                top: 10, left: 15, right: 15),
                                             child: Row(
-                                              crossAxisAlignment: CrossAxisAlignment.center,
-                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
                                               children: [
                                                 Container(
                                                   width: 25,
                                                   height: 25,
                                                   child: ClipRRect(
-                                                    borderRadius: BorderRadius.only(
-                                                      topLeft: Radius.circular(50),
-                                                      bottomLeft: Radius.circular(50),
-                                                      topRight: Radius.circular(50),
-                                                      bottomRight: Radius.circular(50),
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                      topLeft:
+                                                          Radius.circular(50),
+                                                      bottomLeft:
+                                                          Radius.circular(50),
+                                                      topRight:
+                                                          Radius.circular(50),
+                                                      bottomRight:
+                                                          Radius.circular(50),
                                                     ),
 
                                                     // padding: const EdgeInsets.only(right: 15, left: 0),
@@ -330,7 +394,8 @@ class _HistoryDetailPageState extends State<HistoryDetailPage> {
                                                       height: 35,
                                                       width: 35,
                                                       fit: BoxFit.cover,
-                                                      image: NetworkImage("https://cdn-icons-png.flaticon.com/512/4507/4507529.png"),
+                                                      image: NetworkImage(
+                                                          "https://cdn-icons-png.flaticon.com/512/4507/4507529.png"),
                                                     ),
                                                   ),
                                                 ),
@@ -338,8 +403,14 @@ class _HistoryDetailPageState extends State<HistoryDetailPage> {
                                                   width: 10,
                                                 ),
                                                 Container(
-                                                  alignment: Alignment.centerLeft,
-                                                  child: Text("Danh sách món", style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Bold", fontSize: 16)),
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  child: Text("Danh sách món",
+                                                      style: const TextStyle(
+                                                          color: MaterialColors
+                                                              .black,
+                                                          fontFamily: "SF Bold",
+                                                          fontSize: 16)),
                                                 ),
                                               ],
                                             ),
@@ -347,30 +418,55 @@ class _HistoryDetailPageState extends State<HistoryDetailPage> {
                                           SizedBox(
                                             height: 10,
                                           ),
-                                          if (_historyDetailModel.orderDetails!.isNotEmpty)
-                                            ..._historyDetailModel.orderDetails!.map((item) {
+                                          if (_historyDetailModel
+                                              .orderDetails!.isNotEmpty)
+                                            ..._historyDetailModel.orderDetails!
+                                                .map((item) {
                                               return Container(
-                                                padding: EdgeInsets.only(left: 25, right: 15, bottom: 10, top: 10),
+                                                padding: EdgeInsets.only(
+                                                    left: 25,
+                                                    right: 15,
+                                                    bottom: 10,
+                                                    top: 10),
                                                 child: Row(
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
                                                   children: [
                                                     Expanded(
                                                       child: Row(
-                                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
                                                         children: [
                                                           Text(
                                                             "${item["quantity"]} x",
-                                                            style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
+                                                            style: const TextStyle(
+                                                                color:
+                                                                    MaterialColors
+                                                                        .black,
+                                                                fontFamily:
+                                                                    "SF Regular",
+                                                                fontSize: 16),
                                                           ),
                                                           SizedBox(
                                                             width: 10,
                                                           ),
                                                           Expanded(
                                                             child: Text(
-                                                              item["productName"],
-                                                              style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
+                                                              item[
+                                                                  "productName"],
+                                                              style: const TextStyle(
+                                                                  color:
+                                                                      MaterialColors
+                                                                          .black,
+                                                                  fontFamily:
+                                                                      "SF Regular",
+                                                                  fontSize: 16),
                                                             ),
                                                           )
                                                         ],
@@ -381,7 +477,12 @@ class _HistoryDetailPageState extends State<HistoryDetailPage> {
                                                     ),
                                                     Text(
                                                       "₫${currencyFormatter.format((item["price"]).toInt())}",
-                                                      style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
+                                                      style: const TextStyle(
+                                                          color: MaterialColors
+                                                              .black,
+                                                          fontFamily:
+                                                              "SF Regular",
+                                                          fontSize: 16),
                                                     )
                                                   ],
                                                 ),
@@ -390,12 +491,21 @@ class _HistoryDetailPageState extends State<HistoryDetailPage> {
                                           SizedBox(
                                             height: 10,
                                           ),
-                                          Container(color: MaterialColors.grey, padding: EdgeInsets.only(top: 10)),
+                                          Container(
+                                              color: MaterialColors.grey,
+                                              padding:
+                                                  EdgeInsets.only(top: 10)),
 
                                           Container(
-                                            padding: EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
+                                            padding: EdgeInsets.only(
+                                                left: 15,
+                                                right: 15,
+                                                top: 10,
+                                                bottom: 10),
                                             child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
                                                 Container(
                                                   // padding: EdgeInsets.only(left: 15),
@@ -403,7 +513,16 @@ class _HistoryDetailPageState extends State<HistoryDetailPage> {
                                                     children: [
                                                       Text(
                                                         "Dịch vụ",
-                                                        style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontFamily: "SF SemiBold", fontSize: 16),
+                                                        style: const TextStyle(
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    0,
+                                                                    0,
+                                                                    0),
+                                                            fontFamily:
+                                                                "SF SemiBold",
+                                                            fontSize: 16),
                                                       ),
                                                     ],
                                                   ),
@@ -411,25 +530,45 @@ class _HistoryDetailPageState extends State<HistoryDetailPage> {
                                                 Container(
                                                   // padding: EdgeInsets.only(right: 15),
                                                   child: Row(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
                                                     children: [
                                                       Image(
                                                           // color:70olors.red,
-                                                          height: _historyDetailModel.serviceName.toString() == "Hub" ? 25 : 30,
-                                                          width: _historyDetailModel.serviceName.toString() == "Hub" ? 25 : 30,
+                                                          height: _historyDetailModel
+                                                                      .serviceName
+                                                                      .toString() ==
+                                                                  "Hub"
+                                                              ? 25
+                                                              : 30,
+                                                          width: _historyDetailModel
+                                                                      .serviceName
+                                                                      .toString() ==
+                                                                  "Hub"
+                                                              ? 25
+                                                              : 30,
                                                           fit: BoxFit.cover,
-                                                          image: NetworkImage(_historyDetailModel.serviceName.toString() == "Hub"
+                                                          image: NetworkImage(_historyDetailModel
+                                                                      .serviceName
+                                                                      .toString() ==
+                                                                  "Hub"
                                                               ? "https://cdn-icons-png.flaticon.com/512/8072/8072884.png"
                                                               : "https://cdn-icons-png.flaticon.com/512/2844/2844235.png")),
                                                       SizedBox(
                                                         width: 8,
                                                       ),
                                                       Text(
-                                                        _historyDetailModel.serviceName.toString(),
+                                                        _historyDetailModel
+                                                            .serviceName
+                                                            .toString(),
                                                         style: TextStyle(
                                                           fontSize: 16,
-                                                          fontFamily: "SF SemiBold",
+                                                          fontFamily:
+                                                              "SF SemiBold",
                                                         ),
                                                       ),
                                                     ],
@@ -438,107 +577,197 @@ class _HistoryDetailPageState extends State<HistoryDetailPage> {
                                               ],
                                             ),
                                           ),
-                                          Container(color: MaterialColors.grey, padding: EdgeInsets.only(top: 10)),
+                                          Container(
+                                              color: MaterialColors.grey,
+                                              padding:
+                                                  EdgeInsets.only(top: 10)),
 
                                           Container(
-                                            padding: EdgeInsets.only(left: 15, right: 15, top: 15),
-                                            child: Row(crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                                              Container(
-                                                child: Row(children: [
+                                            padding: EdgeInsets.only(
+                                                left: 15, right: 15, top: 15),
+                                            child: Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
                                                   Container(
-                                                    child: Text(
-                                                      "Phương thức thanh toán",
-                                                      style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontFamily: "SF SemiBold", fontSize: 16),
-                                                    ),
-                                                  )
+                                                    child: Row(children: [
+                                                      Container(
+                                                        child: Text(
+                                                          "Phương thức thanh toán",
+                                                          style: const TextStyle(
+                                                              color: Color
+                                                                  .fromARGB(255,
+                                                                      0, 0, 0),
+                                                              fontFamily:
+                                                                  "SF SemiBold",
+                                                              fontSize: 16),
+                                                        ),
+                                                      )
+                                                    ]),
+                                                  ),
+                                                  Text(
+                                                    _historyDetailModel
+                                                                .paymentType ==
+                                                            0
+                                                        ? "Tiền mặt"
+                                                        : "Đã thanh toán",
+                                                    style: const TextStyle(
+                                                        color: Colors.black,
+                                                        fontFamily:
+                                                            "SF Regular",
+                                                        fontSize: 16),
+                                                  ),
                                                 ]),
-                                              ),
-                                              Text(
-                                                _historyDetailModel.paymentType == 0 ? "Tiền mặt" : "Đã thanh toán",
-                                                style: const TextStyle(color: Colors.black, fontFamily: "SF Regular", fontSize: 16),
-                                              ),
-                                            ]),
                                           ),
                                           SizedBox(
                                             height: 5,
                                           ),
                                           Container(
-                                            padding: EdgeInsets.only(left: 15, right: 15, top: 15),
-                                            child: Row(crossAxisAlignment: CrossAxisAlignment.center, mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                                              Container(
-                                                child: Row(
-                                                  children: [
-                                                    Image(
-                                                        // color:70olors.red,
-                                                        height: 25,
-                                                        width: 25,
-                                                        fit: BoxFit.cover,
-                                                        image: NetworkImage("https://cdn-icons-png.flaticon.com/512/3297/3297987.png")),
-                                                    SizedBox(
-                                                      width: 5,
-                                                    ),
-                                                    Container(
-                                                      child: Row(children: [
-                                                        Container(
-                                                          child: Text(
-                                                            widget.actionType == OrderAction.deliveryHub ? "Trả tiền mặt cho nhà hàng" : "Thu tiền mặt khách hàng",
-                                                            style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontFamily: "SF SemiBold", fontSize: 16),
-                                                          ),
-                                                        )
-                                                      ]),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                              Row(
+                                            padding: EdgeInsets.only(
+                                                left: 15, right: 15, top: 15),
+                                            child: Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
-                                                  Text(
-                                                    widget.actionType == OrderAction.deliveryHub ? "- ₫" : "+ ₫",
-                                                    style: TextStyle(
-                                                        color: widget.actionType == OrderAction.deliveryHub ? Color.fromARGB(255, 255, 0, 0) : MaterialColors.success,
-                                                        fontFamily: "SF Regular",
-                                                        fontSize: 16),
+                                                  Container(
+                                                    child: Row(
+                                                      children: [
+                                                        Image(
+                                                            // color:70olors.red,
+                                                            height: 25,
+                                                            width: 25,
+                                                            fit: BoxFit.cover,
+                                                            image: NetworkImage(
+                                                                "https://cdn-icons-png.flaticon.com/512/3297/3297987.png")),
+                                                        SizedBox(
+                                                          width: 5,
+                                                        ),
+                                                        Container(
+                                                          child: Row(children: [
+                                                            Container(
+                                                              child: Text(
+                                                                widget.actionType ==
+                                                                        OrderAction
+                                                                            .deliveryHub
+                                                                    ? "Trả tiền mặt cho nhà hàng"
+                                                                    : "Thu tiền mặt khách hàng",
+                                                                style: const TextStyle(
+                                                                    color: Color
+                                                                        .fromARGB(
+                                                                            255,
+                                                                            0,
+                                                                            0,
+                                                                            0),
+                                                                    fontFamily:
+                                                                        "SF SemiBold",
+                                                                    fontSize:
+                                                                        16),
+                                                              ),
+                                                            )
+                                                          ]),
+                                                        )
+                                                      ],
+                                                    ),
                                                   ),
-                                                  Text(
-                                                    currencyFormatter.format((_historyDetailModel.total!).toInt()).toString(),
-                                                    style: TextStyle(
-                                                        color: widget.actionType == OrderAction.deliveryHub ? Color.fromARGB(255, 255, 0, 0) : MaterialColors.success,
-                                                        fontFamily: "SF Regular",
-                                                        fontSize: 16),
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        widget.actionType ==
+                                                                OrderAction
+                                                                    .deliveryHub
+                                                            ? "- ₫"
+                                                            : "+ ₫",
+                                                        style: TextStyle(
+                                                            color: widget.actionType ==
+                                                                    OrderAction
+                                                                        .deliveryHub
+                                                                ? Color
+                                                                    .fromARGB(
+                                                                        255,
+                                                                        255,
+                                                                        0,
+                                                                        0)
+                                                                : MaterialColors
+                                                                    .success,
+                                                            fontFamily:
+                                                                "SF Regular",
+                                                            fontSize: 16),
+                                                      ),
+                                                      Text(
+                                                        currencyFormatter
+                                                            .format((_historyDetailModel
+                                                                        .total! +
+                                                                    _historyDetailModel
+                                                                        .shipCost!)
+                                                                .toInt())
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                            color: widget.actionType ==
+                                                                    OrderAction
+                                                                        .deliveryHub
+                                                                ? Color
+                                                                    .fromARGB(
+                                                                        255,
+                                                                        255,
+                                                                        0,
+                                                                        0)
+                                                                : MaterialColors
+                                                                    .success,
+                                                            fontFamily:
+                                                                "SF Regular",
+                                                            fontSize: 16),
+                                                      ),
+                                                    ],
                                                   )
-                                                ],
-                                              )
-                                            ]),
+                                                ]),
                                           ),
                                           SizedBox(
                                             height: 15,
                                           ),
                                           LayoutBuilder(
-                                            builder: (BuildContext context, BoxConstraints constraints) {
-                                              final boxWidth = constraints.constrainWidth();
+                                            builder: (BuildContext context,
+                                                BoxConstraints constraints) {
+                                              final boxWidth =
+                                                  constraints.constrainWidth();
                                               const dashWidth = 5.0;
                                               final dashHeight = 1;
-                                              final dashCount = (boxWidth / (2 * dashWidth)).floor();
+                                              final dashCount =
+                                                  (boxWidth / (2 * dashWidth))
+                                                      .floor();
                                               return Flex(
-                                                children: List.generate(dashCount, (_) {
+                                                children: List.generate(
+                                                    dashCount, (_) {
                                                   return SizedBox(
                                                     width: dashWidth,
                                                     height: 1,
                                                     child: DecoratedBox(
-                                                        decoration: BoxDecoration(
-                                                      color: Color.fromRGBO(200, 200, 200, 1),
+                                                        decoration:
+                                                            BoxDecoration(
+                                                      color: Color.fromRGBO(
+                                                          200, 200, 200, 1),
                                                     )),
                                                   );
                                                 }),
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 direction: Axis.horizontal,
                                               );
                                             },
                                           ),
                                           Container(
                                             child: Row(
-                                              crossAxisAlignment: CrossAxisAlignment.center,
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
                                                 Container(
                                                   child: Row(
@@ -546,13 +775,23 @@ class _HistoryDetailPageState extends State<HistoryDetailPage> {
                                                       Container(
                                                         child: Text(
                                                           "Tổng cộng ",
-                                                          style: const TextStyle(color: MaterialColors.black, fontFamily: "SF SemiBold", fontSize: 16),
+                                                          style: const TextStyle(
+                                                              color:
+                                                                  MaterialColors
+                                                                      .black,
+                                                              fontFamily:
+                                                                  "SF SemiBold",
+                                                              fontSize: 16),
                                                         ),
                                                       ),
                                                       Container(
                                                         child: Icon(
                                                           Icons.error_outline,
-                                                          color: Color.fromARGB(255, 125, 125, 131),
+                                                          color: Color.fromARGB(
+                                                              255,
+                                                              125,
+                                                              125,
+                                                              131),
                                                           size: 15,
                                                         ),
                                                       )
@@ -565,13 +804,31 @@ class _HistoryDetailPageState extends State<HistoryDetailPage> {
                                                       Container(
                                                         child: Text(
                                                           "₫",
-                                                          style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
+                                                          style: const TextStyle(
+                                                              color:
+                                                                  MaterialColors
+                                                                      .black,
+                                                              fontFamily:
+                                                                  "SF Regular",
+                                                              fontSize: 16),
                                                         ),
                                                       ),
                                                       Container(
                                                         child: Text(
-                                                          currencyFormatter.format((_historyDetailModel.total!).toInt()).toString(),
-                                                          style: const TextStyle(color: MaterialColors.black, fontFamily: "SF Regular", fontSize: 16),
+                                                          currencyFormatter
+                                                              .format((_historyDetailModel
+                                                                          .total! +
+                                                                      _historyDetailModel
+                                                                          .shipCost!)
+                                                                  .toInt())
+                                                              .toString(),
+                                                          style: const TextStyle(
+                                                              color:
+                                                                  MaterialColors
+                                                                      .black,
+                                                              fontFamily:
+                                                                  "SF Regular",
+                                                              fontSize: 16),
                                                         ),
                                                       )
                                                     ],

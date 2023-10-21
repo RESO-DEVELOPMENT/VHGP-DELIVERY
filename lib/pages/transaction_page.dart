@@ -34,35 +34,38 @@ class _TransactionPageState extends State<TransactionPage> {
       count = count + element.transactions!.length;
     }
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color.fromARGB(255, 243, 247, 251),
       ),
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
+            padding:
+                const EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   "Lọc theo",
                   style: TextStyle(
                       color: Color.fromRGBO(100, 100, 100, 1),
                       fontSize: 14,
                       fontFamily: "SF Regular"),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 Container(
-                  padding:
-                      EdgeInsets.only(left: 15, right: 15, top: 7, bottom: 7),
+                  padding: const EdgeInsets.only(
+                      left: 15, right: 15, top: 7, bottom: 7),
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(kSpacingUnit * 2),
-                      border: Border.all(color: MaterialColors.primary)),
-                  child: Text(
+                      border: Border.all(
+                        color: const Color.fromARGB(255, 249, 136, 36),
+                      )),
+                  child: const Text(
                     "1 Tháng gần nhất",
                     style: TextStyle(
                         color: Color.fromARGB(255, 0, 0, 0),
@@ -184,7 +187,7 @@ class _TransactionPageState extends State<TransactionPage> {
                       getTimeTransaction(list.date),
                       style: TextStyle(
                           fontSize: 13.5,
-                          color: MaterialColors.primary,
+                          color: Color.fromARGB(255, 249, 136, 36),
                           fontFamily: "SF Medium"),
                     ),
                   )
@@ -318,7 +321,7 @@ class _TransactionPageState extends State<TransactionPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 "Tài khoản thu hộ",
                 style: TextStyle(
                     color: Colors.black54,
@@ -326,23 +329,23 @@ class _TransactionPageState extends State<TransactionPage> {
                     fontFamily: "SF Regular"),
               ),
               Text(
-                "${currencyFormatter.format((debitWallet).toInt()).toString()}  đ",
-                style: TextStyle(
+                "${currencyFormatter.format((debitWallet).toInt()).toString()} đ",
+                style: const TextStyle(
                     color: Colors.blue, fontSize: 24, fontFamily: "SF Bold"),
               ),
             ],
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           const Divider(
             color: Colors.grey,
             height: 2,
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 "Tài khoản cá nhân",
                 style: TextStyle(
                     color: Colors.black54,
@@ -351,12 +354,12 @@ class _TransactionPageState extends State<TransactionPage> {
               ),
               Text(
                 "${currencyFormatter.format((refundWallet).toInt()).toString()} đ",
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.green, fontSize: 24, fontFamily: "SF Bold"),
               ),
             ],
           ),
-          Row(
+          const Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -553,14 +556,14 @@ class _TransactionPageState extends State<TransactionPage> {
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                     colors: [
-                      MaterialColors.primary,
-                      MaterialColors.primary2,
+                      Color.fromARGB(243, 255, 85, 76),
+                      Color.fromARGB(255, 249, 136, 36)
                     ]),
               ),
             ),
             automaticallyImplyLeading: false,
             centerTitle: true,
-            title: Text(
+            title: const Text(
               "Giao dịch",
               style:
                   TextStyle(color: MaterialColors.white, fontFamily: "SF Bold"),

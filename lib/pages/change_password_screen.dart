@@ -37,7 +37,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     //Must re-authenticate user before updating the password. Otherwise it may fail or user get signed out.
 
     try {
-      final cred = EmailAuthProvider.credential(email: userId, password: _oldPass.text);
+      final cred =
+          EmailAuthProvider.credential(email: userId, password: _oldPass.text);
       var base64String = null;
       DriverModel driverContext = context.read<AppProvider>().getDriverModel;
       http.Response imageResponse = await http.get(
@@ -120,11 +121,23 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
         isloading = false;
       });
       Fluttertoast.showToast(
-          msg: "Mật khẩu cũ không đúng", toastLength: Toast.LENGTH_SHORT, gravity: ToastGravity.TOP, timeInSecForIosWeb: 1, backgroundColor: Colors.red, textColor: Colors.white, fontSize: 16.0);
+          msg: "Mật khẩu cũ không đúng",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.TOP,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
     } catch (e) {
       print("e " + e.toString());
       Fluttertoast.showToast(
-          msg: "Mật khẩu cũ không đúng", toastLength: Toast.LENGTH_SHORT, gravity: ToastGravity.TOP, timeInSecForIosWeb: 1, backgroundColor: Colors.red, textColor: Colors.white, fontSize: 16.0);
+          msg: "Mật khẩu cũ không đúng",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.TOP,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
       print(e);
       setState(() {
         isloading = false;
@@ -156,7 +169,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   child: Form(
                 key: _formKey,
                 child: Container(
-                  padding: EdgeInsets.only(left: 15, right: 15, top: 30, bottom: 15),
+                  padding:
+                      EdgeInsets.only(left: 15, right: 15, top: 30, bottom: 15),
                   child: Column(children: [
                     Row(
                       children: [
@@ -293,10 +307,14 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                           child: ElevatedButton(
                             child: Text(
                               "Đổi mật khẩu",
-                              style: TextStyle(color: Colors.white, fontFamily: "SF Bold", fontSize: 18),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: "SF Bold",
+                                  fontSize: 18),
                             ),
                             style: ElevatedButton.styleFrom(
-                              primary: MaterialColors.primary,
+                              backgroundColor:
+                                  const Color.fromARGB(255, 249, 136, 36),
                               textStyle: TextStyle(color: Colors.black),
                               shadowColor: Colors.white,
                               shape: RoundedRectangleBorder(
@@ -304,7 +322,12 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                               ),
                             ),
                             onPressed: () => {
-                              if (_formKey.currentState!.validate()) {hanldeSubmit(context.read<AppProvider>().getUserId ?? "")},
+                              if (_formKey.currentState!.validate())
+                                {
+                                  hanldeSubmit(
+                                      context.read<AppProvider>().getUserId ??
+                                          "")
+                                },
                             },
                           ),
                         )),
@@ -318,7 +341,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     height: MediaQuery.of(context).size.height,
                     width: MediaQuery.of(context).size.width,
                     child: SpinKitDualRing(
-                      color: MaterialColors.primary,
+                      color: Color.fromARGB(255, 249, 136, 36),
                       size: 50.0,
                     ),
                   ),

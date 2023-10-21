@@ -81,7 +81,7 @@ Color getColor(status) {
     case StatusAccordionOrder.create:
       return const Color.fromRGBO(150, 150, 150, 1);
     case StatusAccordionOrder.doing:
-      return MaterialColors.primary;
+      return const Color.fromARGB(255, 249, 136, 36);
     case StatusAccordionOrder.done:
       return Colors.green;
     case StatusAccordionOrder.fail:
@@ -214,7 +214,7 @@ final kLightTheme = ThemeData(
         ),
     inputDecorationTheme: InputDecorationTheme(
       focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: MaterialColors.primary)),
+          borderSide: BorderSide(color: Color.fromARGB(255, 249, 136, 36))),
     ),
     colorScheme: ColorScheme.fromSwatch()
         .copyWith(secondary: kAccentColor)

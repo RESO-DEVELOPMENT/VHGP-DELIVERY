@@ -575,7 +575,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                                 fontSize: 18),
                           ),
                           style: ElevatedButton.styleFrom(
-                            primary: MaterialColors.primary,
+                            primary: const Color.fromARGB(255, 249, 136, 36),
                             textStyle: TextStyle(color: Colors.black),
                             shadowColor: Colors.white,
                             shape: RoundedRectangleBorder(

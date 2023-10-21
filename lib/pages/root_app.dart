@@ -61,7 +61,8 @@ class _RootAppState extends State<RootApp> {
     showModalBottomSheet(
         isScrollControlled: true,
         context: context,
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(15.0))),
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(15.0))),
         builder: (BuildContext bc) {
           return OrderAcceptModal(function: (func) {});
         });
@@ -71,12 +72,18 @@ class _RootAppState extends State<RootApp> {
     await Firebase.initializeApp();
     messaging = FirebaseMessaging.instance;
 
-    NotificationSettings settings = await messaging.requestPermission(alert: true, badge: true, provisional: false, sound: true);
+    NotificationSettings settings = await messaging.requestPermission(
+        alert: true, badge: true, provisional: false, sound: true);
     if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-      fcmListener = FirebaseMessaging.onMessage.asBroadcastStream().listen((RemoteMessage message) {
+      fcmListener = FirebaseMessaging.onMessage
+          .asBroadcastStream()
+          .listen((RemoteMessage message) {
         print("on app");
-        PushNotificationModel notification =
-            PushNotificationModel(title: message.notification!.title, body: message.notification!.body, dataTitle: message.data['title'], dataBody: message.data['body']);
+        PushNotificationModel notification = PushNotificationModel(
+            title: message.notification!.title,
+            body: message.notification!.body,
+            dataTitle: message.data['title'],
+            dataBody: message.data['body']);
 
         setState(() {
           _notificationInfo = notification;
@@ -92,21 +99,33 @@ class _RootAppState extends State<RootApp> {
   }
 
   Future<void> _showNotification(String title, String content) async {
-    final AndroidNotificationDetails androidPlatformChannelSpecifics = AndroidNotificationDetails('your channel id', 'your channel name',
-        channelDescription: 'your channel description', importance: Importance.max, priority: Priority.high, icon: '@drawable/logoicon', tag: "Cộng Đồng Chung Cư", ticker: 'ticker');
+    final AndroidNotificationDetails androidPlatformChannelSpecifics =
+        AndroidNotificationDetails('your channel id', 'your channel name',
+            channelDescription: 'your channel description',
+            importance: Importance.max,
+            priority: Priority.high,
+            icon: '@drawable/logoicon',
+            tag: "VHGP.net",
+            ticker: 'ticker');
 
-    final NotificationDetails platformChannelSpecifics = NotificationDetails(android: androidPlatformChannelSpecifics);
-    await flutterLocalNotificationsPlugin.show(0, title, content, platformChannelSpecifics, payload: 'item x');
+    final NotificationDetails platformChannelSpecifics =
+        NotificationDetails(android: androidPlatformChannelSpecifics);
+    await flutterLocalNotificationsPlugin
+        .show(0, title, content, platformChannelSpecifics, payload: 'item x');
   }
 
   @override
   void initState() {
-    var initializationSettingsAndroid = AndroidInitializationSettings('@mipmap/ic_launcher');
+    var initializationSettingsAndroid =
+        AndroidInitializationSettings('@mipmap/ic_launcher');
     var initializationSettingsIOS = DarwinInitializationSettings();
-    var initializationSettings = InitializationSettings(android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
+    var initializationSettings = InitializationSettings(
+        android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    flutterLocalNotificationsPlugin.initialize(initializationSettings, onDidReceiveNotificationResponse: (value) {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => RootApp()));
+    flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onDidReceiveNotificationResponse: (value) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => RootApp()));
     });
 
     registerNotification();
@@ -116,10 +135,12 @@ class _RootAppState extends State<RootApp> {
   }
 
   checkForInitialMessage() async {
-    RemoteMessage? initialMessage = await FirebaseMessaging.instance.getInitialMessage();
+    RemoteMessage? initialMessage =
+        await FirebaseMessaging.instance.getInitialMessage();
     if (initialMessage != null) {
       FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => RootApp()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => RootApp()));
       });
     }
   }
@@ -200,18 +221,22 @@ class _RootAppState extends State<RootApp> {
           // backgroundColor: MaterialColors.primary,
           flexibleSpace: Container(
             decoration: BoxDecoration(
-              gradient: LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [
-                MaterialColors.primary,
-                MaterialColors.primary.withOpacity(0.99),
-                MaterialColors.primary.withOpacity(0.97),
-                MaterialColors.primary.withOpacity(0.95),
-                MaterialColors.primary.withOpacity(0.9),
-              ]),
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    MaterialColors.primary,
+                    MaterialColors.primary.withOpacity(0.99),
+                    MaterialColors.primary.withOpacity(0.97),
+                    MaterialColors.primary.withOpacity(0.95),
+                    MaterialColors.primary.withOpacity(0.9),
+                  ]),
             ),
           ),
           title: Text(
             "Đơn hàng",
-            style: TextStyle(color: MaterialColors.white, fontFamily: "SF Bold"),
+            style:
+                TextStyle(color: MaterialColors.white, fontFamily: "SF Bold"),
           ),
           actions: <Widget>[
             IconButton(
@@ -231,19 +256,23 @@ class _RootAppState extends State<RootApp> {
         return AppBar(
             flexibleSpace: Container(
               decoration: BoxDecoration(
-                gradient: LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [
-                  MaterialColors.primary,
-                  MaterialColors.primary.withOpacity(0.99),
-                  MaterialColors.primary.withOpacity(0.97),
-                  MaterialColors.primary.withOpacity(0.95),
-                  MaterialColors.primary.withOpacity(0.9),
-                ]),
+                gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [
+                      MaterialColors.primary,
+                      MaterialColors.primary.withOpacity(0.99),
+                      MaterialColors.primary.withOpacity(0.97),
+                      MaterialColors.primary.withOpacity(0.95),
+                      MaterialColors.primary.withOpacity(0.9),
+                    ]),
               ),
             ),
             centerTitle: true,
             title: Text(
               "Lịch sử",
-              style: TextStyle(color: MaterialColors.white, fontFamily: "SF Bold"),
+              style:
+                  TextStyle(color: MaterialColors.white, fontFamily: "SF Bold"),
             ),
             bottom: PreferredSize(
               preferredSize: _tabBar.preferredSize,
@@ -256,19 +285,23 @@ class _RootAppState extends State<RootApp> {
         return AppBar(
           flexibleSpace: Container(
             decoration: BoxDecoration(
-              gradient: LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [
-                MaterialColors.primary,
-                MaterialColors.primary.withOpacity(0.99),
-                MaterialColors.primary.withOpacity(0.97),
-                MaterialColors.primary.withOpacity(0.95),
-                MaterialColors.primary.withOpacity(0.9),
-              ]),
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    MaterialColors.primary,
+                    MaterialColors.primary.withOpacity(0.99),
+                    MaterialColors.primary.withOpacity(0.97),
+                    MaterialColors.primary.withOpacity(0.95),
+                    MaterialColors.primary.withOpacity(0.9),
+                  ]),
             ),
           ),
           centerTitle: true,
           title: Text(
             "Giao dịch",
-            style: TextStyle(color: MaterialColors.white, fontFamily: "SF Bold"),
+            style:
+                TextStyle(color: MaterialColors.white, fontFamily: "SF Bold"),
           ),
         );
       case 4:
@@ -278,18 +311,22 @@ class _RootAppState extends State<RootApp> {
           automaticallyImplyLeading: false,
           flexibleSpace: Container(
             decoration: BoxDecoration(
-              gradient: LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [
-                MaterialColors.primary,
-                MaterialColors.primary.withOpacity(0.99),
-                MaterialColors.primary.withOpacity(0.97),
-                MaterialColors.primary.withOpacity(0.95),
-                MaterialColors.primary.withOpacity(0.9),
-              ]),
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    MaterialColors.primary,
+                    MaterialColors.primary.withOpacity(0.99),
+                    MaterialColors.primary.withOpacity(0.97),
+                    MaterialColors.primary.withOpacity(0.95),
+                    MaterialColors.primary.withOpacity(0.9),
+                  ]),
             ),
           ),
           title: Text(
             "Tài khoản",
-            style: TextStyle(color: MaterialColors.black, fontFamily: "SF Bold"),
+            style:
+                TextStyle(color: MaterialColors.black, fontFamily: "SF Bold"),
           ),
           actions: <Widget>[
             IconButton(
