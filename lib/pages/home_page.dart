@@ -1122,7 +1122,7 @@ class _HomePageState extends State<HomePage> {
                       height: 5,
                     ),
                     Text(
-                      "${_edgeModel.buildingName}, Vinhomes Grand Park, Phường Long Thạnh Mỹ, Quận 9",
+                      "${_edgeModel.buildingName}",
                       style: TextStyle(
                         fontSize: 15,
                         fontFamily: "SF Regular",
@@ -1500,7 +1500,7 @@ class _HomePageState extends State<HomePage> {
                                   Padding(padding: EdgeInsets.all(3)),
                                   Text(
                                     context.read<AppProvider>().getUserId,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         color: Colors.white,
                                         fontFamily: "SF Regular",
                                         fontSize: 15),
@@ -1508,41 +1508,40 @@ class _HomePageState extends State<HomePage> {
                                 ],
                               ),
                             ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  context.read<AppProvider>().getStatus
-                                      ? "Sẵn sàng"
-                                      : "Đang bận",
-                                  style: TextStyle(
-                                      color: status
-                                          ? Colors.green
-                                          : Colors.grey[700],
-                                      fontFamily: "SF Bold",
-                                      fontSize: 18),
-                                ),
-                                Padding(padding: EdgeInsets.all(4)),
-                                FlutterSwitch(
-                                  width: 60.0,
-                                  height: 30.0,
-                                  valueFontSize: 15.0,
-                                  toggleSize: 25.0,
-                                  value: status,
-                                  borderRadius: 30.0,
-                                  padding: 3.5,
-                                  activeColor: Colors.green,
-                                  // showOnOff: true,
-                                  onToggle: (val) {
-                                    handleToggle(val);
-                                    // setState(() {
-                                    //   status = val;
-                                    // });
-                                  },
-                                ),
-                              ],
-                            ),
+                            // Row(
+                            //   crossAxisAlignment: CrossAxisAlignment.center,
+                            //   mainAxisAlignment: MainAxisAlignment.center,
+                            //   children: [
+                            //     Text(
+                            //       context.read<AppProvider>().getStatus
+                            //           ? "Sẵn sàng"
+                            //           : "Đang bận",
+                            //       style: const TextStyle(
+                            //           color: Colors.white,
+                            //           fontFamily: "SF Bold",
+                            //           fontSize: 18),
+                            //     ),
+                            //     Padding(padding: EdgeInsets.all(4)),
+                            //     FlutterSwitch(
+                            //       width: 60.0,
+                            //       height: 30.0,
+                            //       valueFontSize: 15.0,
+                            //       toggleSize: 25.0,
+                            //       value: status,
+                            //       borderRadius: 30.0,
+                            //       padding: 3.5,
+                            //       activeColor: Colors.white,
+                            //       toggleColor: Colors.orange,
+                            //       // showOnOff: true,
+                            //       onToggle: (val) {
+                            //         handleToggle(val);
+                            //         // setState(() {
+                            //         //   status = val;
+                            //         // });
+                            //       },
+                            //     ),
+                            //   ],
+                            // ),
                           ],
                         ),
                       ),

@@ -422,7 +422,7 @@ class _ListOrderAceeptPageState extends State<ListOrderAceeptPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "${firstEdge}, Vinhomes Grand Park, Quận 9",
+                      "${firstEdge}",
                       maxLines: 1,
                       style: const TextStyle(
                           fontSize: 15,
@@ -448,7 +448,7 @@ class _ListOrderAceeptPageState extends State<ListOrderAceeptPage> {
                       margin: const EdgeInsets.only(top: 6, bottom: 6),
                     ),
                     Text(
-                      "${lastEdge}, Vinhomes Grand Park, Quận 9",
+                      "${lastEdge}",
                       maxLines: 1,
                       style: const TextStyle(
                           fontSize: 15,

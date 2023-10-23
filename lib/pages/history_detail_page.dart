@@ -105,8 +105,7 @@ class _HistoryDetailPageState extends State<HistoryDetailPage> {
                                 height: 3,
                               ),
                               Text(
-                                _historyDetailModel.startBuilding! +
-                                    ", Vinhomes Grand Park, Quận 9",
+                                _historyDetailModel.startBuilding!,
                                 maxLines: 1,
                                 style: TextStyle(
                                     overflow: TextOverflow.ellipsis,
@@ -136,8 +135,7 @@ class _HistoryDetailPageState extends State<HistoryDetailPage> {
                                 height: 3,
                               ),
                               Text(
-                                _historyDetailModel.endBuilding! +
-                                    ", Vinhomes Grand Park, Quận 9",
+                                _historyDetailModel.endBuilding!,
                                 maxLines: 1,
                                 style: TextStyle(
                                     fontSize: 15,

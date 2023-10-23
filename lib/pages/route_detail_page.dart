@@ -145,7 +145,7 @@ pointPickup(EdgeModel edge, index) {
             children: [
               Expanded(
                 child: Text(
-                  "${edge.buildingName} Vinhome Grand Park, Quận 9",
+                  "${edge.buildingName}",
                   style: TextStyle(fontFamily: "SF Medium", fontSize: 16),
                 ),
               )

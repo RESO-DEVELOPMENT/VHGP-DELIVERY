@@ -170,7 +170,7 @@ class _OrderStoreState extends State<OrderStore> {
                         ),
                         Container(
                           child: Text(
-                            "${widget.building}, Vinhomes Grand Park, Phường Long Thạnh Mỹ, Quận 9",
+                            "${widget.building}",
                             style: const TextStyle(
                                 color: MaterialColors.black,
                                 fontFamily: "SF Ruglar",
