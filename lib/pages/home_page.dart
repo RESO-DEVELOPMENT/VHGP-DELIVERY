@@ -1498,13 +1498,13 @@ class _HomePageState extends State<HomePage> {
                                         fontSize: 18),
                                   ),
                                   Padding(padding: EdgeInsets.all(3)),
-                                  Text(
-                                    context.read<AppProvider>().getUserId,
-                                    style: const TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: "SF Regular",
-                                        fontSize: 15),
-                                  )
+                                  // Text(
+                                  //   context.read<AppProvider>().getUserId,
+                                  //   style: const TextStyle(
+                                  //       color: Colors.white,
+                                  //       fontFamily: "SF Regular",
+                                  //       fontSize: 15),
+                                  // )
                                 ],
                               ),
                             ),

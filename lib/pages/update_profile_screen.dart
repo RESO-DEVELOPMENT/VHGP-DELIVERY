@@ -139,7 +139,17 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
     return Consumer<AppProvider>(builder: (context, provider, child) {
       return Scaffold(
           appBar: new AppBar(
-            backgroundColor: Color.fromARGB(255, 255, 255, 255),
+            flexibleSpace: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [
+                      Color.fromARGB(243, 255, 85, 76),
+                      Color.fromARGB(255, 249, 136, 36)
+                    ]),
+              ),
+            ),
             centerTitle: true,
             iconTheme: IconThemeData(
               color: Colors.black, //change your color here
@@ -147,7 +157,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
             title: Text(
               "Chỉnh sửa tài khoản",
               style: TextStyle(
-                color: MaterialColors.black,
+                color: MaterialColors.white,
                 fontFamily: "SF Bold",
               ),
             ),
@@ -566,6 +576,15 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                       width: MediaQuery.of(context).size.width,
                       child: Container(
                         height: 45,
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                              colors: [
+                                Color.fromARGB(243, 255, 85, 76),
+                                Color.fromARGB(255, 249, 136, 36),
+                              ]),
+                        ),
                         child: ElevatedButton(
                           child: Text(
                             "Cập nhật",
@@ -575,12 +594,13 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                                 fontSize: 18),
                           ),
                           style: ElevatedButton.styleFrom(
-                            primary: const Color.fromARGB(255, 249, 136, 36),
                             textStyle: TextStyle(color: Colors.black),
-                            shadowColor: Colors.white,
+                            padding: EdgeInsets.all(0),
+                            elevation: 0,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
                             ),
+                            backgroundColor: Colors.transparent,
                           ),
                           onPressed: () => {
                             if (_image == null && isImage == "")

@@ -153,12 +153,23 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
             backgroundColor: Color.fromARGB(255, 255, 255, 255),
             centerTitle: true,
             iconTheme: IconThemeData(
-              color: Colors.black, //change your color here
+              color: Colors.white,
+            ),
+            flexibleSpace: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [
+                      Color.fromARGB(243, 255, 85, 76),
+                      Color.fromARGB(255, 249, 136, 36)
+                    ]),
+              ),
             ),
             title: Text(
               "Thay đổi mật khẩu",
               style: TextStyle(
-                color: MaterialColors.black,
+                color: MaterialColors.white,
                 fontFamily: "SF Bold",
               ),
             ),
@@ -303,6 +314,15 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     Container(
                         width: MediaQuery.of(context).size.width,
                         child: Container(
+                          decoration: BoxDecoration(
+                            gradient: const LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [
+                                  Color.fromARGB(243, 255, 85, 76),
+                                  Color.fromARGB(255, 249, 136, 36),
+                                ]),
+                          ),
                           height: 45,
                           child: ElevatedButton(
                             child: Text(
@@ -313,13 +333,13 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                                   fontSize: 18),
                             ),
                             style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  const Color.fromARGB(255, 249, 136, 36),
                               textStyle: TextStyle(color: Colors.black),
-                              shadowColor: Colors.white,
+                              padding: EdgeInsets.all(0),
+                              elevation: 0,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8),
                               ),
+                              backgroundColor: Colors.transparent,
                             ),
                             onPressed: () => {
                               if (_formKey.currentState!.validate())

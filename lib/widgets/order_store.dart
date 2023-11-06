@@ -17,6 +17,7 @@ class OrderStore extends StatefulWidget {
   int statusEdge;
   String building;
   Function callbackLoading;
+
   List<OrderEdgeModel> orderEdgeList;
   OrderStore(
       {Key? key,

@@ -600,8 +600,8 @@ class _RouteDetailPageState extends State<RouteDetailPage>
                         begin: Alignment.centerLeft,
                         end: Alignment.centerRight,
                         colors: [
-                          MaterialColors.primary,
-                          MaterialColors.primary2,
+                          Color.fromARGB(243, 255, 85, 76),
+                          Color.fromARGB(255, 249, 136, 36)
                         ]),
                   ),
                 ),
@@ -844,11 +844,12 @@ class _RouteDetailPageState extends State<RouteDetailPage>
                         //     );
                         //   },
                         // ),
+
                         ActionSlider.standard(
                       sliderBehavior: SliderBehavior.stretch,
                       rolling: true,
                       width: MediaQuery.of(context).size.width * 0.8,
-                      backgroundColor: Colors.orange,
+                      backgroundColor: Color.fromARGB(243, 238, 113, 41),
                       toggleColor: Colors.white,
                       iconAlignment: Alignment.centerRight,
                       loadingIcon: const SizedBox(
