@@ -460,52 +460,52 @@ class _OrderItemState extends State<OrderItem> {
                                 height: 15,
                               ),
                             ],
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Tổng cộng",
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(50, 50, 50, 1),
-                                      fontFamily: "SF Regular",
-                                      fontSize: 16),
-                                ),
-                                Text(
-                                  "đ${currencyFormatter.format((total).toInt()).toString()}",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontFamily: "SF Semibold",
-                                      fontSize: 16),
-                                )
-                              ],
-                            ),
-                            if (segment == OrderAction.deliveryCus) ...[
-                              SizedBox(
-                                height: 15,
-                              ),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "Phí giao hàng",
-                                    style: TextStyle(
-                                        color: Color.fromRGBO(50, 50, 50, 1),
-                                        fontFamily: "SF Regular",
-                                        fontSize: 16),
-                                  ),
-                                  Text(
-                                    "đ${currencyFormatter.format((shipCost).toInt()).toString()}",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontFamily: "SF Semibold",
-                                        fontSize: 16),
-                                  )
-                                ],
-                              ),
-                            ],
+                            // Row(
+                            //   crossAxisAlignment: CrossAxisAlignment.center,
+                            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            //   children: [
+                            //     Text(
+                            //       "Tổng cộng",
+                            //       style: TextStyle(
+                            //           color: Color.fromRGBO(50, 50, 50, 1),
+                            //           fontFamily: "SF Regular",
+                            //           fontSize: 16),
+                            //     ),
+                            //     Text(
+                            //       "đ${currencyFormatter.format((total).toInt()).toString()}",
+                            //       style: TextStyle(
+                            //           color: Colors.black,
+                            //           fontFamily: "SF Semibold",
+                            //           fontSize: 16),
+                            //     )
+                            //   ],
+                            // ),
+                            // if (segment == OrderAction.deliveryCus) ...[
+                            //   SizedBox(
+                            //     height: 15,
+                            //   ),
+                            //   Row(
+                            //     crossAxisAlignment: CrossAxisAlignment.center,
+                            //     mainAxisAlignment:
+                            //         MainAxisAlignment.spaceBetween,
+                            //     children: [
+                            //       Text(
+                            //         "Phí giao hàng",
+                            //         style: TextStyle(
+                            //             color: Color.fromRGBO(50, 50, 50, 1),
+                            //             fontFamily: "SF Regular",
+                            //             fontSize: 16),
+                            //       ),
+                            //       Text(
+                            //         "đ${currencyFormatter.format((shipCost).toInt()).toString()}",
+                            //         style: TextStyle(
+                            //             color: Colors.black,
+                            //             fontFamily: "SF Semibold",
+                            //             fontSize: 16),
+                            //       )
+                            //     ],
+                            //   ),
+                            // ],
                             SizedBox(
                               height: 12,
                             ),
@@ -518,13 +518,6 @@ class _OrderItemState extends State<OrderItem> {
                                 children: [
                                   Row(
                                     children: [
-                                      Image(
-                                          // color:70olors.red,
-                                          height: 25,
-                                          width: 25,
-                                          fit: BoxFit.cover,
-                                          image: NetworkImage(
-                                              "https://cdn-icons-png.flaticon.com/512/3297/3297987.png")),
                                       SizedBox(width: 5),
                                       Text(
                                         getMessageAction(segment),

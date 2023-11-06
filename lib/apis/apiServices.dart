@@ -52,6 +52,7 @@ class ApiServices {
       // messageEdgeModel.complete(MessageEdgeModel.fromJson(body));
       print('Error with status code: ${e}');
     }
+    return null;
   }
 
 //https://deliveryvhgp-webapi.azurewebsites.net/api/v1/routes/b6261fcf-4b85-41b5-be97-84237f956022/edges
